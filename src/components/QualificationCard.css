@@ -1,0 +1,5 @@
+@import "../index.css";
+
+.main-card {
+    background-color: var(--primary-300)
+}
