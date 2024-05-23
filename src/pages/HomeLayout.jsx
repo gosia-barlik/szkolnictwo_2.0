@@ -1,5 +1,6 @@
 import { Outlet, useNavigation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import CallToAction from '../components/ui/CallToAction';
 
 const HomeLayout = () => {
   const navigation = useNavigation();
@@ -9,6 +10,7 @@ const HomeLayout = () => {
   return (
     <>
       <Navbar />
+      <CallToAction />
       <section className='page'>
         {isPageLoading ? (
           <div className='loading' />

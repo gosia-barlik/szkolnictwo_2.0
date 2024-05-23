@@ -286,3 +286,15 @@ PROJECT CSS
   margin: 0 auto;
   padding: 5rem 2rem;
 }
+
+.cta_grid_2 {
+  max-width: var(--max-width);
+}
+
+.cta_grid_2 .img {
+  background-image: url("./assets/img/background.jpg");
+  width: 300px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

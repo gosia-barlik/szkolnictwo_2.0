@@ -1,16 +1,19 @@
-import Wrapper from '../assets/wrappers/AboutPage';
+import Wrapper from "../assets/wrappers/AboutPage";
 
 const About = () => {
   return (
     <Wrapper>
-      <h3>About Us</h3>
+      <h3>O narzędziu</h3>
       <p>
-        Introducing "MixMaster," the ultimate party sidekick app that fetches
-        cocktails from the hilarious Cocktails DB API. With a flick of your
-        finger, you'll unlock a treasure trove of enchanting drink recipes
-        that'll make your taste buds dance and your friends jump with joy. Get
-        ready to shake up your mixology game, one fantastical mocktail at a
-        time, and let the laughter and giggles flow!
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five
+        centuries, but also the leap into electronic typesetting, remaining
+        essentially unchanged. It was popularised in the 1960s with the release
+        of Letraset sheets containing Lorem Ipsum passages, and more recently
+        with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.
       </p>
     </Wrapper>
   );
