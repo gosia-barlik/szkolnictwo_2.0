@@ -1,0 +1,5 @@
+.cta_grid_2 {
+    overflow: hidden;
+    max-height: 150px;
+    max-width: var(--max-width);
+  }
