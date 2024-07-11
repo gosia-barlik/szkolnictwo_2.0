@@ -1,6 +1,6 @@
 import { api } from "../config/axiosConfig"
 import { defineCancelApiObject } from "../config/axiosUtils"
-import { qualificationListFixture } from "../../fixtures/qualificationListFixture"
+import { groupsListFixture } from "../../fixtures/groupsListFixture"
 
 export const MainInfoAPI = {
 
@@ -13,7 +13,7 @@ export const MainInfoAPI = {
     //   withCredentials:false,
     //   signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
     // })
- return qualificationListFixture;
+ return groupsListFixture;
     // return response.data;
   },
 

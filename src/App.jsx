@@ -7,12 +7,9 @@ import {
   Landing,
   Error,
   Newsletter,
-  Qualification,
   SinglePageError,
 } from './pages';
 
-import { loader as landingLoader } from './pages/Landing';
-import { loader as singleCocktailLoader } from './pages/Qualification';
 import { action as newsletterAction } from './pages/Newsletter';
 
 const queryClient = new QueryClient({
@@ -33,14 +30,14 @@ const router = createBrowserRouter([
         index: true,
         element: <Landing />,
         errorElement: <SinglePageError />,
-        loader: landingLoader(queryClient),
+       
       },
-      {
-        path: 'qualification/:id',
-        errorElement: <SinglePageError />,
-        loader: singleCocktailLoader(queryClient),
-        element: <Qualification />,
-      },
+      // {
+      //   path: 'qualification/:id',
+      //   errorElement: <SinglePageError />,
+      //   loader: singleCocktailLoader(queryClient),
+      //   element: <Qualification />,
+      // },
       {
         path: 'newsletter',
         element: <Newsletter />,
