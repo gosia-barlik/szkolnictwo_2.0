@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import InputAutocomplete from "../components/ui/Autocomplete";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Button, useTheme } from "@mui/material";
@@ -8,6 +7,7 @@ import "./Landing.css";
 
 const Landing = () => {
   const theme = useTheme();
+ 
   return (
     <>
       <header>
