@@ -320,10 +320,6 @@ PROJECT CSS
 
 .cta_grid_2 .img {
   background-image: url("./assets/img/kompas.png");
-  width: 400px;
-  height: 200px;
-  background-size: contain;
-  background-repeat: no-repeat;
 }
 
 .main_grid_1 .img {

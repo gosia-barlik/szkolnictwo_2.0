@@ -11,7 +11,7 @@ const HomeLayout = () => {
   return (
     <>
       <Navbar />
-      <CallToAction />
+      {/* <CallToAction /> */}
       <section className="page">
       {isPageLoading ? (
           <div className='loading' />

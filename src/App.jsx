@@ -8,6 +8,7 @@ import {
   Error,
   Newsletter,
   SinglePageError,
+  SearchQualification,
 } from './pages';
 
 import { action as newsletterAction } from './pages/Newsletter';
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
         path: 'about',
         element: <About />,
       },
+      {
+        path: 'search',
+        element:<SearchQualification />
+      }
     ],
   },
 ]);

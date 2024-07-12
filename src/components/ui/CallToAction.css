@@ -3,3 +3,10 @@
     max-height: 150px;
     max-width: var(--max-width);
   }
+  
+  .cta_grid_2 .img {
+    width: 400px;
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
