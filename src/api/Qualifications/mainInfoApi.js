@@ -1,10 +1,10 @@
-import { api } from "../config/axiosConfig"
-import { defineCancelApiObject } from "../config/axiosUtils"
-import { groupsListFixture } from "../../fixtures/groupsListFixture"
+import { api } from "../config/axiosConfig";
+import { defineCancelApiObject } from "../config/axiosUtils";
+import { groupsListFixture } from "../../fixtures/groupsListFixture";
+import { industriesFixture } from "../../fixtures/industriesFixture";
 
 export const MainInfoAPI = {
-
-  //zapisanie 
+  //zapisanie
   create: async function (array, cancel = false) {
     // const response = await api.request({
     //   url: `kompas/get-kompas-qualifications-many`,
@@ -13,36 +13,42 @@ export const MainInfoAPI = {
     //   withCredentials:false,
     //   signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
     // })
- return groupsListFixture;
+    return groupsListFixture;
     // return response.data;
   },
 
-  //aktualizacja 
+  getIndustries: async function (array, cancel = false) {
+    return industriesFixture;
+  },
+
+  //aktualizacja
   update: async function (mainInfo, cancel = false) {
     const response = await api.request({
-      url: '',
+      url: "",
       method: "PUT",
       data: mainInfo,
-      withCredentials:false,
-      signal: cancel ? cancelApiObject[this.create.name].handleRequestCancellation().signal : undefined,
-    })
+      withCredentials: false,
+      signal: cancel
+        ? cancelApiObject[this.create.name].handleRequestCancellation().signal
+        : undefined,
+    });
 
     return response.data;
   },
 
-  //pobranie 
+  //pobranie
   get: async function (offerId, cancel = false) {
     const response = await api.request({
       url: `kompas/nav`,
       method: "GET",
-      withCredentials:false,
-      signal: cancel ? cancelApiObject[this.get.name].handleRequestCancellation().signal : undefined,
-    })
-// return qualificationListFixture
+      withCredentials: false,
+      signal: cancel
+        ? cancelApiObject[this.get.name].handleRequestCancellation().signal
+        : undefined,
+    });
+    // return qualificationListFixture
     return response.data;
   },
-
-
-}
+};
 
 const cancelApiObject = defineCancelApiObject(MainInfoAPI);

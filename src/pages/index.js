@@ -1,5 +1,5 @@
 export { default as Landing } from "./Landing";
-export { default as SearchQualification } from "./SearchQualification";
+export { default as SearchQualification } from "../pages/SearchQualification/SearchQualification";
 export { default as About } from "./About";
 export { default as Newsletter } from "./Newsletter";
 export { default as HomeLayout } from "./HomeLayout";

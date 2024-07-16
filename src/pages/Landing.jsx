@@ -3,11 +3,17 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Button, useTheme } from "@mui/material";
 import * as phrases from "./dictionaries/landing.dictionary.json";
+import { changeValue } from "../redux/tabs";
+import { useDispatch } from "react-redux";
 import "./Landing.css";
 
 const Landing = () => {
   const theme = useTheme();
- 
+  const dispatch = useDispatch();
+  const handleChange = (newValue) => {
+    dispatch(changeValue(newValue));
+  };
+
   return (
     <>
       <header>
@@ -33,7 +39,6 @@ const Landing = () => {
               variant="h6"
               component="h1"
               color={theme.text.primary.main}
-             
             >
               {phrases.landing.header.title}
             </Typography>
@@ -43,10 +48,9 @@ const Landing = () => {
             <Typography color={theme.text.primary.main}>
               {phrases.landing.header.about}
             </Typography>
-            <NavLink to="/search" className="nav-link">
-              <Typography>{phrases.landing.header.action}</Typography>
-            </NavLink>
-            <Button variant="outlined" component={NavLink} to="/search" >{phrases.landing.header.action}</Button>
+            <Button className="action" onClick={()=>handleChange("2")} variant="outlined" component={NavLink} to="/search">
+              {phrases.landing.header.action}
+            </Button>
           </Grid>
 
           <Grid
@@ -90,7 +94,7 @@ const Landing = () => {
               <Typography color={theme.text.primary.main}>
                 {phrases.landing.section_1.content}
               </Typography>
-              <Button>{phrases.landing.section_1.action}</Button>
+              <Button className="action" onClick={()=>handleChange("2")} variant="outlined" component={NavLink} to="/search">{phrases.landing.section_1.action}</Button>
             </Grid>
 
             <Grid
@@ -132,7 +136,7 @@ const Landing = () => {
               <Typography color={theme.text.primary.main}>
                 {phrases.landing.section_2.about}
               </Typography>
-              <Button>{phrases.landing.section_2.action}</Button>
+              <Button className="action" onClick={()=>handleChange("3")} variant="outlined" component={NavLink} to="/search">{phrases.landing.section_2.action}</Button>
             </Grid>
 
             <Grid
@@ -176,7 +180,7 @@ const Landing = () => {
               <Typography color={theme.text.primary.main}>
                 {phrases.landing.section_3.content}
               </Typography>
-              <Button>{phrases.landing.section_3.action}</Button>
+              <Button className="action" onClick={()=>handleChange("1")} variant="outlined" component={NavLink} to="/search">{phrases.landing.section_3.action}</Button>
             </Grid>
 
             <Grid
@@ -191,8 +195,6 @@ const Landing = () => {
           </Grid>
         </section>
       </main>
-
-    
     </>
   );
 };

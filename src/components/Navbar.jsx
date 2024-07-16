@@ -44,7 +44,7 @@ const Navbar = () => {
               sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} 
               onClick={getQualifications}
             /> */}
-            <NavLink to="/" className="nav-link" >
+            <NavLink to="/" className="nav-link logo" >
               <Typography color="black" variant="h6" className="highlight">
                 Kompas
               </Typography>

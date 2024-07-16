@@ -4,28 +4,24 @@
   max-width: var(--max-width);
 }
 
-.main_grid_1 .MuiTypography-h6,
-.main_grid_2 .MuiTypography-h6,
-.main_grid_3 .MuiTypography-h6,
-.main_grid_4 .MuiTypography-h6 {
-  font-weight: 600;
-}
-
 .main_grid_1 .img,
 .main_grid_2 .img,
 .main_grid_3 .img,
-.main_grid_4 .img  {
+.main_grid_4 .img {
   width: 400px;
-  height: 200px;
-  background-size: contain;
+  height: 240px;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
-@media (min-width: 900px) { 
+.MuiButton-outlined.action {
+  margin-top: 18px;
+}
+
+@media (min-width: 900px) {
   .main_grid_2 .img,
   .main_grid_4 .img {
     margin-left: -96px;
-    padding-left: -24px
-    
+    padding-left: -24px;
   }
 }

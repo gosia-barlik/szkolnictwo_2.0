@@ -1,0 +1,12 @@
+.search-qualification-main {
+margin-top:64px
+}
+.main.autocomplete {
+    width: 700px
+}
+
+@media (max-width: 600px) {
+    .main.autocomplete {
+        width: 100%
+    } 
+}

@@ -1,12 +1,10 @@
-import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import { useDispatch, useSelector } from "react-redux";
-import {changeValue} from "../../redux/tabs";
+import Industries from "../../pages/SearchQualification/Industries";
 
 const AntTabs = styled(TabList)({
   borderBottom: "1px solid #e8e8e8",
@@ -40,29 +38,24 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
   })
 );
 
-const Tabs = () => {
-  const { value } = useSelector((state) => state.tabs);
-  const dispatch = useDispatch ()
-
-    const handleChange = (event, newValue) => {
-        dispatch (changeValue(newValue))
-    };
-
+const Tabs = (props) => {
   return (
     <Box sx={{ width: "100%", typography: "body1" }}>
-      <TabContext value={value}>
+      <TabContext value={props.value}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <AntTabs
             selectionFollowsFocus
-            onChange={handleChange}
+            onChange={props.handleChange}
             aria-label="Zakładki"
           >
-            <AntTab label="Branże" value="1"/>
-            <AntTab label="Umiejętności" value="2"/>
+            <AntTab label="Branże" value="1" />
+            <AntTab label="Umiejętności" value="2" />
             <AntTab label="Zawody" value="3" />
           </AntTabs>
         </Box>
-        <TabPanel value="1">Branże</TabPanel>
+        <TabPanel value="1">
+          <Industries />
+        </TabPanel>
         <TabPanel value="2">Umiejętności</TabPanel>
         <TabPanel value="3">Zawody</TabPanel>
       </TabContext>
