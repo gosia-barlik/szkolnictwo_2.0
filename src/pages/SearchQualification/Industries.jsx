@@ -8,32 +8,13 @@ import { MainInfoAPI } from "../../api/Qualifications/mainInfoApi";
 const Industries = () => {
   const [industries, setIndustries] = React.useState([]);
   const [data, setData] = React.useState([]);
-  const [qualifications, setQualifications] = React.useState([
-    {
-      id: "2346",
-      name: "Administracja europejska",
-      type: "kwalifikacja",
-      category: "studia wyższe",
-      children: [],
-      skills: ["analizowanie", "dobra pamięć"],
-    },
-    {
-      id: "2346",
-      name: "Administracja i cyfryzacja",
-      type: "kwalifikacja",
-      category: "studia wyższe",
-      children: [],
-      skills: ["analizowanie", "dobra pamięć"],
-    },
-  ]);
-  const [fields, setFields] = React.useState([]);
 
   useEffect(() => {
     getIndustries(), [];
   });
 
   useEffect(() => {
-    getData(), [];
+    getQualifications(), [];
   });
 
   const getIndustries = async () => {
@@ -45,10 +26,6 @@ const Industries = () => {
     setIndustries(response.results);
   };
 
-  const getData = () => {
-    getQualifications();
-  };
-
   const getQualifications = async () => {
     const response = await MainInfoAPI.getQualifications()
       .catch((error) => console.log([error.message]))
@@ -56,14 +33,6 @@ const Industries = () => {
         console.log("");
       });
     setData(response);
-  };
-
-  const filterQualifications = (data) => {
-    const qualificationArray = data.filter(
-      (item) => item.type === "kwalifikacja"
-    );
-    const fieldArray = data.filter((item) => item.type === "kierunek");
-    setQualifications(qualificationArray);
   };
 
   return (

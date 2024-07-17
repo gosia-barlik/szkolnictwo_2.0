@@ -69,7 +69,10 @@ const QualificationListAccordion = (props) => {
           </Box>
         </Box>
       </AccordionSummary>
-      <AccordionDetails className="details">
+
+      <AccordionDetails 
+      className="details"
+      >
        
         <List component="nav" aria-label="">
            {props.children.map((el)=>      <ListItemButton

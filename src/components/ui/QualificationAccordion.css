@@ -1,14 +1,12 @@
 
 .MuiAccordion-root.accordion {
     border: 1px solid var(--grey-500);
-    height: 76px;
     width: 800px;
     margin-top: 4px;
     border-radius: 4px;
 }
 
 .accordion .summary {
-    height: 76px;
     border-bottom: 3px solid var(--primary-600);
     padding: 0;
 }
@@ -23,7 +21,6 @@
   }
 
   .accordion .details {
-    border: 1px solid var(--grey-500);
     border-radius: 4px;
 }
 
