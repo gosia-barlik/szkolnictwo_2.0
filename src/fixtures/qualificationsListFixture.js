@@ -3,36 +3,81 @@ const qualificationsListFixture = {
   results: [
     {
       id: "12345",
-      name: "Technik technologii szkła",
+      name: "Administracja",
+      type: "kierunek",
+      category: null,
+      children: [
+        {
+          name: "Uniwersytet Mikołaja Kopernika w Toruniu",
+          id: "123456",
+          form: "stacjonarne",
+          PRKlevel: "VII",
+        },
+        {
+          name: "Uniwersytet Mikołaja Kopernika w Toruniu",
+          id: "1234567",
+          form: "niestacjonarne",
+          PRKlevel: "VII",
+        },
+        {
+          name: "Uniwersytet Warmińsko-Mazurski w Olsztynie",
+          id: "12345678",
+          form: "stacjonarne",
+          PRKlevel: "VII",
+        },
+      ],
+      skills: ["analizowanie", "dobra pamięć"]
     },
     {
-      id: "12346",
-      name: "Technik technologii drewna",
+      id: "2346",
+      name: "Administracja europejska",
+      type: "kwalifikacja",
+      category: "studia wyższe",
+      children:[],
+      skills: ["analizowanie", "dobra pamięć", "dobra organizacja pracy"]
     },
     {
-      id: "12347",
-      name: "Technik technologii żywności",
+      id: "2346",
+      name: "Administracja i cyfryzacja",
+      type: "kwalifikacja",
+      category: "studia wyższe",
+      children:[],
+      skills: ["analizowanie", "dobra pamięć", "komunikowanie się"]
     },
     {
-      id: "12348",
-      name: "Technik technologii chemicznej",
+      id: "12345",
+      name: "Administracja i polityka publiczna",
+      type: "kierunek",
+      category: null,
+      children: [
+        {
+          name: "Uniwersytet Mikołaja Kopernika w Toruniu",
+          id: "123456",
+          form: "stacjonarne",
+          PRKlevel: "VII",
+        },
+        {
+          name: "Uniwersytet Mikołaja Kopernika w Toruniu",
+          id: "1234567",
+          form: "niestacjonarne",
+          PRKlevel: "VII",
+        },
+        {
+          name: "Uniwersytet Warmińsko-Mazurski w Olsztynie",
+          id: "12345678",
+          form: "stacjonarne",
+          PRKlevel: "VII",
+        },
+        {
+          name: "Uniwersytet Warmińsko-Mazurski w Olsztynie",
+          id: "12345678",
+          form: "stacjonarne",
+          PRKlevel: "VII",
+        },
+      ],
+      skills: ["analizowanie", "dobra pamięć"]
     },
-    {
-      id: "12349",
-      name: "Technik technologii wyrobów skórzanych",
-    },
-    {
-      id: "123410",
-      name: "Technologia chemiczna",
-    },
-    {
-      id: "123411",
-      name: "Matematyka w technice",
-    },
-    {
-      id: "123412",
-      name: "Information Technology",
-    },
+
   ],
 };
 export { qualificationsListFixture };

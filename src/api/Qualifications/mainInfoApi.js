@@ -2,6 +2,7 @@ import { api } from "../config/axiosConfig";
 import { defineCancelApiObject } from "../config/axiosUtils";
 import { groupsListFixture } from "../../fixtures/groupsListFixture";
 import { industriesFixture } from "../../fixtures/industriesFixture";
+import { qualificationsListFixture } from "../../fixtures/qualificationsListFixture";
 
 export const MainInfoAPI = {
   //zapisanie
@@ -19,6 +20,10 @@ export const MainInfoAPI = {
 
   getIndustries: async function (array, cancel = false) {
     return industriesFixture;
+  },
+
+  getQualifications: async function (array, cancel = false) {
+    return qualificationsListFixture;
   },
 
   //aktualizacja

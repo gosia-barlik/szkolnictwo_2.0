@@ -1,0 +1,33 @@
+
+.MuiAccordion-root.accordion {
+    border: 1px solid var(--grey-500);
+    height: 76px;
+    width: 800px;
+    margin-top: 4px;
+    border-radius: 4px;
+}
+
+.accordion .summary {
+    height: 76px;
+    border-bottom: 3px solid var(--primary-600);
+    padding: 0;
+}
+
+.summary p.item-title {
+    margin-top: 4;
+    font-weight: 600;
+  }
+
+  .summary span.item-detail {
+    margin-top: 12px;
+  }
+
+  .accordion .details {
+    border: 1px solid var(--grey-500);
+    border-radius: 4px;
+}
+
+
+.accordion .details .MuiTypography-body1 {
+    font-size: 14px;
+}
