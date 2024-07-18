@@ -5,6 +5,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import Industries from "../../pages/SearchQualification/Industries";
+import Skills from "../../pages/SearchQualification/Skills";
 
 const AntTabs = styled(TabList)({
   borderBottom: "1px solid #e8e8e8",
@@ -56,7 +57,9 @@ const Tabs = (props) => {
         <TabPanel value="1">
           <Industries />
         </TabPanel>
-        <TabPanel value="2">Umiejętności</TabPanel>
+        <TabPanel value="2">
+          <Skills />
+        </TabPanel>
         <TabPanel value="3">Zawody</TabPanel>
       </TabContext>
     </Box>

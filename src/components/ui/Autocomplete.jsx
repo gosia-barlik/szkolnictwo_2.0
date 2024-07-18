@@ -20,7 +20,7 @@ const InputAutocomplete = (props) => {
         filterSelectedOptions
         onChange={(event, newValue) => handleChange(newValue)}
         renderInput={(params) => (
-          <TextField fullWidth {...params} label="Wskaż branżę" />
+          <TextField fullWidth {...params} label={props.label} />
         )}
       ></Autocomplete>
     )

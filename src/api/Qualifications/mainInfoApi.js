@@ -3,6 +3,7 @@ import { defineCancelApiObject } from "../config/axiosUtils";
 import { groupsListFixture } from "../../fixtures/groupsListFixture";
 import { industriesFixture } from "../../fixtures/industriesFixture";
 import { qualificationsListFixture } from "../../fixtures/qualificationsListFixture";
+import { skillsFixture } from "../../fixtures/skillsFixture";
 
 export const MainInfoAPI = {
   //zapisanie
@@ -20,6 +21,10 @@ export const MainInfoAPI = {
 
   getIndustries: async function (array, cancel = false) {
     return industriesFixture;
+  },
+
+  getSkills: async function (array, cancel = false) {
+    return skillsFixture;
   },
 
   getQualifications: async function (array, cancel = false) {
