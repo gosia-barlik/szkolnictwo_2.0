@@ -1,25 +1,11 @@
 {
     "landing": {
         "header": {
-            "title": "Pomogę Ci wybrać właściwy kierunek Twojego rozwoju",
-            "content": "Podpowiem inspiracje do planowania rozwoju w oparciu o kwalifikacje.",
-            "about": "Aplikacja powstała, aby wesprzeć Cię na ścieżce edukacyjnej i zawodowej. Pomogę Ci znaleźć ścieżkę dalszej nauki lub rozwoju zawodowego w oparciu o Twoje umiejętności.",
-            "action": "Dowiedz się więcej o kwalifikacjach"
-        },
-        "section_1": {
-            "title": "Wybierz swoje umiejętności, a zaproponuję Ci jak możesz je rozwinąć",
-            "content": "To opcja dla Ciebie jeśli szukasz ścieżki dalszej nauki albo zastanawiasz się jak dalej pokierować swoim rozwojem zawodowym. Wskaż jakie są Twoje najważniejsze umiejętności a zobaczysz jakie kwalifikacje mogę Ci zaoferować.",
-            "action": "Wskaż swoje umiejętności"
-        },
-        "section_2": {
-            "title": "Powiedz czym się obecnie zajmujesz albo czym chciałbyś zajmować się w przyszłości a pokażę jakie masz możliwości",
-            "content": "To opcja dla Ciebie jeśli chcesz podnosić swoje kompetencje w obszarze, w którym już pracujesz albo chcesz pracować. Umożliwiam przeglądanie kwalifikacji według zawodów/stanowisk pracy.",
-            "action": "Wybierz swój zawód"
-        },
-        "section_3": {
-            "title": "Wskaż jakie branże Cię interesują a pokażę jakie masz możliwości",
-            "content": "To opcja dla Ciebie jeśli chcesz się przekwalifikować albo chcesz sprawdzić możliwości rozwoju w ramach branży.",
-            "action": "Zobacz branże"
+            "title": "Wybierz zawód, który otworzy Ci drogę do rozwoju i zdobycia kwalifikacji",
+            "content": "Szukasz informacji o zawodach szkolnictwa branżowego? Próbujesz rozeznać swoją drogę kształcenia? Szukasz idealnej kwalifikacji? Wpisz zapytanie i uzupełnij filtry lub skorzystaj z kompasu!",
+            "about": "",
+            "action": ""
         }
+        
     }
 }

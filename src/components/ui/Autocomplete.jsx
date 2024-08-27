@@ -15,7 +15,6 @@ const InputAutocomplete = (props) => {
     props.results && (
       <Autocomplete
         className="main autocomplete"
-        multiple
         options={props.results.map((option) => option.name)}
         filterSelectedOptions
         onChange={(event, newValue) => handleChange(newValue)}

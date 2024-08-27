@@ -7,7 +7,6 @@ import {
   Landing,
   Error,
   SinglePageError,
-  SearchQualification,
 } from './pages';
 
 const queryClient = new QueryClient({
@@ -40,10 +39,7 @@ const router = createBrowserRouter([
         path: 'about',
         element: <About />,
       },
-      {
-        path: 'search',
-        element:<SearchQualification />
-      }
+  
     ],
   },
 ]);

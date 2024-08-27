@@ -1,6 +1,3 @@
-#### Figma File
-
-[Kompas 2.0](https://www.figma.com/...)
 
 ## Steps
 
@@ -266,15 +263,6 @@ const router = createBrowserRouter([
   },
 ]);
 ```
-
-#### TheCocktailDB
-
-[API](https://www.thecocktaildb.com/)
-
-- Search cocktail by name
-  www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita
-- Lookup full cocktail details by id
-  www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007
 
 #### Landing - Fetch 
 

@@ -1,4 +1,4 @@
-const industriesFixture = {
+const autocompleteOptionsFixture = {
   results_count: 16,
   results: [
     {
@@ -75,4 +75,4 @@ const industriesFixture = {
     },
   ],
 };
-export { industriesFixture };
+export { autocompleteOptionsFixture  };

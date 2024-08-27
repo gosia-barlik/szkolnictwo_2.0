@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import ExploreIcon from "@mui/icons-material/Explore";
+import img from '../assets/img/szkolnictwo-logotyp.svg'
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
@@ -39,14 +39,11 @@ const Navbar = () => {
       <AppBar color="default" className="main-nav">
         <Container maxWidth="xl">
           <Toolbar>
-            {/* <ExploreIcon
-              color="primary"
-              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} 
-              onClick={getQualifications}
-            /> */}
+          <img src={img} alt='logotyp'/>
+  
             <NavLink to="/" className="nav-link logo" >
-              <Typography color="black" variant="h6" className="highlight">
-                Kompas
+              <Typography color="black" className="text logo">
+                Kompas szkolnictwa <br></br> branżowego
               </Typography>
             </NavLink>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, pl:10 }}>
