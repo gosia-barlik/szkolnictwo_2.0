@@ -1,5 +1,5 @@
 const qualificationsListFixture = {
-  results_count: 16,
+  qualifications_count: 18851,
   results: [
     {
       id: "12345",
@@ -21,7 +21,7 @@ const qualificationsListFixture = {
         },
         {
           name: "Uniwersytet Warmińsko-Mazurski w Olsztynie",
-          id: "12345678",
+          id: "123456781",
           form: "stacjonarne",
           PRKlevel: "VII",
         },
@@ -64,13 +64,13 @@ const qualificationsListFixture = {
         },
         {
           name: "Uniwersytet Warmińsko-Mazurski w Olsztynie",
-          id: "12345678",
+          id: "123456782",
           form: "stacjonarne",
           PRKlevel: "VII",
         },
         {
           name: "Uniwersytet Warmińsko-Mazurski w Olsztynie",
-          id: "12345678",
+          id: "123456783",
           form: "stacjonarne",
           PRKlevel: "VII",
         },

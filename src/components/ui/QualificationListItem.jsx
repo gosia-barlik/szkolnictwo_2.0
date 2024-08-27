@@ -35,7 +35,7 @@ const QualificationListItem = (props) => {
             overflow="hidden"
             sx={{ marginTop: "4px" }}
           >
-            {props.skills.map((el)=> <Chip label={el} variant="outlined" size="small" />)}
+            {props.skills.map((el)=> <Chip key={el} label={el} variant="outlined" size="small" />)}
            
           </Stack>
         </Box>

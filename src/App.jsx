@@ -6,12 +6,9 @@ import {
   HomeLayout,
   Landing,
   Error,
-  Newsletter,
   SinglePageError,
   SearchQualification,
 } from './pages';
-
-import { action as newsletterAction } from './pages/Newsletter';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,12 +36,6 @@ const router = createBrowserRouter([
       //   loader: singleCocktailLoader(queryClient),
       //   element: <Qualification />,
       // },
-      {
-        path: 'newsletter',
-        element: <Newsletter />,
-        action: newsletterAction,
-        errorElement: <SinglePageError />,
-      },
       {
         path: 'about',
         element: <About />,

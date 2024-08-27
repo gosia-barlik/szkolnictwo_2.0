@@ -91,7 +91,7 @@ h6.MuiTypography-h6{
   font-family: var(--headingFont);
   font-weight: 600;
   line-height: 1;
-  letter-spacing: var(--letterSpacing);
+  /* letter-spacing: var(--letterSpacing); */
 }
 
 /* buttons */

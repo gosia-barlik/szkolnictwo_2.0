@@ -7,7 +7,7 @@
 }
 
 .accordion .summary {
-    border-bottom: 3px solid var(--primary-600);
+    border-bottom: 2px solid var(--primary-800);
     padding: 0;
 }
 

@@ -4,8 +4,25 @@ import { groupsListFixture } from "../../fixtures/groupsListFixture";
 import { industriesFixture } from "../../fixtures/industriesFixture";
 import { qualificationsListFixture } from "../../fixtures/qualificationsListFixture";
 import { skillsFixture } from "../../fixtures/skillsFixture";
+import { qualificationsListIndustriesFixture } from "../../fixtures/qualificationsListIndustriesFixture";
 
 export const MainInfoAPI = {
+  getIndustries: async function (array, cancel = false) {
+    return industriesFixture;
+  },
+
+  getSkills: async function (array, cancel = false) {
+    return skillsFixture;
+  },
+
+  getQualifications: async function (array, cancel = false) {
+    return qualificationsListFixture;
+  },
+
+  getIndustriesQualifications: async function (array, cancel = false) {
+    return qualificationsListIndustriesFixture;
+  },
+
   //zapisanie
   create: async function (array, cancel = false) {
     // const response = await api.request({
@@ -17,18 +34,6 @@ export const MainInfoAPI = {
     // })
     return groupsListFixture;
     // return response.data;
-  },
-
-  getIndustries: async function (array, cancel = false) {
-    return industriesFixture;
-  },
-
-  getSkills: async function (array, cancel = false) {
-    return skillsFixture;
-  },
-
-  getQualifications: async function (array, cancel = false) {
-    return qualificationsListFixture;
   },
 
   //aktualizacja

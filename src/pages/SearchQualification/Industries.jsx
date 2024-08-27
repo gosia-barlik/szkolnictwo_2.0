@@ -1,28 +1,23 @@
 import React, { useEffect } from "react";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import InputAutocomplete from "../../components/ui/Autocomplete";
-import QualificationListItem from "../../components/ui/QualificationListItem";
-import QualificationListAccordion from "../../components/ui/QualificationListAccordion";
 import { MainInfoAPI } from "../../api/Qualifications/mainInfoApi";
-import WorkspacesIcon from "@mui/icons-material/Workspaces";
-// import "./SearchQualification.css";
+import IndustriesListItem from "./IndustriesListItem";
+import Pagination from "@mui/material/Pagination";
+import "./Industries.css";
 
 const Industries = () => {
   const [industries, setIndustries] = React.useState([]);
   const [data, setData] = React.useState([]);
-  const [section, setSection] = React.useState({
-    administracja: true,
-    prawo: false,
-    backoffice: false,
-  });
+  const [page, setPage] = React.useState(1);
 
   useEffect(() => {
     getIndustries(), [];
   });
 
   useEffect(() => {
-    getQualifications(), [];
-  });
+    getIndustriesQualifications();
+  }, []);
 
   const getIndustries = async () => {
     const response = await MainInfoAPI.getIndustries()
@@ -33,20 +28,26 @@ const Industries = () => {
     setIndustries(response.results);
   };
 
-  const getQualifications = async () => {
-    const response = await MainInfoAPI.getQualifications()
-      .catch((error) => console.log([error.message]))
-      .finally(() => {
-        console.log("");
-      });
-    setData(response);
+  const getIndustriesQualifications = async () => {
+    try {
+      const response = await MainInfoAPI.getIndustriesQualifications();
+      setData(response);
+      // if (response.results) {
+      //   const initialSectionState = response.results.reduce((acc, el) => {
+      //     el.children.forEach((child) => {
+      //       acc[child.name] = false;
+      //     });
+      //     return acc;
+      //   }, {});
+      //   setSection(initialSectionState);
+      // }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
-  const toggleSection = (sectionName) => {
-    setSection((prevState) => ({
-      ...prevState,
-      [sectionName]: !prevState[sectionName],
-    }));
+  const handlePageChange = (event, value) => {
+    setPage(value);
   };
 
   return (
@@ -59,57 +60,22 @@ const Industries = () => {
         <InputAutocomplete results={industries} label="Wskaż branżę" />
         <Button variant="outlined">Więcej filtrów</Button>
       </Stack>
-
-      <Box sx={{ borderLeft: "3px solid red" }}>
-        <Typography variant="h6" style={{ margin: "6px", marginLeft:"14px" }}>
-          Administracja i prawo
-        </Typography>
-        <Typography variant="caption" style={{ margin:"14px" }}>
-          liczba kwalifikacji: 587
-        </Typography>
-        <Box sx={{ marginLeft: "14px"}} className="item-box" onClick={() => toggleSection('administracja')}>
-          <Box
-            width={60}
-            height={90}
-            alignItems="center"
-            justifyContent="center"
-            sx={{ display: "flex"}}
-          >
-            <WorkspacesIcon />
-          </Box>
-          <Box display="flex" flexDirection="column" >
-            <Typography className="item-title">Administracja</Typography>
-            <Typography variant="caption" width={150} className="item-detail">
-              liczba kwalifikacji:
-            </Typography>
-          </Box>
-        </Box>
-        {section.administracja && (
-          <Stack
-            spacing={3}
-            sx={{ marginTop: "12px", marginLeft: "24px" }}
-            direction={{ xs: "column" }}
-          >
-            {data.results &&
-              data.results.map((el) =>
-                el.type === "kwalifikacja" ? (
-                  <QualificationListItem
-                    name={el.name}
-                    category={el.category}
-                    skills={el.skills}
-                  />
-                ) : (
-                  <QualificationListAccordion
-                    name={el.name}
-                    skills={el.skills}
-                    children={el.children}
-                  />
-                )
-              )}
-            <Typography>Lorem ipsum</Typography>
-          </Stack>
-        )}
-      </Box>
+      <Typography style={{ fontWeight: 600 }}>
+        liczba kwalifikacji: {data.qualifications_count}
+      </Typography>
+      {data.results &&
+        data.results.map((el) => (
+          <IndustriesListItem
+            key={el.name}
+            name={el.name}
+            id={el.id}
+            children={el.children}
+            qualifications_count={el.qualifications_count}
+          />
+        ))}
+      <Stack spacing={2}   sx={{ width: "800px", alignItems:"center", marginTop: "24px" }}>
+        <Pagination count={10} page={page} onChange={handlePageChange} />
+      </Stack>
     </Box>
   );
 };

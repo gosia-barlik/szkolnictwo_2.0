@@ -63,27 +63,26 @@ const QualificationListAccordion = (props) => {
               sx={{ marginTop: "4px" }}
             >
               {props.skills.map((el) => (
-                <Chip label={el} variant="outlined" size="small" />
+                <Chip key={el} label={el} variant="outlined" size="small" />
               ))}
             </Stack>
           </Box>
         </Box>
       </AccordionSummary>
 
-      <AccordionDetails 
-      className="details"
-      >
-       
+      <AccordionDetails className="details">
         <List component="nav" aria-label="">
-           {props.children.map((el)=>      <ListItemButton
-            selected={selectedIndex === 0}
-            onClick={(event) => handleListItemClick(event, 0)}
-          >
-            <ListItemText primary={el.name} />
-            <ListItemText secondary={el.form} />
-            <ListItemText secondary={el.PRKlevel} />
-          </ListItemButton>)}
-     
+          {props.children.map((el) => (
+            <ListItemButton
+              key={el.id}
+              selected={selectedIndex === 0}
+              onClick={(event) => handleListItemClick(event, 0)}
+            >
+              <ListItemText primary={el.name} />
+              <ListItemText secondary={el.form} />
+              <ListItemText secondary={el.PRKlevel} />
+            </ListItemButton>
+          ))}
         </List>
       </AccordionDetails>
     </Accordion>
