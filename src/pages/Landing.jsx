@@ -47,17 +47,17 @@ const Landing = () => {
             item
             className="main_grid_1"
             xs={12}
-            md={8}
+            md={6}
             sx={{ pt: 4, pb: 8, order: { xs: 1, md: 0 } }}
           >
             <Typography
-              variant="h6"
+              variant="h5"
               component="h1"
               color={theme.text.primary.main}
             >
               {phrases.landing.header.title}
             </Typography>
-            <Typography color={theme.text.primary.main}>
+            <Typography color={theme.text.primary.main} style={{marginTop: '18px'}}>
               {phrases.landing.header.content}
             </Typography>
             <InputAutocomplete results={autocompleteOptions} label="Szukaj zawodu" />

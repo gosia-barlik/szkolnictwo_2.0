@@ -9,9 +9,9 @@ const Error = () => {
       <Wrapper>
         <div>
           <img src={img} alt='not found' />
-          <h3>Ohh!</h3>
-          <p>We can't seem to find page you are looking for</p>
-          <Link to='/'>back home</Link>
+          <h3>Oj!</h3>
+          <p>Nie udało nam się znaleźć strony, której szukasz ...</p>
+          <Link to='/'>wróć do strony głównej</Link>
         </div>
       </Wrapper>
     );
@@ -19,7 +19,7 @@ const Error = () => {
   return (
     <Wrapper>
       <div>
-        <h3>something went wrong </h3>
+        <h3>Coś poszło nie tak </h3>
       </div>
     </Wrapper>
   );
