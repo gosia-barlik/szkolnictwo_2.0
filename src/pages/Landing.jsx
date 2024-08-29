@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import Grid from '@mui/material/Grid2';
 import Typography from "@mui/material/Typography";
-import { useTheme } from "@mui/material";
-import * as phrases from "./dictionaries/landing.dictionary.json";
-import { useDispatch } from "react-redux";
 import InputAutocomplete from "../components/ui/Autocomplete";
 import Button from "@mui/material/Button";
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
+import { useTheme } from "@mui/material";
+import { useDispatch } from "react-redux";
+import * as phrases from "./dictionaries/landing.dictionary.json";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import PieChart from "../components/PieChart";
 import "./Landing.css";
