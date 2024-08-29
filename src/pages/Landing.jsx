@@ -14,15 +14,11 @@ import "./Landing.css";
 
 const Landing = () => {
   const [autocompleteOptions, setAutocompleteOptions] = React.useState([]);
-  const [graphItems, setGraphItems] = React.useState([]);
   const theme = useTheme();
   const dispatch = useDispatch();
 
   useEffect(() => {
     getAutocompleteOptions(), [];
-  });
-  useEffect(() => {
-    getGraphItemsFixture(), [];
   });
 
   const getAutocompleteOptions = async () => {
@@ -33,15 +29,6 @@ const Landing = () => {
       });
     setAutocompleteOptions(response.results);
   };
-
-  const getGraphItemsFixture = async () => {
-    const response = await MainInfoAPI.getGraphItemsFixture()
-      .catch((error) => console.log([error.message]))
-      .finally(() => {
-        console.log("");
-      });
-      setGraphItems(response.results);
-  }
 
   return (
     <>
@@ -82,7 +69,7 @@ const Landing = () => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 6 }}>
-              <PieChart graphItems={graphItems}/>
+              <PieChart />
             </Grid>
           </Grid>
         </Box>

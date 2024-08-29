@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import * as d3 from "d3";
 import "./PieChart.css";
+import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 
-const PieChart = (props) => {
+const PieChart = () => {
+  const [graphItems, setGraphItems] = React.useState([]);
+
   const graphOptions = {
     width: 440,
     height: 440,
@@ -10,18 +13,45 @@ const PieChart = (props) => {
   };
 
   useEffect(() => {
-    drawGraph(props.graphItems);
+    console.log(graphItems);
+    if (graphItems.length <= 0) {
+      getGraphItemsFixture(), [];
+    }
+  });
 
+  useEffect(() => {
+    drawGraph(graphItems);
     // Cleanup on component unmount
     return () => {
       d3.select("#graph").select("svg").remove();
       d3.select("#border").select("svg").remove();
     };
-  }, [props.graphItems]);
+  }, [graphItems]);
+
+  const getGraphItemsFixture = async () => {
+    const response = await MainInfoAPI.getGraphItemsFixture()
+      .catch((error) => console.log([error.message]))
+      .finally(() => {
+        console.log("");
+      });
+    setGraphItems(response.results);
+  };
+
+  const getGraphItemsChildrenFixture = async () => {
+    const response = await MainInfoAPI.getGraphItemsChildrenFixture()
+      .catch((error) => console.log([error.message]))
+      .finally(() => {
+        console.log("");
+      });
+    if (response && response.results) {
+      setGraphItems([...response.results]); // Ensure this triggers a redraw
+    } else {
+      console.error("No data received from API");
+    }
+  };
 
   function drawGraph(items) {
     const borderWidth = 20;
-
     function wrap(textToWrap, width) {
       textToWrap.each(function () {
         const text = d3.select(this);
@@ -57,63 +87,68 @@ const PieChart = (props) => {
         }
       });
     }
-    
 
     function handlePathClick(d, event) {
-        console.log('Clicked slice data:', d.data[1]); // Debugging log
-      
-        if (d.data[1] && d.data[1].color) {
-          // Reset all slices to the default color and reset font size
-          d3.selectAll(".arc path")
-            .transition()
-            .duration(200)
-            .attr("fill", "#F7F7F7"); // Reset color for all slices
-      
-          d3.selectAll(".arc text")
-            .transition()
-            .duration(200)
-            .style("font-size", "12px"); // Reset font size for all labels
-      
-          // Get the original color
-          const originalColor = d.data[1].color;
-      
-          // Convert the color to rgba and set the opacity to make it more white
-          const rgbaColor = convertToRGBA(originalColor, 0.5);
-      
-          // Apply the new color with increased opacity
-          d3.select(event.currentTarget)
-            .select("path")
-            .transition()
-            .duration(200)
-            .attr("fill", rgbaColor);
-      
-          // Increase the font size of the label for the clicked slice
-          d3.select(event.currentTarget)
-            .select("text")
-            .transition()
-            .duration(200)
-            .style("font-size", "14px"); // Increase font size
-        } else {
-          console.error('Data structure is not as expected:', d.data);
-        }
+      console.log("Clicked slice data:", d.data[1]); // Debugging log
+
+      if (d.data[1] && d.data[1].color) {
+        // Reset all slices to the default color and reset font size
+        d3.selectAll(".arc path")
+          .transition()
+          .duration(200)
+          .attr("fill", "#F7F7F7"); // Reset color for all slices
+
+        d3.selectAll(".arc text")
+          .transition()
+          .duration(200)
+          .style("font-size", "12px"); // Reset font size for all labels
+
+        // Get the original color
+        const originalColor = d.data[1].color;
+
+        // Convert the color to rgba and set the opacity to make it more white
+        const rgbaColor = convertToRGBA(originalColor, 0.5);
+
+        // Apply the new color with increased opacity
+        d3.select(event.currentTarget)
+          .select("path")
+          .transition()
+          .duration(200)
+          .attr("fill", rgbaColor);
+
+        // Increase the font size of the label for the clicked slice
+        d3.select(event.currentTarget)
+          .select("text")
+          .transition()
+          .duration(200)
+          .style("font-size", "14px"); // Increase font size
+      } else {
+        console.error("Data structure is not as expected:", d.data);
       }
-      
-      // Helper function to convert a hex color to rgba
-      function convertToRGBA(hex, opacity) {
-        let r = 0, g = 0, b = 0;
-        if (hex.length === 4) {
-          r = parseInt(hex[1] + hex[1], 16);
-          g = parseInt(hex[2] + hex[2], 16);
-          b = parseInt(hex[3] + hex[3], 16);
-        } else if (hex.length === 7) {
-          r = parseInt(hex[1] + hex[2], 16);
-          g = parseInt(hex[3] + hex[4], 16);
-          b = parseInt(hex[5] + hex[6], 16);
-        }
-        return `rgba(${r},${g},${b},${opacity})`;
+      console.log(d.data[1].parent_id)
+      if (d.data[1].parent_id == "0") {
+        setTimeout(() => {
+          getGraphItemsChildrenFixture();
+        }, 1000);
       }
-      
-      
+    }
+
+    // Helper function to convert a hex color to rgba
+    function convertToRGBA(hex, opacity) {
+      let r = 0,
+        g = 0,
+        b = 0;
+      if (hex.length === 4) {
+        r = parseInt(hex[1] + hex[1], 16);
+        g = parseInt(hex[2] + hex[2], 16);
+        b = parseInt(hex[3] + hex[3], 16);
+      } else if (hex.length === 7) {
+        r = parseInt(hex[1] + hex[2], 16);
+        g = parseInt(hex[3] + hex[4], 16);
+        b = parseInt(hex[5] + hex[6], 16);
+      }
+      return `rgba(${r},${g},${b},${opacity})`;
+    }
 
     // Draw graph border
     const borderCanvas = d3
@@ -223,6 +258,13 @@ const PieChart = (props) => {
           }`
       )
       .call(wrap, 80);
+  }
+
+  function clearGraph() {
+    document.querySelector("#graph svg") &&
+      document.querySelector("#graph svg").remove();
+    document.querySelector("#border svg") &&
+      document.querySelector("#border svg").remove();
   }
 
   return (
