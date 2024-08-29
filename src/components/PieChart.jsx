@@ -57,14 +57,63 @@ const PieChart = (props) => {
         }
       });
     }
-    function handlePathClick(d, i) {
-      // Adjust based on the actual data structure
-      if (d.data && Array.isArray(d.data) && d.data[1]) {
-        console.log(d.data[1].id);
-      } else {
-        console.error("Data structure is not as expected:", d.data);
+    
+
+    function handlePathClick(d, event) {
+        console.log('Clicked slice data:', d.data[1]); // Debugging log
+      
+        if (d.data[1] && d.data[1].color) {
+          // Reset all slices to the default color and reset font size
+          d3.selectAll(".arc path")
+            .transition()
+            .duration(200)
+            .attr("fill", "#F7F7F7"); // Reset color for all slices
+      
+          d3.selectAll(".arc text")
+            .transition()
+            .duration(200)
+            .style("font-size", "12px"); // Reset font size for all labels
+      
+          // Get the original color
+          const originalColor = d.data[1].color;
+      
+          // Convert the color to rgba and set the opacity to make it more white
+          const rgbaColor = convertToRGBA(originalColor, 0.5);
+      
+          // Apply the new color with increased opacity
+          d3.select(event.currentTarget)
+            .select("path")
+            .transition()
+            .duration(200)
+            .attr("fill", rgbaColor);
+      
+          // Increase the font size of the label for the clicked slice
+          d3.select(event.currentTarget)
+            .select("text")
+            .transition()
+            .duration(200)
+            .style("font-size", "14px"); // Increase font size
+        } else {
+          console.error('Data structure is not as expected:', d.data);
+        }
       }
-    }
+      
+      // Helper function to convert a hex color to rgba
+      function convertToRGBA(hex, opacity) {
+        let r = 0, g = 0, b = 0;
+        if (hex.length === 4) {
+          r = parseInt(hex[1] + hex[1], 16);
+          g = parseInt(hex[2] + hex[2], 16);
+          b = parseInt(hex[3] + hex[3], 16);
+        } else if (hex.length === 7) {
+          r = parseInt(hex[1] + hex[2], 16);
+          g = parseInt(hex[3] + hex[4], 16);
+          b = parseInt(hex[5] + hex[6], 16);
+        }
+        return `rgba(${r},${g},${b},${opacity})`;
+      }
+      
+      
 
     // Draw graph border
     const borderCanvas = d3
@@ -151,24 +200,6 @@ const PieChart = (props) => {
       .attr("fill", "#F7F7F7")
       .attr("stroke", "#E6E6E6")
       .style("stroke-width", "1px");
-    //   .on("mouseover", function (event, d) {
-    //     // Check if d.data[1] exists before accessing
-    //     if (d.data[1] && d.data[1].color) {
-    //       d3.select(this).attr("fill", d.data[1].color);
-    //     } else {
-    //       d3.select(this).attr("fill", "#84C465"); // Default color
-    //     }
-    //     d3.select(this).on("mouseleave", function () {
-    //       d3.select(this).attr("fill", "#F7F7F7");
-    //     });
-    //   })
-    //   .on("mousedown", function (event, d) {
-    //     d3.selectAll(".arc path").attr("fill", "#F7F7F7");
-    //     if (d.data[1] && d.data[1].color) {
-    //       d3.select(this).attr("fill", d.data[1].color);
-    //     }
-    //     d3.select(this).on("mouseleave", null);
-    //   });
 
     theArc
       .append("text")

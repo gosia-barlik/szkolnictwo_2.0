@@ -43,9 +43,6 @@ text {
   dominant-baseline: middle; /* vertical alignment fix */
 }
 
-text:hover {
-    font-size: 14px;
-}
 
 .arc:focus {
   outline: none; /* Remove default outline */
