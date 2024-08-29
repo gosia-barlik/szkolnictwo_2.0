@@ -1,14 +1,14 @@
-
 import React, { useEffect } from "react";
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid2';
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material";
 import * as phrases from "./dictionaries/landing.dictionary.json";
 import { useDispatch } from "react-redux";
 import InputAutocomplete from "../components/ui/Autocomplete";
-import Button from '@mui/material/Button';
-import TuneRoundedIcon from '@mui/icons-material/TuneRounded';
+import Button from "@mui/material/Button";
+import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
+import PieChart from "../components/PieChart";
 import "./Landing.css";
 
 const Landing = () => {
@@ -26,7 +26,7 @@ const Landing = () => {
       .finally(() => {
         console.log("");
       });
-      setAutocompleteOptions(response.results);
+    setAutocompleteOptions(response.results);
   };
 
   return (
@@ -35,8 +35,7 @@ const Landing = () => {
         <Grid
           container
           alignItems="center"
-          rowSpacing={1}
-          columnSpacing={{ md: 6 }}
+          spacing={2}
           sx={{
             mt: 8,
             justifyContent: "center",
@@ -44,7 +43,6 @@ const Landing = () => {
           }}
         >
           <Grid
-            item
             className="main_grid_1"
             xs={12}
             md={6}
@@ -57,21 +55,33 @@ const Landing = () => {
             >
               {phrases.landing.header.title}
             </Typography>
-            <Typography color={theme.text.primary.main} style={{marginTop: '18px'}}>
+            <Typography
+              color={theme.text.primary.main}
+              style={{ marginTop: "18px" }}
+            >
               {phrases.landing.header.content}
             </Typography>
-            <InputAutocomplete results={autocompleteOptions} label="Szukaj zawodu" />
-            <Button color="primary" variant="text" startIcon={<TuneRoundedIcon />}>Filtry</Button>
+            <InputAutocomplete
+              results={autocompleteOptions}
+              label="Szukaj zawodu"
+            />
+            <Button
+              color="primary"
+              variant="text"
+              startIcon={<TuneRoundedIcon />}
+            >
+              Filtry
+            </Button>
           </Grid>
 
           <Grid
-            item
             className="main_grid_1"
             xs={12}
             sm={12}
             md={4}
             sx={{ pt: 4, pb: 8, order: { xs: 0, md: 1 } }}
           >
+            <PieChart />
             <div className="img"></div>
           </Grid>
         </Grid>
