@@ -1,25 +1,6 @@
-.main_grid_1
- {
-  max-width: var(--max-width);
+.home-header h1.MuiTypography-h5 {
+  margin-top: 64px;
 }
-
-/* .main_grid_1 .img
-{
-  width: 400px;
-  height: 240px;
-  background-size: cover;
-  background-repeat: no-repeat;
-} */
-
-.main_grid_1 .main.autocomplete {
-  margin-top:24px
-}
-
-
-@media (min-width: 900px) {
-  .main_grid_2 .img,
-  .main_grid_4 .img {
-    margin-left: -96px;
-    padding-left: -24px;
-  }
+.home-header .main.autocomplete {
+  margin-top: 24px;
 }

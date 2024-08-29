@@ -34,6 +34,19 @@
   }
 }
 
+text {
+  font-family: Quicksand, serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  text-anchor: middle; /* align center */
+  dominant-baseline: middle; /* vertical alignment fix */
+}
+
+text:hover {
+    font-size: 14px;
+}
+
 .arc:focus {
   outline: none; /* Remove default outline */
 }

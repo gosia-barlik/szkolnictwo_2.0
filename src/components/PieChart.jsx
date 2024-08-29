@@ -3,23 +3,6 @@ import * as d3 from "d3";
 import "./PieChart.css";
 
 const PieChart = (props) => {
-  const graphItems = [
-    {
-      id: "AREA_01",
-      name: "Poligrafia, foto, audio i film",
-      color: "#1090c3",
-      children_count: 2,
-      parent_id: "0",
-    },
-    {
-      id: "AREA_02",
-      name: "Budownictwo i wnętrzarstwo",
-      color: "#5cbcca",
-      children_count: 3,
-      parent_id: "0",
-    },
-  ];
-
   const graphOptions = {
     width: 440,
     height: 440,
@@ -27,14 +10,14 @@ const PieChart = (props) => {
   };
 
   useEffect(() => {
-    drawGraph(graphItems);
+    drawGraph(props.graphItems);
 
     // Cleanup on component unmount
     return () => {
       d3.select("#graph").select("svg").remove();
       d3.select("#border").select("svg").remove();
     };
-  }, [graphItems]);
+  }, [props.graphItems]);
 
   function drawGraph(items) {
     const borderWidth = 20;
@@ -73,6 +56,14 @@ const PieChart = (props) => {
           }
         }
       });
+    }
+    function handlePathClick(d, i) {
+      // Adjust based on the actual data structure
+      if (d.data && Array.isArray(d.data) && d.data[1]) {
+        console.log(d.data[1].id);
+      } else {
+        console.error("Data structure is not as expected:", d.data);
+      }
     }
 
     // Draw graph border
@@ -142,8 +133,8 @@ const PieChart = (props) => {
       .append("g")
       .attr("class", "arc")
       .attr("tabindex", "0") // Make it focusable
-      .on("click", (d, i, nodes) => {
-        handlePathClick(d, i, nodes);
+      .on("click", function (event, d) {
+        handlePathClick(d, event);
       })
       .each((d, i, nodes) => {
         nodes[i].addEventListener("keydown", (event) => {
@@ -159,25 +150,25 @@ const PieChart = (props) => {
       .attr("d", arc)
       .attr("fill", "#F7F7F7")
       .attr("stroke", "#E6E6E6")
-      .style("stroke-width", "1px")
-      .on("mouseover", function (event, d) {
-        // Check if d.data[1] exists before accessing
-        if (d.data[1] && d.data[1].color) {
-          d3.select(this).attr("fill", d.data[1].color);
-        } else {
-          d3.select(this).attr("fill", "#84C465"); // Default color
-        }
-        d3.select(this).on("mouseleave", function () {
-          d3.select(this).attr("fill", "#F7F7F7");
-        });
-      })
-      .on("mousedown", function (event, d) {
-        d3.selectAll(".arc path").attr("fill", "#F7F7F7");
-        if (d.data[1] && d.data[1].color) {
-          d3.select(this).attr("fill", d.data[1].color);
-        }
-        d3.select(this).on("mouseleave", null);
-      });
+      .style("stroke-width", "1px");
+    //   .on("mouseover", function (event, d) {
+    //     // Check if d.data[1] exists before accessing
+    //     if (d.data[1] && d.data[1].color) {
+    //       d3.select(this).attr("fill", d.data[1].color);
+    //     } else {
+    //       d3.select(this).attr("fill", "#84C465"); // Default color
+    //     }
+    //     d3.select(this).on("mouseleave", function () {
+    //       d3.select(this).attr("fill", "#F7F7F7");
+    //     });
+    //   })
+    //   .on("mousedown", function (event, d) {
+    //     d3.selectAll(".arc path").attr("fill", "#F7F7F7");
+    //     if (d.data[1] && d.data[1].color) {
+    //       d3.select(this).attr("fill", d.data[1].color);
+    //     }
+    //     d3.select(this).on("mouseleave", null);
+    //   });
 
     theArc
       .append("text")
@@ -201,12 +192,6 @@ const PieChart = (props) => {
           }`
       )
       .call(wrap, 80);
-  }
-
-  // Define the handlePathClick function (example)
-  function handlePathClick(d, i, nodes) {
-    // Handle path click event
-    console.log("Path clicked:", d);
   }
 
   return (
