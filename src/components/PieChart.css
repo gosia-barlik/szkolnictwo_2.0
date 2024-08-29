@@ -43,11 +43,24 @@ text {
   dominant-baseline: middle; /* vertical alignment fix */
 }
 
-
 .arc:focus {
   outline: none; /* Remove default outline */
 }
 
 .arc:focus-visible {
   outline: 2px solid black;
+}
+
+.home-compass {
+  width: 230px;
+  height: 230px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-36%, -36%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:24px
 }

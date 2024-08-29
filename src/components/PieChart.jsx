@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import * as d3 from "d3";
 import "./PieChart.css";
+import { Typography } from "@mui/material";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 
 const PieChart = () => {
   const [graphItems, setGraphItems] = React.useState([]);
+  const [selectedItem, setSelectedItem] = React.useState([]);
 
   const graphOptions = {
     width: 440,
@@ -29,6 +31,7 @@ const PieChart = () => {
   }, [graphItems]);
 
   const getGraphItemsFixture = async () => {
+    setSelectedItem([]);
     const response = await MainInfoAPI.getGraphItemsFixture()
       .catch((error) => console.log([error.message]))
       .finally(() => {
@@ -44,7 +47,7 @@ const PieChart = () => {
         console.log("");
       });
     if (response && response.results) {
-      setGraphItems([...response.results]); // Ensure this triggers a redraw
+      setGraphItems([...response.results]);
     } else {
       console.error("No data received from API");
     }
@@ -92,6 +95,8 @@ const PieChart = () => {
       console.log("Clicked slice data:", d.data[1]); // Debugging log
 
       if (d.data[1] && d.data[1].color) {
+        // Set selected item to display on graph
+        setSelectedItem(d.data[1].name);
         // Reset all slices to the default color and reset font size
         d3.selectAll(".arc path")
           .transition()
@@ -125,7 +130,7 @@ const PieChart = () => {
       } else {
         console.error("Data structure is not as expected:", d.data);
       }
-      console.log(d.data[1].parent_id)
+      // Check level of current data - if top, get data to redraw graph
       if (d.data[1].parent_id == "0") {
         setTimeout(() => {
           getGraphItemsChildrenFixture();
@@ -260,17 +265,18 @@ const PieChart = () => {
       .call(wrap, 80);
   }
 
-  function clearGraph() {
-    document.querySelector("#graph svg") &&
-      document.querySelector("#graph svg").remove();
-    document.querySelector("#border svg") &&
-      document.querySelector("#border svg").remove();
-  }
-
   return (
     <div className="pie-chart-container">
       <div id="border"></div>
       <div id="graph"></div>
+      <div
+        onClick={() => {
+          getGraphItemsFixture();
+        }}
+        className="home-compass"
+      >
+        <Typography variant="h6" align="center">{selectedItem}</Typography>
+      </div>
     </div>
   );
 };
