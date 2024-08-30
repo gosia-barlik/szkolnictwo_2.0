@@ -32,12 +32,12 @@ const router = createBrowserRouter([
       // {
       //   path: 'qualification/:id',
       //   errorElement: <SinglePageError />,
-      //   loader: singleCocktailLoader(queryClient),
       //   element: <Qualification />,
       // },
       {
         path: 'about',
         element: <About />,
+        errorElement: <SinglePageError />,
       },
   
     ],

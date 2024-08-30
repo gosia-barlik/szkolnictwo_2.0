@@ -84,6 +84,7 @@ const Landing = () => {
                 key={el.id}
                 name={el.name}
                 prk_level={el.prk_level}
+                image_url={el.image_url}
               />
             ))}
         </section>
