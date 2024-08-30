@@ -5,6 +5,7 @@ import {
   graphItemsFixture,
   graphItemsChildrenFixture,
 } from "../../fixtures/graphItemsFixture";
+import { searchResultsFixture } from "../../fixtures/searchResultsFixture";
 
 export const MainInfoAPI = {
   getAutocompleteOptions: async function (array, cancel = false) {
@@ -15,6 +16,9 @@ export const MainInfoAPI = {
   },
   getGraphItemsChildrenFixture: async function (array, cancel = false) {
     return graphItemsChildrenFixture;
+  },
+  getSearchResultsFixture: async function (array, cancel = false) {
+    return searchResultsFixture;
   },
 };
 

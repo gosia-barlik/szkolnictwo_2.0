@@ -1,12 +1,20 @@
 import React, { useEffect } from "react";
 import * as d3 from "d3";
-import "./PieChart.css";
 import { Typography } from "@mui/material";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
+import { useDispatch, useSelector } from "react-redux";
+import { changeResults } from "../redux/searchResults";
+import "./PieChart.css";
 
 const PieChart = () => {
   const [graphItems, setGraphItems] = React.useState([]);
   const [selectedItem, setSelectedItem] = React.useState([]);
+  const { qualifications } = useSelector((state) => state.searchResults);
+  const dispatch = useDispatch();
+
+  const handleSearchResults = (newValue) => {
+    dispatch(changeResults(newValue));
+  };
 
   const graphOptions = {
     width: 440,
@@ -15,7 +23,7 @@ const PieChart = () => {
   };
 
   useEffect(() => {
-    console.log(graphItems);
+    // get data to draw graph if there isnt any
     if (graphItems.length <= 0) {
       getGraphItemsFixture(), [];
     }
@@ -48,6 +56,21 @@ const PieChart = () => {
       });
     if (response && response.results) {
       setGraphItems([...response.results]);
+    } else {
+      console.error("No data received from API");
+    }
+  };
+
+  const getSearchResultsFixture = async () => {
+    const response = await MainInfoAPI.getSearchResultsFixture()
+      .catch((error) => console.log([error.message]))
+      .finally(() => {
+        console.log("");
+      });
+    if (response && response.results) {
+        console.log([...response.results]);
+      handleSearchResults([...response.results]);
+      console.log(qualifications);
     } else {
       console.error("No data received from API");
     }
@@ -112,7 +135,7 @@ const PieChart = () => {
         const originalColor = d.data[1].color;
 
         // Convert the color to rgba and set the opacity to make it more white
-        const rgbaColor = convertToRGBA(originalColor, 0.5);
+        const rgbaColor = convertToRGBA(originalColor, 0.2);
 
         // Apply the new color with increased opacity
         d3.select(event.currentTarget)
@@ -135,6 +158,8 @@ const PieChart = () => {
         setTimeout(() => {
           getGraphItemsChildrenFixture();
         }, 1000);
+      } else {
+        getSearchResultsFixture();
       }
     }
 
@@ -275,7 +300,9 @@ const PieChart = () => {
         }}
         className="home-compass"
       >
-        <Typography variant="h6" align="center">{selectedItem}</Typography>
+        <Typography variant="h6" align="center">
+          {selectedItem}
+        </Typography>
       </div>
     </div>
   );

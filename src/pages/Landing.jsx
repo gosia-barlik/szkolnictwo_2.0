@@ -6,14 +6,16 @@ import Button from "@mui/material/Button";
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as phrases from "./dictionaries/landing.dictionary.json";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import PieChart from "../components/PieChart";
 import "./Landing.css";
+import QualificationListItem from "../components/ui/QualificationListItem";
 
 const Landing = () => {
   const [autocompleteOptions, setAutocompleteOptions] = React.useState([]);
+  const { qualifications } = useSelector((state) => state.searchResults);
   const theme = useTheme();
   const dispatch = useDispatch();
 
@@ -75,7 +77,16 @@ const Landing = () => {
         </Box>
       </header>
       <main>
-        <section></section>
+        <section className="qualifications-list">
+          {qualifications.length > 0 &&
+            qualifications.map((el) => (
+              <QualificationListItem
+                key={el.id}
+                name={el.name}
+                prk_level={el.prk_level}
+              />
+            ))}
+        </section>
       </main>
     </>
   );
