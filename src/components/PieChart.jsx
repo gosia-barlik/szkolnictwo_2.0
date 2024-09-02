@@ -3,17 +3,29 @@ import * as d3 from "d3";
 import { Typography } from "@mui/material";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import { useDispatch, useSelector } from "react-redux";
-import { changeResults } from "../redux/searchResults";
+import {
+  changeResults,
+  setFiltersIndustry,
+  setFiltersArea,
+} from "../redux/searchResults";
 import "./PieChart.css";
 
 const PieChart = () => {
   const [graphItems, setGraphItems] = React.useState([]);
   const [selectedItem, setSelectedItem] = React.useState([]);
-  const { qualifications } = useSelector((state) => state.searchResults);
+  const { qualifications, filters_industry, filters_area } = useSelector(
+    (state) => state.searchResults
+  );
   const dispatch = useDispatch();
 
   const handleSearchResults = (newValue) => {
     dispatch(changeResults(newValue));
+  };
+  const handleFiltersIndustry = (newValue) => {
+    dispatch(setFiltersIndustry(newValue));
+  };
+  const handleFiltersArea = (newValue) => {
+    dispatch(setFiltersArea(newValue));
   };
 
   const graphOptions = {
@@ -68,9 +80,7 @@ const PieChart = () => {
         console.log("");
       });
     if (response && response.results) {
-        console.log([...response.results]);
       handleSearchResults([...response.results]);
-      console.log(qualifications);
     } else {
       console.error("No data received from API");
     }
@@ -119,6 +129,10 @@ const PieChart = () => {
 
       if (d.data[1] && d.data[1].color) {
         // Set selected item to display on graph
+        console.log(d.data[1].name);
+        if (d.data[1].parent_id == "0") { handleFiltersArea([d.data[1].name]);}
+        else {handleFiltersIndustry([d.data[1].name]);}
+       
         setSelectedItem(d.data[1].name);
         // Reset all slices to the default color and reset font size
         d3.selectAll(".arc path")

@@ -17,7 +17,9 @@ import MultipleSelect from "./MultipleSelect";
 const Landing = () => {
   const [autocompleteOptions, setAutocompleteOptions] = React.useState([]);
   const [filtersOptions, setFiltersOptions] = React.useState([]);
-  const { qualifications } = useSelector((state) => state.searchResults);
+  const { qualifications, filters_industry, filters_area } = useSelector(
+    (state) => state.searchResults
+  );
   const theme = useTheme();
   const dispatch = useDispatch();
 
@@ -95,9 +97,16 @@ const Landing = () => {
       <main>
         {qualifications.length > 0 && (
           <section className="qualifications-list">
-            <div style={{display:"flex", flexDirection:"row"}}>
-              <MultipleSelect options={filtersOptions.area} label="obszar" />
-              <MultipleSelect options={filtersOptions.industry} label="branża"
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <MultipleSelect
+                options={filtersOptions.area}
+                label="obszar"
+                selected={filters_area}
+              />
+              <MultipleSelect
+                options={filtersOptions.industry}
+                label="branża"
+                selected={filters_industry}
               />
             </div>
             {qualifications.map((el) => (

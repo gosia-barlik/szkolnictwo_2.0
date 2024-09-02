@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React, {useEffect} from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -7,6 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
+import { setFiltersArea, setFiltersIndustry } from '../redux/searchResults';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -33,12 +34,23 @@ const MultipleSelect=(props) =>{
   const theme = useTheme();
   const [selectedOption, setSelectedOption] = React.useState([]);
 
+  // Only run useEffect when props.selected changes
+  useEffect(() => {
+    if (props.selected) {
+      setSelectedOption(props.selected);
+    }
+  }, [props.selected]);
+
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
+
+    // Logs the value correctly
+    console.log(value);
+
+    // Ensure the correct handling of the state update
     setSelectedOption(
-      // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };

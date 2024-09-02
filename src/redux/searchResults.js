@@ -1,20 +1,29 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 export const searchResultsSlice = createSlice({
-  name: 'searchResults',
+  name: "searchResults",
   initialState: {
-    qualifications: []
+    qualifications: [],
+    filters_industry: [],
+    filters_area: [],
   },
   reducers: {
     changeResults: (state, action) => {
-        console.log(action.payload)
-        state.qualifications = action.payload
-        console.log(state.qualifications)
+      state.qualifications = action.payload;
     },
-  }
-})
+    setFiltersIndustry: (state, action) => {
+      console.log(action.payload);
+      state.filters_industry = action.payload;
+    },
+    setFiltersArea: (state, action) => {
+      console.log(action.payload);
+      state.filters_area = action.payload;
+    },
+  },
+});
 
 // Action creators are generated for each case reducer function
-export const { changeResults } = searchResultsSlice.actions
+export const { changeResults, setFiltersIndustry, setFiltersArea } =
+  searchResultsSlice.actions;
 
-export default searchResultsSlice.reducer
+export default searchResultsSlice.reducer;
