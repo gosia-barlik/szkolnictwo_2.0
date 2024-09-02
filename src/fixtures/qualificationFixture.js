@@ -6,7 +6,7 @@ const qualificationFixture = {
         parent_id: "SEKTOR_04",
         prk_level: 3,
         image_url: "/src/assets/img/Elektromechanik.jpg",
-        training_area: "Elektryka, elektronika, informatyka",
+        area: "Elektryka, elektronika, informatyka",
         industry: "Elektroenergetyczna",
       },
       

@@ -1,13 +1,14 @@
-import  React, {useEffect} from 'react';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Chip from '@mui/material/Chip';
-import { setFiltersArea, setFiltersIndustry } from '../redux/searchResults';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import Chip from "@mui/material/Chip";
+import { setFiltersArea, setFiltersIndustry } from "../redux/searchResults";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -20,7 +21,6 @@ const MenuProps = {
   },
 };
 
-
 function getStyles(option, selectedOption, theme) {
   return {
     fontWeight:
@@ -30,11 +30,18 @@ function getStyles(option, selectedOption, theme) {
   };
 }
 
-const MultipleSelect=(props) =>{
+const MultipleSelect = (props) => {
   const theme = useTheme();
   const [selectedOption, setSelectedOption] = React.useState([]);
+  const dispatch = useDispatch();
 
-  // Only run useEffect when props.selected changes
+  const handleFiltersIndustry = (newValue) => {
+    dispatch(setFiltersIndustry(newValue));
+  };
+  const handleFiltersArea = (newValue) => {
+    dispatch(setFiltersArea(newValue));
+  };
+
   useEffect(() => {
     if (props.selected) {
       setSelectedOption(props.selected);
@@ -45,14 +52,16 @@ const MultipleSelect=(props) =>{
     const {
       target: { value },
     } = event;
+    
+    // Update the selected options state
+    setSelectedOption(typeof value === "string" ? value.split(",") : value);
 
-    // Logs the value correctly
-    console.log(value);
-
-    // Ensure the correct handling of the state update
-    setSelectedOption(
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    // Use the latest selected values (from 'value') to update Redux
+    if (props.label === "obszar") {
+      handleFiltersArea(value);
+    } else if (props.label === "branża") {
+      handleFiltersIndustry(value);
+    }
   };
 
   return (
@@ -67,7 +76,7 @@ const MultipleSelect=(props) =>{
           onChange={handleChange}
           input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
           renderValue={(selected) => (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
               {selected.map((value) => (
                 <Chip key={value} label={value} />
               ))}
@@ -75,18 +84,20 @@ const MultipleSelect=(props) =>{
           )}
           MenuProps={MenuProps}
         >
-          {props.options&&props.options.map((option) => (
-            <MenuItem
-              key={option}
-              value={option}
-              style={getStyles(option, selectedOption, theme)}
-            >
-              {option}
-            </MenuItem>
-          ))}
+          {props.options &&
+            props.options.map((option) => (
+              <MenuItem
+                key={option}
+                value={option}
+                style={getStyles(option, selectedOption, theme)}
+              >
+                {option}
+              </MenuItem>
+            ))}
         </Select>
       </FormControl>
     </div>
   );
-}
-export default MultipleSelect; 
+};
+
+export default MultipleSelect;

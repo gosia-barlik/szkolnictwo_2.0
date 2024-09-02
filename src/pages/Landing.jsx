@@ -21,7 +21,6 @@ const Landing = () => {
     (state) => state.searchResults
   );
   const theme = useTheme();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     getAutocompleteOptions(), [];
@@ -79,13 +78,13 @@ const Landing = () => {
                 results={autocompleteOptions}
                 label="Szukaj zawodu"
               />
-              <Button
+              {/* <Button
                 color="black"
                 variant="text"
                 startIcon={<TuneRoundedIcon />}
               >
                 Filtry
-              </Button>
+              </Button> */}
             </Grid>
 
             <Grid size={{ xs: 12, md: 6 }}>

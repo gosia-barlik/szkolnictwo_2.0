@@ -43,7 +43,7 @@ const Qualification = () => {
   const qualification = data.results[0];
   if (!qualification) return <Navigate to="/" />;
 
-  const { name, prk_level, image_url, training_area, industry } = qualification;
+  const { name, prk_level, image_url, area, industry } = qualification;
 
   return (
     <Wrapper>
@@ -65,7 +65,7 @@ const Qualification = () => {
           </Typography>
 
           <Typography variant="body1">
-            Obszar kształcenia: <strong>{training_area}</strong>
+            Obszar kształcenia: <strong>{area}</strong>
           </Typography>
           <Typography variant="body1">
             Branża: <strong>{industry}</strong>
