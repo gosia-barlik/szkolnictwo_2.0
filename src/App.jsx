@@ -7,7 +7,10 @@ import {
   Landing,
   Error,
   SinglePageError,
+  Qualification
 } from './pages';
+
+import {loader as singleCocktailLoader} from './pages/Qualification'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,7 +35,8 @@ const router = createBrowserRouter([
       {
         path: 'qualification/:id',
         errorElement: <SinglePageError />,
-        element: <About />,
+        loader: singleCocktailLoader(queryClient),
+        element: <Qualification />,
       },
       {
         path: 'about',
