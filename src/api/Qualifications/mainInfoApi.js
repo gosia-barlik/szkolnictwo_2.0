@@ -7,6 +7,7 @@ import {
 } from "../../fixtures/graphItemsFixture";
 import { searchResultsFixture } from "../../fixtures/searchResultsFixture";
 import { qualificationFixture } from "../../fixtures/qualificationFixture";
+import { filtersOptionsFixture } from "../../fixtures/filtersOptionsFixture";
 
 export const MainInfoAPI = {
   getAutocompleteOptions: async function (array, cancel = false) {
@@ -23,6 +24,9 @@ export const MainInfoAPI = {
   },
   getQualificationFixture: async function (array, cancel = false) {
     return qualificationFixture;
+  },
+  getFiltersOptionsFixture: async function (array, cancel = false) {
+    return filtersOptionsFixture;
   }
 };
 

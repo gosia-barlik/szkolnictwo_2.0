@@ -12,15 +12,21 @@ import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import PieChart from "../components/PieChart";
 import "./Landing.css";
 import QualificationListItem from "../components/ui/QualificationListItem";
+import MultipleSelect from "./MultipleSelect";
 
 const Landing = () => {
   const [autocompleteOptions, setAutocompleteOptions] = React.useState([]);
+  const [filtersOptions, setFiltersOptions] = React.useState([]);
   const { qualifications } = useSelector((state) => state.searchResults);
   const theme = useTheme();
   const dispatch = useDispatch();
 
   useEffect(() => {
     getAutocompleteOptions(), [];
+  });
+
+  useEffect(() => {
+    getFiltersOptions(), [];
   });
 
   const getAutocompleteOptions = async () => {
@@ -30,6 +36,16 @@ const Landing = () => {
         console.log("");
       });
     setAutocompleteOptions(response.results);
+  };
+
+  const getFiltersOptions = async () => {
+    const response = await MainInfoAPI.getFiltersOptionsFixture()
+      .catch((error) => console.log([error.message]))
+      .finally(() => {
+        console.log("");
+      });
+    console.log(response.results);
+    setFiltersOptions(response.results);
   };
 
   return (
@@ -53,7 +69,7 @@ const Landing = () => {
               </Typography>
               <Typography
                 color={theme.text.primary.main}
-                style={{ marginTop: "18px",fontWeight:600 }}
+                style={{ marginTop: "18px", fontWeight: 600 }}
               >
                 {phrases.landing.header.action}
               </Typography>
@@ -77,9 +93,14 @@ const Landing = () => {
         </Box>
       </header>
       <main>
-        <section className="qualifications-list">
-          {qualifications.length > 0 &&
-            qualifications.map((el) => (
+        {qualifications.length > 0 && (
+          <section className="qualifications-list">
+            <div style={{display:"flex", flexDirection:"row"}}>
+              <MultipleSelect options={filtersOptions.area} label="obszar" />
+              <MultipleSelect options={filtersOptions.industry} label="branża"
+              />
+            </div>
+            {qualifications.map((el) => (
               <QualificationListItem
                 id={el.id}
                 key={el.id}
@@ -88,7 +109,8 @@ const Landing = () => {
                 image_url={el.image_url}
               />
             ))}
-        </section>
+          </section>
+        )}
       </main>
     </>
   );

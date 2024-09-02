@@ -172,11 +172,4 @@ PROJECT CSS
     -18.1px -27.3px 30px rgba(255, 255, 255, 1);
 }
 
-@media (max-width: 500px) {
-  .page {
-    width: 120%;
-  }
-  #root {
-    width: 100%;
-  }
-}
+
