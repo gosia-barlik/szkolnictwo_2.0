@@ -1,37 +1,7 @@
-/* .item-box.MuiBox-root {
-  height: 76px;
-  width: 800px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  background-color: white;
-  border: 1px solid var(--grey-500);
-  margin-top: 4px;
-}
-
-.item-box.MuiBox-root:hover {
-  -webkit-box-shadow: 0px 7px 24px -22px rgba(66, 68, 90, 1);
-  -moz-box-shadow: 0px 7px 24px -22px rgba(66, 68, 90, 1);
-  box-shadow: 0px 7px 24px -22px rgba(66, 68, 90, 1);
-  cursor: pointer;
-}
-
-.item-box p.item-title {
-  margin-top: 4;
-  font-weight: 600;
-}
-
-.item-box span.item-detail {
-  margin-top: 12px;
-} */
-
-.qualifications-list .MuiTypography-root.MuiTypography-h5.qualification-name {
-  font-family: Quicksand, serif;
-  font-size: 16px;
-  font-weight: 600;
-}
 
 .qualifications-list img {
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+

@@ -1,6 +1,6 @@
 /* ============= GLOBAL CSS =============== */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
 *,
 ::after,
 ::before {
@@ -11,7 +11,6 @@
 
 html {
   font-size: 100%;
- 
 } /*16px*/
 
 :root {
@@ -49,7 +48,7 @@ html {
   --transition: 0.3s ease-in-out all;
   --max-width: 1120px;
   --fixed-width: 600px;
-  --view-width: 90vw;
+  --view-width: 100vw;
   /* box shadow*/
   --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -62,13 +61,18 @@ html {
 
 body {
   background: var(--backgroundColor);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Quicksand, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Quicksand, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
   font-weight: 400;
   line-height: 1;
   color: var(--textColor);
-  
 }
+
+#root {
+  width: var(--view-width);
+}
+
 div.MuiTypography-body1,
 p.MuiTypography-body1 {
   font-family: var(--headingFont);
@@ -76,12 +80,17 @@ p.MuiTypography-body1 {
 }
 
 .MuiTypography-root,
-h1.MuiTypography-h1, 
-h2.MuiTypography-h2, h1.MuiTypography-h2,
-h3.MuiTypography-h3, h1.MuiTypography-h3, 
-h4.MuiTypography-h4, h1.MuiTypography-h4,
-h5.MuiTypography-h5, h1.MuiTypography-h5,
-h6.MuiTypography-h6, h1.MuiTypography-h6{
+h1.MuiTypography-h1,
+h2.MuiTypography-h2,
+h1.MuiTypography-h2,
+h3.MuiTypography-h3,
+h1.MuiTypography-h3,
+h4.MuiTypography-h4,
+h1.MuiTypography-h4,
+h5.MuiTypography-h5,
+h1.MuiTypography-h5,
+h6.MuiTypography-h6,
+h1.MuiTypography-h6 {
   margin: 0;
   font-family: var(--headingFont);
   font-weight: 700;
@@ -163,24 +172,11 @@ PROJECT CSS
     -18.1px -27.3px 30px rgba(255, 255, 255, 1);
 }
 
-/* Landing */
-
-/* .cta_grid_2 .img {
-  background-image: url("./assets/img/kompas.png");
+@media (max-width: 500px) {
+  .page {
+    width: 120%;
+  }
+  #root {
+    width: 100%;
+  }
 }
-
-.main_grid_1 .img {
-  background-image: url("./assets/img/img_01.jpg");
-}
-
-.main_grid_2 .img {
-  background-image: url("./assets/img/img_02.png");
-}
-
-.main_grid_3 .img {
-  background-image: url("./assets/img/img_03.png");
-}
-
-.main_grid_4 .img {
-  background-image: url("./assets/img/img_04.png");
-} */

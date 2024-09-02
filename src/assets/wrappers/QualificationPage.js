@@ -1,46 +1,49 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   header {
+    display: flex;
+    flex-direction: row;
     text-align: center;
     margin-bottom: 3rem;
-    .btn {
-      margin-bottom: 1rem;
-    }
   }
   .img {
-    border-radius: var(--borderRadius);
+    border-radius: 50%;
+    height: 240px;
+    width: 240px;
+    border: 15px solid var(--white);
+    object-fit: cover;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.16);
+    z-index: 10;
   }
-  .drink-info {
-    padding-top: 2rem;
+  .qualification,
+  .qualification-header {
+    font-family: Quicksand, serif;
   }
-  .drink p {
-    font-weight: 700;
-    text-transform: capitalize;
-    line-height: 2;
-    margin-bottom: 1rem;
+  .qualification {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  .drink-data {
-    margin-right: 0.5rem;
-    background: var(--primary-300);
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--borderRadius);
-    color: var(--primary-700);
-    letter-spacing: var(--letterSpacing);
+
+  .qualification-info {
+    background-color: var(--grey-100);
+    padding: 60px 120px;
+    border-radius: 60px;
+    margin-top: -44px;
   }
-  .ing {
-    display: inline-block;
-    margin-right: 0.5rem;
-  }
+
   @media (min-width: 992px) {
-    .drink {
+    .qualification {
       display: grid;
-      grid-template-columns: 2fr 3fr;
+      grid-template-columns: 1fr 3fr;
       gap: 3rem;
       align-items: center;
     }
-    .drink-info {
-      padding-top: 0;
+    .qualification-info {
+      margin-left: -120px;
+      margin-top: 0px;
     }
   }
 `;

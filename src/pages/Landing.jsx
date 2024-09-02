@@ -53,7 +53,7 @@ const Landing = () => {
               </Typography>
               <Typography
                 color={theme.text.primary.main}
-                style={{ marginTop: "18px" }}
+                style={{ marginTop: "18px",fontWeight:600 }}
               >
                 {phrases.landing.header.action}
               </Typography>
@@ -62,7 +62,7 @@ const Landing = () => {
                 label="Szukaj zawodu"
               />
               <Button
-                color="primary"
+                color="black"
                 variant="text"
                 startIcon={<TuneRoundedIcon />}
               >

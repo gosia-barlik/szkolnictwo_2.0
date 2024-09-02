@@ -51,9 +51,13 @@ const QualificationListItem = (props) => {
         image={props.image_url}
         style={{ borderRadius: "8px", padding: "4px" }}
       />
-      <Link to={`/qualification/${props.id}`} className="btn">
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <CardContent sx={{ flex: "1 0 auto" }}>
+      <Link
+        to={`/qualification/${props.id}`}
+        className="link"
+        style={{ display: "flex", justifyContent:"center", alignItems:"center", textDecoration: "none", color: "black" }}
+      >
+        <Box>
+          <CardContent sx={{ flex: "1 0 auto", display: "flex" }}>
             <Typography
               component="div"
               variant="h5"
@@ -68,7 +72,7 @@ const QualificationListItem = (props) => {
             <Typography
               variant="subtitle1"
               component="div"
-              sx={{ color: "text.secondary" }}
+              sx={{ marginLeft: "40px" }}
             >
               {props.prk_level}
             </Typography>
