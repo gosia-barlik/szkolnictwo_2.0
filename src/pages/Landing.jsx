@@ -81,6 +81,7 @@ const Landing = () => {
           {qualifications.length > 0 &&
             qualifications.map((el) => (
               <QualificationListItem
+                id={el.id}
                 key={el.id}
                 name={el.name}
                 prk_level={el.prk_level}

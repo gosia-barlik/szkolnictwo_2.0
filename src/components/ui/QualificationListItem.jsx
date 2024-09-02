@@ -32,6 +32,7 @@
 // export default QualificationListItem;
 
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -43,27 +44,37 @@ const QualificationListItem = (props) => {
   const theme = useTheme();
 
   return (
-    <Card className="qualification-card" sx={{ display: "flex", mt:"12px" }}>
+    <Card className="qualification-card" sx={{ display: "flex", mt: "12px" }}>
       <CardMedia
         component="img"
         sx={{ width: 151 }}
         image={props.image_url}
-        style={{borderRadius:"8px",padding:"4px"}}
+        style={{ borderRadius: "8px", padding: "4px" }}
       />
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <CardContent sx={{ flex: "1 0 auto" }}>
-          <Typography component="div" variant="h5" style={{fontFamily:"Quicksand", fontSize: "16px", fontWeight:"600"}}>
-          {props.name}
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            component="div"
-            sx={{ color: "text.secondary" }}
-          >
-           {props.prk_level}
-          </Typography>
-        </CardContent>
-      </Box>
+      <Link to={`/qualification/${props.id}`} className="btn">
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <CardContent sx={{ flex: "1 0 auto" }}>
+            <Typography
+              component="div"
+              variant="h5"
+              style={{
+                fontFamily: "Quicksand",
+                fontSize: "16px",
+                fontWeight: "600",
+              }}
+            >
+              {props.name}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              component="div"
+              sx={{ color: "text.secondary" }}
+            >
+              {props.prk_level}
+            </Typography>
+          </CardContent>
+        </Box>
+      </Link>
     </Card>
   );
 };

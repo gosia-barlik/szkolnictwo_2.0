@@ -14,6 +14,7 @@ const InputAutocomplete = (props) => {
   return (
     props.results && (
       <Autocomplete
+        freeSolo
         className="main autocomplete"
         options={props.results.map((option) => option.name)}
         filterSelectedOptions

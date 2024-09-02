@@ -29,11 +29,11 @@ const router = createBrowserRouter([
         errorElement: <SinglePageError />,
        
       },
-      // {
-      //   path: 'qualification/:id',
-      //   errorElement: <SinglePageError />,
-      //   element: <Qualification />,
-      // },
+      {
+        path: 'qualification/:id',
+        errorElement: <SinglePageError />,
+        element: <About />,
+      },
       {
         path: 'about',
         element: <About />,
