@@ -14,7 +14,7 @@ const InputAutocomplete = (props) => {
 
   const handleChange = (newValue) => {
     if (newValue) {
-      console.log(newValue);
+   
       dispatch(setFiltersPhrase(newValue));
       getSearchResultsFixture();
     }

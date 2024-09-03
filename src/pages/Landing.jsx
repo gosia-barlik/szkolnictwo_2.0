@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Grid from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
 import InputAutocomplete from "../components/ui/Autocomplete";
 import Button from "@mui/material/Button";
-import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +19,7 @@ const Landing = () => {
   const { qualifications, filters_industry, filters_area, filters_phrase } =
     useSelector((state) => state.searchResults);
   const theme = useTheme();
+  const listRef = useRef();
 
   useEffect(() => {
     getAutocompleteOptions(), [];
@@ -27,6 +27,10 @@ const Landing = () => {
 
   useEffect(() => {
     getFiltersOptions(), [];
+  });
+
+  useEffect(() => {
+    listRef.current?.scrollIntoView({ behavior: "smooth" }, [qualifications]);
   });
 
   const getAutocompleteOptions = async () => {
@@ -91,7 +95,7 @@ const Landing = () => {
           </Grid>
         </Box>
       </header>
-      <main>
+      <main ref={listRef}>
         {qualifications.length > 0 && (
           <section className="qualifications-list">
             <div className="filters container">
@@ -105,10 +109,7 @@ const Landing = () => {
                 label="branża"
                 selected={filters_industry}
               />
-              <InputAutocomplete
-                results={autocompleteOptions}
-                label="fraza"
-              />
+              <InputAutocomplete results={autocompleteOptions} label="fraza" />
             </div>
             {qualifications.map((el) => (
               <QualificationListItem
