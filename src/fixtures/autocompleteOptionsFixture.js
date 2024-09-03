@@ -1,78 +1,98 @@
 const autocompleteOptionsFixture = {
   results_count: 16,
+  // results: [
+  //   {
+  //     id: "12345",
+  //     name: "Technik agrobiznesu",
+  //   },
+  //   {
+  //     id: "12346",
+  //     name: "Administrator produkcji filmowej i telewizyjnej",
+  //   },
+  //   {
+  //     id: "12347",
+  //     name: "Technik mechanizacji rolnictwa i agrotroniki",
+  //   },
+  //   {
+  //     id: "12348",
+  //     name: "Technik administracji",
+  //   },
+  //   {
+  //     id: "12349",
+  //     name: "Elektromechanik",
+  //   },
+  //   {
+  //     id: "123410",
+  //     name: "Technik bezpieczeństwa i higieny pracy",
+  //   },
+  //   {
+  //     id: "123411",
+  //     name: "Technik ochrony fizycznej osób i mienia",
+  //   },
+  //   {
+  //     id: "123412",
+  //     name: "Technik pożarnictwa",
+  //   },
+  //   {
+  //     id: "123412",
+  //     name: "Betoniarz-zbrojarz",
+  //   },
+  //   {
+  //     id: "123412",
+  //     name: "Technik ceramik",
+  //   },
+  //   {
+  //     id: "123412",
+  //     name: "Zdobnik ceramiki",
+  //   },
+  //   {
+  //     id: "123412",
+  //     name: "Operator urządzeń przemysłu ceramicznego",
+  //   },
+  //   {
+  //     id: "123412",
+  //     name: "Technik technologii chemicznej",
+  //   },
+  //   {
+  //     id: "123412",
+  //     name: "Dekarz",
+  //   },
+  //   {
+  //     id: "123412",
+  //     name: "Technik dekarstwa",
+  //   },
+  //   {
+  //     id: "123412",
+  //     name: "Technik dentystyczny",
+  //   },
+  //   {
+  //     id: "123412",
+  //     name: "Mechanik-operator maszyn do produkcji drzewnej",
+  //   },
+  //   {
+  //     id: "123412",
+  //     name: "Operator maszyn i urządzeń do przetwórstwa tworzyw sztucznych",
+  //   },
+  // ],
   results: [
-    {
-      id: "12345",
-      name: "Administracja i prawo",
-    },
-    {
-      id: "12346",
-      name: "Bezpieczeństwo mienia i osób",
-    },
-    {
-      id: "12347",
-      name: "Biznes i ekonomia",
-    },
-    {
-      id: "12348",
-      name: "Budownictwo i architektura",
-    },
-    {
-      id: "12349",
-      name: "Edukacja, szkolenia i usługi",
-    },
-    {
-      id: "123410",
-      name: "Hotelarstwo i gastronomia",
-    },
-    {
-      id: "123411",
-      name: "Humanistyka",
-    },
-    {
-      id: "123412",
-      name: "IT i technologie cyfrowe",
-    },
-    {
-      id: "123412",
-      name: "Komunikacja i PR",
-    },
-    {
-      id: "123412",
-      name: "Kultura i sztuka",
-    },
-    {
-      id: "123412",
-      name: "Motoryzacja, transport i logistyka",
-    },
-    {
-      id: "123412",
-      name: "Nauki społeczne, dziennikarstwo i zarządzanie informacjami",
-    },
-    {
-      id: "123412",
-      name: "Nauki ścisłe i przyrodnicze",
-    },
-    {
-      id: "123412",
-      name: "Produkacja medialna i sztuki użytkowe",
-    },
-    {
-      id: "123412",
-      name: "Rolnictwo i hodowla",
-    },
-    {
-      id: "123412",
-      name: "Technika, przemysł, inżynieria",
-    },
-    {
-      id: "123412",
-      name: "Turystyka, sport, rekreacja",
-    },
-    {
-      id: "123412",
-      name: "Zdrowie, pielęgnacja, uroda",
-    },
+    "Technik agrobiznesu",
+    "Administrator produkcji filmowej i telewizyjnej",
+    "Technik mechanizacji rolnictwa i agrotroniki",
+    "Technik administracji",
+    "Elektromechanik",
+    "Technik bezpieczeństwa i higieny pracy",
+    "Technik ochrony fizycznej osób i mienia",
+    "Technik pożarnictwa",
+    "Betoniarz-zbrojarz",
+    "Technik ceramik",
+    "Zdobnik ceramiki",
+    "Operator urządzeń przemysłu ceramicznego",
+    "Technik technologii chemicznej",
+    "Dekarz",
+    "Technik dekarstwa",
+    "Technik dentystyczny",
+    "Mechanik-operator maszyn do produkcji drzewnej",
+    "Operator maszyn i urządzeń do przetwórstwa tworzyw sztucznych",
   ],
 };
-export { autocompleteOptionsFixture  };
+export { autocompleteOptionsFixture };

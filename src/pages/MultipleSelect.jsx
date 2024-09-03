@@ -52,7 +52,7 @@ const MultipleSelect = (props) => {
     const {
       target: { value },
     } = event;
-    
+
     // Update the selected options state
     setSelectedOption(typeof value === "string" ? value.split(",") : value);
 
@@ -65,8 +65,8 @@ const MultipleSelect = (props) => {
   };
 
   return (
-    <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
+    <div className="multiple select">
+      <FormControl style={{ width: "100%" }}>
         <InputLabel id="demo-multiple-chip-label">{props.label}</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
