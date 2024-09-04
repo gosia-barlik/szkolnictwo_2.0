@@ -9,6 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import QualificationListItem from "./ui/QualificationListItem";
+import PolandMap from "./ui/Polandmap";
 import { useDispatch, useSelector } from "react-redux";
 import { changeResults, setVoivodeship } from "../redux/mostWanted";
 
@@ -103,6 +104,12 @@ const MostWantedQualifications = () => {
             image_url={el.image_url}
           />
         ))}
+      </Grid>
+      <Grid
+        size={{ xs: 12, md: 6 }}
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        <PolandMap />
       </Grid>
     </Grid>
   );

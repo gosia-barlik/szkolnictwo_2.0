@@ -11,6 +11,7 @@ export const mostWantedSlice = createSlice({
       state.mostWanted = action.payload;
     },
     setVoivodeship: (state, action) => {
+      console.log(action.payload)
       state.voivodeship = action.payload;
     },
   },
