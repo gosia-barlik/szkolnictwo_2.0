@@ -1,9 +1,11 @@
-.qualifications-list .qualification-card {
+.qualifications-list .qualification-card,
+.qualifications-by-region .qualification-card{
   display: flex;
   margin-top: 12px;
 }
 
-.qualifications-list img {
+.qualifications-list img,
+.qualifications-by-region img {
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 8px;
@@ -11,7 +13,8 @@
   width: 151px;
 }
 
-.qualifications-list a.link {
+.qualifications-list a.link,
+.qualifications-by-region a.link{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,7 +23,8 @@
   width: 100%;
 }
 
-.qualifications-list .icons-container {
+.qualifications-list .icons-container,
+.qualifications-by-region .icons-container {
   display: flex;
   flex-direction: row;
   justify-content: center;

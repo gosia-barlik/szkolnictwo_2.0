@@ -9,9 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import * as phrases from "./dictionaries/landing.dictionary.json";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import PieChart from "../components/PieChart";
-import "./Landing.css";
 import QualificationListItem from "../components/ui/QualificationListItem";
 import MultipleSelect from "../components/ui/MultipleSelect";
+import MostWantedQualifications from "../components/MostWantedQualifications";
+import "./Landing.css";
 
 const Landing = () => {
   const [autocompleteOptions, setAutocompleteOptions] = React.useState([]);
@@ -95,9 +96,9 @@ const Landing = () => {
           </Grid>
         </Box>
       </header>
-      <main ref={listRef}>
+      <main >
         {qualifications.length > 0 && (
-          <section className="qualifications-list">
+          <section className="qualifications-list" ref={listRef}>
             <div className="filters container">
               <MultipleSelect
                 options={filtersOptions.area}
@@ -130,23 +131,7 @@ const Landing = () => {
           </section>
         )}
         <section className="qualifications-by-region">
-          <Grid container spacing={2}>
-            <Grid size={{ xs: 12, md: 6 }}>
-              <Typography
-                variant="h6"
-                component="h2"
-                color={theme.text.primary.main}
-              >
-                {phrases.landing.byRegion.title}
-              </Typography>
-              <Typography
-                color={theme.text.primary.main}
-                style={{ marginTop: "18px", fontWeight: 600 }}
-              >
-                {phrases.landing.byRegion.action}
-              </Typography>
-            </Grid>
-          </Grid>
+          <MostWantedQualifications />
         </section>
       </main>
     </>

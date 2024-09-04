@@ -8,6 +8,7 @@ import {
 import { searchResultsFixture } from "../../fixtures/searchResultsFixture";
 import { qualificationFixture } from "../../fixtures/qualificationFixture";
 import { filtersOptionsFixture } from "../../fixtures/filtersOptionsFixture";
+import { voivodeships } from "../../fixtures/voivodeships";
 
 export const MainInfoAPI = {
   getAutocompleteOptions: async function (array, cancel = false) {
@@ -27,7 +28,10 @@ export const MainInfoAPI = {
   },
   getFiltersOptionsFixture: async function (array, cancel = false) {
     return filtersOptionsFixture;
-  }
+  },
+  getVoivodeships: async function (array, cancel = false) {
+    return voivodeships;
+  },
 };
 
 const cancelApiObject = defineCancelApiObject(MainInfoAPI);
