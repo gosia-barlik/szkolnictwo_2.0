@@ -11,7 +11,7 @@ import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import PieChart from "../components/PieChart";
 import "./Landing.css";
 import QualificationListItem from "../components/ui/QualificationListItem";
-import MultipleSelect from "./MultipleSelect";
+import MultipleSelect from "../components/ui/MultipleSelect";
 
 const Landing = () => {
   const [autocompleteOptions, setAutocompleteOptions] = React.useState([]);
@@ -111,6 +111,13 @@ const Landing = () => {
               />
               <InputAutocomplete results={autocompleteOptions} label="fraza" />
             </div>
+            <Typography
+              variant="h6"
+              component="h2"
+              style={{ marginTop: "24px" }}
+            >
+              Zawody
+            </Typography>
             {qualifications.map((el) => (
               <QualificationListItem
                 id={el.id}
@@ -122,6 +129,25 @@ const Landing = () => {
             ))}
           </section>
         )}
+        <section className="qualifications-by-region">
+          <Grid container spacing={2}>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Typography
+                variant="h6"
+                component="h2"
+                color={theme.text.primary.main}
+              >
+                {phrases.landing.byRegion.title}
+              </Typography>
+              <Typography
+                color={theme.text.primary.main}
+                style={{ marginTop: "18px", fontWeight: 600 }}
+              >
+                {phrases.landing.byRegion.action}
+              </Typography>
+            </Grid>
+          </Grid>
+        </section>
       </main>
     </>
   );

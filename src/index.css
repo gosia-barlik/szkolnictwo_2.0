@@ -71,14 +71,17 @@ body {
 
 #root {
   width: var(--view-width);
+  font-family: var(--headingFont);
 }
 
 div.MuiTypography-body1,
-p.MuiTypography-body1 {
+p.MuiTypography-body1,
+div.MuiTypography-subtitle1,
+p.MuiTypography-subtitle1 {
   font-family: var(--headingFont);
   margin: 0;
 }
-
+h2.MuiTypography-h6,
 .MuiTypography-root,
 h1.MuiTypography-h1,
 h2.MuiTypography-h2,
@@ -90,7 +93,8 @@ h1.MuiTypography-h4,
 h5.MuiTypography-h5,
 h1.MuiTypography-h5,
 h6.MuiTypography-h6,
-h1.MuiTypography-h6 {
+h1.MuiTypography-h6,
+h2.MuiTypography-h5 {
   margin: 0;
   font-family: var(--headingFont);
   font-weight: 700;
@@ -171,5 +175,3 @@ PROJECT CSS
     21px -18.1px 7.3px rgba(255, 255, 255, 1),
     -18.1px -27.3px 30px rgba(255, 255, 255, 1);
 }
-
-

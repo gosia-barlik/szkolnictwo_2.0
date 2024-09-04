@@ -23,11 +23,15 @@
   padding-left: 6px;
   padding-top: 8px;
 }
-/* .qualifications-list .main.autocomplete .MuiInputBase-root {
-  height: 65px;
-} */
+.qualifications-by-region {
+  margin-top: 60px;
+}
+
 @media (min-width: 768px) {
   .qualifications-list .filters.container {
     flex-direction: row;
+  }
+  .qualifications-by-region {
+    margin-top: 240px;
   }
 }

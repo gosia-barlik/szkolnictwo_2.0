@@ -1,11 +1,14 @@
 {
-    "landing": {
-        "header": {
-            "title": "Wybierz zawód, który otworzy Ci drogę do rozwoju i zdobycia kwalifikacji",
-            "content": "Szukasz informacji o zawodach szkolnictwa branżowego? Próbujesz rozeznać swoją drogę kształcenia? Szukasz idealnej kwalifikacji? ",
-            "about": "",
-            "action": "Wpisz zapytanie i uzupełnij filtry lub skorzystaj z kompasu!"
-        }
-        
+  "landing": {
+    "header": {
+      "title": "Wybierz zawód, który otworzy Ci drogę do rozwoju i zdobycia kwalifikacji",
+      "content": "Szukasz informacji o zawodach szkolnictwa branżowego? Próbujesz rozeznać swoją drogę kształcenia? Szukasz idealnej kwalifikacji? ",
+      "about": "",
+      "action": "Wpisz zapytanie i uzupełnij filtry lub skorzystaj z kompasu!"
+    },
+    "byRegion": {
+      "title": "Sprawdź, w których zawodach szkolnictwa branżowego prognozowane jest największe zapotrzebowanie na pracowników w Twoim województwie",
+      "action": "Wybierz województwo z listy lub skorzystaj z mapy!"
     }
+  }
 }
