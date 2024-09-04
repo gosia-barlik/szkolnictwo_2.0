@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import Wrapper from "../assets/wrappers/LandingPage"
 import Grid from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
 import InputAutocomplete from "../components/ui/Autocomplete";
@@ -12,7 +13,7 @@ import PieChart from "../components/PieChart";
 import QualificationListItem from "../components/ui/QualificationListItem";
 import MultipleSelect from "../components/ui/MultipleSelect";
 import MostWantedQualifications from "../components/MostWantedQualifications";
-import "./Landing.css";
+// import "./Landing.css";
 
 const Landing = () => {
   const [autocompleteOptions, setAutocompleteOptions] = React.useState([]);
@@ -53,7 +54,7 @@ const Landing = () => {
   };
 
   return (
-    <>
+    <Wrapper>
       <header className="home-header">
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
@@ -134,7 +135,7 @@ const Landing = () => {
           <MostWantedQualifications />
         </section>
       </main>
-    </>
+    </Wrapper>
   );
 };
 export default Landing;

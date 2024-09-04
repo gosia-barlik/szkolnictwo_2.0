@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import * as d3 from "d3";
+import Wrapper from "../assets/wrappers/PieChart";
 import { Typography } from "@mui/material";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +9,6 @@ import {
   setFiltersIndustry,
   setFiltersArea,
 } from "../redux/searchResults";
-import "./PieChart.css";
 
 const PieChart = () => {
   const [graphItems, setGraphItems] = React.useState([]);
@@ -130,9 +130,12 @@ const PieChart = () => {
       if (d.data[1] && d.data[1].color) {
         // Set selected item to display on graph
         console.log(d.data[1].name);
-        if (d.data[1].parent_id == "0") { handleFiltersArea([d.data[1].name]);}
-        else {handleFiltersIndustry([d.data[1].name]);}
-       
+        if (d.data[1].parent_id == "0") {
+          handleFiltersArea([d.data[1].name]);
+        } else {
+          handleFiltersIndustry([d.data[1].name]);
+        }
+
         setSelectedItem(d.data[1].name);
         // Reset all slices to the default color and reset font size
         d3.selectAll(".arc path")
@@ -305,20 +308,22 @@ const PieChart = () => {
   }
 
   return (
-    <div className="pie-chart-container">
-      <div id="border"></div>
-      <div id="graph"></div>
-      <div
-        onClick={() => {
-          getGraphItemsFixture();
-        }}
-        className="home-compass"
-      >
-        <Typography variant="h6" align="center">
-          {selectedItem}
-        </Typography>
+    <Wrapper>
+      <div className="pie-chart-container">
+        <div id="border"></div>
+        <div id="graph"></div>
+        <div
+          onClick={() => {
+            getGraphItemsFixture();
+          }}
+          className="home-compass"
+        >
+          <Typography variant="h6" align="center">
+            {selectedItem}
+          </Typography>
+        </div>
       </div>
-    </div>
+    </Wrapper>
   );
 };
 

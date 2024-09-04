@@ -1,15 +1,14 @@
 import React from "react";
+import Wrapper from "../assets/wrappers/Navbar"
 import { NavLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import img from '../assets/img/szkolnictwo-logotyp.svg'
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
-import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import './Navbar.css'
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -35,6 +34,7 @@ const Navbar = () => {
   };
 
   return (
+    <Wrapper>
     <ElevationScroll>
       <AppBar color="default" className="main-nav">
         <Container maxWidth="xl">
@@ -60,6 +60,7 @@ const Navbar = () => {
         </Container>
       </AppBar>
     </ElevationScroll>
+    </Wrapper>
   );
 };
 
