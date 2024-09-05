@@ -1,14 +1,16 @@
+import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import QualificationCharacteristic from "../QualificationCharacteristic";
 
 const AntTabs = styled(TabList)({
   borderBottom: "1px solid #e8e8e8",
   "& .MuiTabs-indicator": {
-    backgroundColor: "#1890ff",
+    backgroundColor: "primary",
   },
 });
 
@@ -19,17 +21,17 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     [theme.breakpoints.up("sm")]: {
       minWidth: 0,
     },
-    fontWeight: theme.typography.fontWeightRegular,
+    fontWeight: theme.typography.fontWeightMedium,
     marginRight: theme.spacing(1),
-    color: "rgba(0, 0, 0, 0.85)",
-    fontFamily: ["-apple-system", '"Segoe UI"', "Roboto"].join(","),
+    color: "rgba(0, 0, 0, 0.95)",
+    fontFamily: ["Quicksand", '"Segoe UI"', "Roboto"].join(","),
     "&:hover": {
-      color: "#40a9ff",
+      color: "#black",
       opacity: 1,
     },
     "&.Mui-selected": {
-      color: "#1890ff",
-      fontWeight: theme.typography.fontWeightMedium,
+      color: "black",
+      fontWeight: theme.typography.fontWeightBold,
     },
     "&.Mui-focusVisible": {
       backgroundColor: "#d1eaff",
@@ -37,28 +39,31 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
   })
 );
 
-const Tabs = (props) => {
+const Tabs = () => {
+  const [value, setValue] = React.useState("1");
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
-    <Box sx={{ width: "100%", typography: "body1" }}>
-      <TabContext value={props.value}>
+    <Box sx={{ width: "100%", typography: "body1", marginTop: "44px" }}>
+      <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <AntTabs
             selectionFollowsFocus
-            onChange={props.handleChange}
+            onChange={handleChange}
             aria-label="Zakładki"
           >
-            <AntTab label="Branże" value="1" />
-            <AntTab label="Umiejętności" value="2" />
-            <AntTab label="Zawody" value="3" />
+            <AntTab label="Charakterystyka" value="1" />
+            <AntTab label="Szkoły i placówki" value="2" />
+            <AntTab label="Prognoza zapotrzebowania" value="3" />
           </AntTabs>
         </Box>
         <TabPanel value="1">
-          {/* <Industries /> */}
+          <QualificationCharacteristic />
         </TabPanel>
-        <TabPanel value="2">
-          {/* <Skills /> */}
-        </TabPanel>
-        <TabPanel value="3">Zawody</TabPanel>
+        <TabPanel value="2">Szkoły i placówki</TabPanel>
+        <TabPanel value="3">Prognoza</TabPanel>
       </TabContext>
     </Box>
   );

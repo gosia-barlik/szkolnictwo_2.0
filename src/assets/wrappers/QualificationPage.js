@@ -34,6 +34,38 @@ const Wrapper = styled.div`
     margin-top: -44px;
   }
 
+  //Characteristic tab
+
+  .MuiAccordion-root.accordion {
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+  .accordion .item-title {
+    font-weight: 700;
+  }
+  .accordion .summary-red {
+    border-bottom: 3px solid #ea144e;
+  }
+  .accordion .icon-red {
+    color: #ea144e;
+  }
+  .accordion .summary-blue {
+    border-bottom: 3px solid #6accd8;
+  }
+  .accordion .icon-blue {
+    color: #6accd8;
+  }
+  .accordion .summary-green {
+    border-bottom: 3px solid #84c465;
+  }
+  .accordion .icon-green {
+    color: #84c465;
+  }
+  .summary p.item-title {
+    margin-top: 4;
+    font-weight: 600;
+  }
+
   @media (min-width: 992px) {
     .qualification {
       display: grid;

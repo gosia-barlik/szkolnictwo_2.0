@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Tabs from "../components/ui/Tabs";
 import { qualificationFixture } from "../fixtures/qualificationFixture";
 
 const singleQualificationQuery = async (id) => {
@@ -74,6 +75,10 @@ const Qualification = () => {
             Poziom PRK: <strong>{prk_level}</strong>
           </Typography>
         </div>
+      </div>
+      <div className="qualification-tabs">
+
+        <Tabs />
       </div>
     </Wrapper>
   );
