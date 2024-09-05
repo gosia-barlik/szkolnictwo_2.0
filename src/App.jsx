@@ -7,7 +7,8 @@ import {
   Landing,
   Error,
   SinglePageError,
-  Qualification
+  Qualification,
+  Favorites
 } from './pages';
 
 import {loader as singleCocktailLoader} from './pages/Qualification'
@@ -41,6 +42,11 @@ const router = createBrowserRouter([
       {
         path: 'about',
         element: <About />,
+        errorElement: <SinglePageError />,
+      },
+      {
+        path: 'favorites',
+        element: <Favorites />,
         errorElement: <SinglePageError />,
       },
   
