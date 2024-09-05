@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import * as d3 from "d3";
 import Wrapper from "../assets/wrappers/PieChart";
 import { Typography } from "@mui/material";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import Button from "@mui/material/Button";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -125,11 +127,11 @@ const PieChart = () => {
     }
 
     function handlePathClick(d, event) {
-      console.log("Clicked slice data:", d.data[1]); // Debugging log
+      // console.log("Clicked slice data:", d.data[1]); // Debugging log
 
       if (d.data[1] && d.data[1].color) {
         // Set selected item to display on graph
-        console.log(d.data[1].name);
+
         if (d.data[1].parent_id == "0") {
           handleFiltersArea([d.data[1].name]);
         } else {
@@ -312,15 +314,45 @@ const PieChart = () => {
       <div className="pie-chart-container">
         <div id="border"></div>
         <div id="graph"></div>
-        <div
-          onClick={() => {
-            getGraphItemsFixture();
-          }}
-          className="home-compass"
-        >
-          <Typography variant="h6" align="center">
+        <div className="home-compass">
+          {filters_area.length > 0 &&
+            filters_industry.length <= 0 &&
+            selectedItem.length > 0 && (
+              <div className="flex-center">
+                <Typography variant="body2">wybrany obszar:</Typography>
+                <Typography variant="h6" align="center">
+                  {filters_area[0]}
+                </Typography>
+              </div>
+            )}
+          {filters_area.length > 0 &&
+            filters_industry.length > 0 &&
+            selectedItem.length > 0 && (
+              <div className="flex-center">
+                <Typography variant="body2">wybrana branża:</Typography>
+                <Typography variant="h6" align="center">
+                  {filters_industry[0]}
+                </Typography>
+              </div>
+            )}
+          {/* <Typography variant="h6" align="center">
             {selectedItem}
-          </Typography>
+          </Typography> */}
+          {filters_area.length > 0 && selectedItem.length > 0 && (
+            <Button
+              onClick={() => {
+                getGraphItemsFixture();
+                dispatch(setFiltersIndustry([]));
+                dispatch(setFiltersArea([]));
+                dispatch(changeResults([]));
+              }}
+              color="black"
+              endIcon={<CloseRoundedIcon />}
+              style={{ marginTop: "12px" }}
+            >
+              Wyczyść wynik
+            </Button>
+          )}
         </div>
       </div>
     </Wrapper>

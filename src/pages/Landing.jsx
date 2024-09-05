@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Wrapper from "../assets/wrappers/LandingPage"
+import Wrapper from "../assets/wrappers/LandingPage";
 import Grid from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
 import InputAutocomplete from "../components/ui/Autocomplete";
@@ -82,15 +82,7 @@ const Landing = () => {
                 results={autocompleteOptions}
                 label="Szukaj zawodu"
               />
-              {/* <Button
-                color="black"
-                variant="text"
-                startIcon={<TuneRoundedIcon />}
-              >
-                Filtry
-              </Button> */}
             </Grid>
-
             <Grid size={{ xs: 12, md: 6 }}>
               <PieChart />
             </Grid>

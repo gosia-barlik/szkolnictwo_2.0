@@ -10,6 +10,8 @@ const Wrapper = styled.div`
 
 .qualifications-list {
   margin-top: 80px;
+  scroll-margin-top: 160px;
+  
 }
 
 .qualifications-list .filters.container {

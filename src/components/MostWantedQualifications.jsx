@@ -25,9 +25,9 @@ const MostWantedQualifications = () => {
     getSelectOptions();
   }, []);
 
-  useEffect(() => {
-    mostWantedRef.current?.scrollIntoView({ behavior: "smooth" }, [mostWanted]);
-  });
+  // useEffect(() => {
+  //   mostWantedRef.current?.scrollIntoView({ behavior: "smooth" }, [mostWanted]);
+  // });
 
   const handleChange = (event) => {
     const selectedVoivodeship = event.target.value;
@@ -91,7 +91,7 @@ const MostWantedQualifications = () => {
           </Select>
         </FormControl>
         {voivodeship && (
-          <Typography ref={mostWantedRef}>
+          <Typography ref={mostWantedRef} style={{fontWeight:"700"}}>
             Wybrane województwo: {voivodeship.name}
           </Typography>
         )}

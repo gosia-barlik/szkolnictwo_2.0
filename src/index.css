@@ -74,8 +74,16 @@ body {
   font-family: var(--headingFont);
 }
 
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 div.MuiTypography-body1,
 p.MuiTypography-body1,
+p.MuiTypography-body2,
 div.MuiTypography-subtitle1,
 p.MuiTypography-subtitle1 {
   font-family: var(--headingFont);
