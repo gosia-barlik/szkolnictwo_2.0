@@ -80,7 +80,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+.MuiButtonBase-root.MuiButton-root,
 div.MuiTypography-body1,
 p.MuiTypography-body1,
 p.MuiTypography-body2,

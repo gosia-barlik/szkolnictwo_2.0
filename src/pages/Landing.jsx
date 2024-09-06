@@ -11,25 +11,44 @@ import * as phrases from "./dictionaries/landing.dictionary.json";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import PieChart from "../components/PieChart";
 import QualificationListItem from "../components/ui/QualificationListItem";
-import MultipleSelect from "../components/ui/MultipleSelect";
+import SingleSelect from "../components/ui/SingleSelect";
 import MostWantedQualifications from "../components/MostWantedQualifications";
-// import "./Landing.css";
 
 const Landing = () => {
   const [autocompleteOptions, setAutocompleteOptions] = React.useState([]);
   const [filtersOptions, setFiltersOptions] = React.useState([]);
+  const [filtersAreas, setFiltersAreas] = React.useState([]);
+  const [filtersIndustries, setFiltersIndustries] = React.useState([]);
   const { qualifications, filters_industry, filters_area, filters_phrase } =
     useSelector((state) => state.searchResults);
   const theme = useTheme();
   const listRef = useRef();
 
   useEffect(() => {
-    getAutocompleteOptions(), [];
-  });
+    getAutocompleteOptions();
+  }, []);
 
   useEffect(() => {
-    getFiltersOptions(), [];
-  });
+    getFiltersOptions();
+  }, []);
+
+  useEffect(() => {
+    console.log(filters_area); // Logs: Budownictwo i wnętrzarstwo
+    console.log(filtersOptions); // Logs: the filters options
+
+    if (filters_area && filtersOptions.length > 0) {
+      // Use filters_area directly if it's a string, not an array
+      const foundIndustry = filtersOptions.find(
+        (item) => item.area === filters_area[0]
+      );
+      if (foundIndustry) {
+        console.log(foundIndustry.industry);
+        setFiltersIndustries(foundIndustry.industry);
+      } else {
+        console.log("Area not found"); // Issue should be gone if areas match
+      }
+    }
+  }, [filters_area, filtersOptions]);
 
   useEffect(() => {
     listRef.current?.scrollIntoView({ behavior: "smooth" }, [qualifications]);
@@ -51,6 +70,8 @@ const Landing = () => {
         console.log("");
       });
     setFiltersOptions(response.results);
+    const areas = response.results.map((item) => item.area);
+    setFiltersAreas(areas);
   };
 
   return (
@@ -89,20 +110,22 @@ const Landing = () => {
           </Grid>
         </Box>
       </header>
-      <main >
+      <main>
         {qualifications.length > 0 && (
           <section className="qualifications-list" ref={listRef}>
             <div className="filters container">
-              <MultipleSelect
-                options={filtersOptions.area}
+              <SingleSelect
+                options={filtersAreas}
                 label="obszar"
                 selected={filters_area}
               />
-              <MultipleSelect
-                options={filtersOptions.industry}
+              <SingleSelect
+                options={filtersIndustries}
                 label="branża"
                 selected={filters_industry}
+                disabled={filters_area ? false : true}
               />
+
               <InputAutocomplete results={autocompleteOptions} label="fraza" />
             </div>
             <Typography

@@ -27,6 +27,7 @@ const PieChart = () => {
     dispatch(setFiltersIndustry(newValue));
   };
   const handleFiltersArea = (newValue) => {
+    console.log(newValue)
     dispatch(setFiltersArea(newValue));
   };
 
@@ -321,7 +322,7 @@ const PieChart = () => {
               <div className="flex-center">
                 <Typography variant="body2">wybrany obszar:</Typography>
                 <Typography variant="h6" align="center">
-                  {filters_area[0]}
+                  {filters_area}
                 </Typography>
               </div>
             )}
@@ -331,13 +332,10 @@ const PieChart = () => {
               <div className="flex-center">
                 <Typography variant="body2">wybrana branża:</Typography>
                 <Typography variant="h6" align="center">
-                  {filters_industry[0]}
+                  {filters_industry}
                 </Typography>
               </div>
             )}
-          {/* <Typography variant="h6" align="center">
-            {selectedItem}
-          </Typography> */}
           {filters_area.length > 0 && selectedItem.length > 0 && (
             <Button
               onClick={() => {

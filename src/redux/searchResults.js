@@ -16,6 +16,7 @@ export const searchResultsSlice = createSlice({
       state.filters_industry = action.payload;
     },
     setFiltersArea: (state, action) => {
+      console.log(action.payload)
       state.filters_area = action.payload;
     },
     setFiltersPhrase: (state, action) => {

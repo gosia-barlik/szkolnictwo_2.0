@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Chip from "@mui/material/Chip";
 import { setFiltersArea, setFiltersIndustry } from "../../redux/searchResults";
 
 const ITEM_HEIGHT = 48;
@@ -30,16 +28,21 @@ function getStyles(option, selectedOption, theme) {
   };
 }
 
-const MultipleSelect = (props) => {
+const SingleSelect = (props) => {
   const theme = useTheme();
   const [selectedOption, setSelectedOption] = React.useState([]);
   const dispatch = useDispatch();
 
   const handleFiltersIndustry = (newValue) => {
-    dispatch(setFiltersIndustry(newValue));
+    const array = [];
+    array.push(newValue)
+    dispatch(setFiltersIndustry(array));
   };
   const handleFiltersArea = (newValue) => {
-    dispatch(setFiltersArea(newValue));
+    const array = [];
+    array.push(newValue)
+    dispatch(setFiltersArea(array));
+    console.log(array)
   };
 
   useEffect(() => {
@@ -66,20 +69,12 @@ const MultipleSelect = (props) => {
 
   return (
     <div className="multiple select">
-      <FormControl style={{ width: "100%" }}>
+      <FormControl style={{ width: "100%" }} disabled={props.disabled}>
         <InputLabel >{props.label}</InputLabel>
         <Select
-          multiple
           value={selectedOption}
           onChange={handleChange}
           input={<OutlinedInput label="Chip" />}
-          renderValue={(selected) => (
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip key={value} label={value} />
-              ))}
-            </Box>
-          )}
           MenuProps={MenuProps}
         >
           {props.options &&
@@ -98,4 +93,4 @@ const MultipleSelect = (props) => {
   );
 };
 
-export default MultipleSelect;
+export default SingleSelect;
