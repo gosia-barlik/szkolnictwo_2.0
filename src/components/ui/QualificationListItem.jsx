@@ -1,5 +1,4 @@
-
-import * as React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -8,10 +7,33 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
+import IconButton from "@mui/material/IconButton";
+import { useDispatch, useSelector } from "react-redux";
+import { addToClipboard, removeFromClipboard } from "../../redux/clipboard";
 
 const QualificationListItem = (props) => {
+  const [isInClipboard, setIsInClipboard] = React.useState(false);
+  const { favorites } = useSelector((state) => state.clipboard);
+  const dispatch = useDispatch();
   const theme = useTheme();
+
+  useEffect(() => {
+    if (favorites.includes(props.id)) {
+      setIsInClipboard(true);
+    }
+  }, []);
+
+  const addToFav = () => {
+    if (!favorites.includes(props.id)) {
+      dispatch(addToClipboard(props.id));
+    }
+    setIsInClipboard(!isInClipboard);
+    if (isInClipboard === true) {
+      dispatch(removeFromClipboard(props.id));
+    }
+  };
 
   return (
     <Card className="qualification-card">
@@ -41,15 +63,17 @@ const QualificationListItem = (props) => {
         </Box>
       </Link>
       <div className="icons-container">
-        <FavoriteBorderRoundedIcon
-          color="action"
-          style={{ marginRight: "18px", marginLeft: "18px" }}
-          onClick={()=>{console.log(props.id)}}
-        />
-        <PrintOutlinedIcon
-          color="action"
-          style={{ marginRight: "18px", marginLeft: "18px" }}
-        />
+        <IconButton
+          aria-label="favorite"
+          title="dodaj do schowka"
+          onClick={() => addToFav()}
+        >
+          {!isInClipboard && <FavoriteBorderRoundedIcon color="action" />}
+          {isInClipboard && <FavoriteRoundedIcon color="action" />}
+        </IconButton>
+        <IconButton aria-label="print" title="drukuj">
+          <PrintOutlinedIcon color="action" />
+        </IconButton>
       </div>
     </Card>
   );

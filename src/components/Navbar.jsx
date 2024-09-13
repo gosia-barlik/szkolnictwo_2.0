@@ -54,7 +54,10 @@ const Navbar = () => {
                   display: { xs: "none", md: "flex" },
                   pl: 10,
                 }}
-                style={{justifyContent:"space-between", alignItems:"center"}}
+                style={{
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
               >
                 <NavLink to="/about" className="nav-link">
                   <Typography sx={{ mr: 1 }} component="div">
@@ -62,8 +65,10 @@ const Navbar = () => {
                   </Typography>
                 </NavLink>
                 <NavLink to="/favorites" className="nav-link">
-                  <IconButton aria-label="delete">
-                    <FavoriteBorderRoundedIcon />
+                  <IconButton aria-label="favorite" title="schowek">
+                    <FavoriteBorderRoundedIcon
+                      style={{ color: "black" }}
+                    />
                   </IconButton>
                 </NavLink>
               </Box>

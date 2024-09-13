@@ -33,8 +33,6 @@ const Landing = () => {
   }, []);
 
   useEffect(() => {
-    console.log(filters_area); // Logs: Budownictwo i wnętrzarstwo
-    console.log(filtersOptions); // Logs: the filters options
 
     if (filters_area && filtersOptions.length > 0) {
       // Use filters_area directly if it's a string, not an array
@@ -45,7 +43,7 @@ const Landing = () => {
         console.log(foundIndustry.industry);
         setFiltersIndustries(foundIndustry.industry);
       } else {
-        console.log("Area not found"); // Issue should be gone if areas match
+        console.log("Area not found");
       }
     }
   }, [filters_area, filtersOptions]);
