@@ -27,6 +27,7 @@ const QualificationCharacteristic = () => {
   ];
   return (
     <Wrapper>
+      <Typography variant="h6">Charakterystyka zawodu</Typography>
       {accordions.map((el) => (
         <QualificationAccordion
           key={el.summary}
