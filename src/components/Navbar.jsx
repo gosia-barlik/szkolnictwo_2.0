@@ -5,12 +5,13 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import img from "../assets/img/szkolnictwo-logotyp.svg";
-import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import IconButton from "@mui/material/IconButton";
+import Badge from "@mui/material/Badge";
+import { useSelector } from "react-redux";
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -26,14 +27,7 @@ function ElevationScroll(props) {
 }
 
 const Navbar = () => {
-  const getQualifications = async () => {
-    const response = await MainInfoAPI.create()
-      .catch((error) => console.log([error.message]))
-      .finally(() => {
-        console.log("działam");
-      });
-    console.log(response);
-  };
+  const { favorites } = useSelector((state) => state.clipboard);
 
   return (
     <Wrapper>
@@ -66,9 +60,9 @@ const Navbar = () => {
                 </NavLink>
                 <NavLink to="/favorites" className="nav-link">
                   <IconButton aria-label="favorite" title="schowek">
-                    <FavoriteBorderRoundedIcon
-                      style={{ color: "black" }}
-                    />
+                    <Badge badgeContent={favorites.length} color="primary">
+                      <FavoriteBorderRoundedIcon style={{ color: "black" }} />
+                    </Badge>
                   </IconButton>
                 </NavLink>
               </Box>
