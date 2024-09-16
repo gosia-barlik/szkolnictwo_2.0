@@ -20,14 +20,15 @@ const QualificationListItem = (props) => {
   const theme = useTheme();
 
   useEffect(() => {
-    if (favorites.includes(props.id)) {
+    if (favorites.some((favorite) => favorite.id === props.id)) {
       setIsInClipboard(true);
     }
   }, []);
 
   const addToFav = () => {
-    if (!favorites.includes(props.id)) {
-      dispatch(addToClipboard(props.id));
+    if (!favorites.some((favorite) => favorite.id === props.id)) {
+      dispatch(addToClipboard({ id: props.id, name: props.name }));
+      console.log(favorites);
     }
     setIsInClipboard(!isInClipboard);
     if (isInClipboard === true) {
@@ -37,7 +38,7 @@ const QualificationListItem = (props) => {
 
   return (
     <Card className="qualification-card">
-      <CardMedia component="img" image={props.image_url} />
+      {props.image_url && <CardMedia component="img" image={props.image_url} />}
       <Link to={`/qualification/${props.id}`} className="link">
         <Box style={{ width: "100%" }}>
           <CardContent
@@ -55,9 +56,11 @@ const QualificationListItem = (props) => {
               >
                 {props.name}
               </Typography>
-              <Typography variant="subtitle1" component="div">
-                PRK {props.prk_level}
-              </Typography>
+              {props.prk_level && (
+                <Typography variant="subtitle1" component="div">
+                  PRK {props.prk_level}
+                </Typography>
+              )}
             </div>
           </CardContent>
         </Box>
