@@ -1,9 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Wrapper from "../assets/wrappers/AboutPage";
 
 const About = () => {
+  const navigate = useNavigate();
   return (
     <Wrapper>
+      <Button
+        color="black"
+        onClick={() => navigate(-1)}
+        variant="text"
+        startIcon={<ArrowBackIcon />}
+      >
+        Wróć
+      </Button>
       <Typography variant="h5">Kompas</Typography>
       <Typography variant="h6">O narzędziu</Typography>
       <Typography variant="body1">
