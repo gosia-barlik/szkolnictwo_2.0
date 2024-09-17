@@ -55,7 +55,9 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+          >
+            <title>Kujawsko-pomorskie</title>
+          </path>
           <path
             id="PL-28"
             data-name="Path 5575"
@@ -67,7 +69,9 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+          >
+            <title>Warmińsko-mazurskie</title>
+          </path>
           <path
             id="PL-20"
             data-name="Path 5576"
@@ -79,7 +83,9 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+          >
+            <title>Podlaskie</title>
+          </path>
           <path
             id="PL-06"
             data-name="Path 5577"
@@ -91,7 +97,9 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+          >
+            <title>Lubelskie</title>
+          </path>
           <path
             id="PL-18"
             data-name="Path 5578"
@@ -103,7 +111,9 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+          >
+            <title>Podkarpackie</title>
+          </path>
           <path
             id="PL-12"
             data-name="Path 5579"
@@ -115,7 +125,7 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+          > <title>Małopolskie</title></path>
           <path
             id="PL-24"
             data-name="Path 5580"
@@ -127,7 +137,7 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+            > <title>Śląskie</title></path>
           <path
             id="PL-16"
             data-name="Path 5581"
@@ -139,7 +149,7 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+            > <title>Opolskie</title></path>
           <path
             id="PL-02"
             data-name="Path 5582"
@@ -151,7 +161,7 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+            > <title>Dolnośląskie</title></path>
           <path
             id="PL-08"
             data-name="Path 5583"
@@ -163,7 +173,7 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+            > <title>Lubuskie</title></path>
           <path
             id="PL-32"
             data-name="Path 5584"
@@ -175,7 +185,7 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+            > <title>Zachodnio-pomorskie</title></path>
           <path
             id="PL-22"
             data-name="Path 5585"
@@ -187,7 +197,7 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+            > <title>Pomorskie</title></path>
           <path
             id="PL-14"
             data-name="Path 5586"
@@ -199,7 +209,7 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+            > <title>Mazowieckie</title></path>
           <path
             id="PL-26"
             data-name="Path 5587"
@@ -211,7 +221,7 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+            > <title>Świętokrzyskie</title></path>
           <path
             id="PL-10"
             data-name="Path 5588"
@@ -223,7 +233,7 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+            > <title>Łódzkie</title></path>
           <path
             id="PL-30"
             data-name="Path 5589"
@@ -235,7 +245,7 @@ const PolandMap = () => {
             strokeWidth="1"
             tabIndex="0"
             onClick={(e) => handleChange(e)}
-          />
+            > <title>Wielkopolskie</title></path>
         </g>
       </svg>
     </Wrapper>

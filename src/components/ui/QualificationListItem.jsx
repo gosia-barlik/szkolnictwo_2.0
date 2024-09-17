@@ -37,12 +37,12 @@ const QualificationListItem = (props) => {
   };
 
   return (
-    <Card className="qualification-card">
+    <Card className={"qualification-card" + " " + props.displayAsList+"-element"}>
       {props.image_url && <CardMedia component="img" image={props.image_url} />}
       <Link to={`/qualification/${props.id}`} className="link">
-        <Box style={{ width: "100%" }}>
+        <Box >
           <CardContent
-            sx={{ flex: "1 0 auto", display: "flex", width: "100%" }}
+            sx={{ flex: "1 0 auto", display: "flex", width: "100%", padding:"2px 12px 2px 12px" }}
           >
             <div style={{ width: "100%" }}>
               <Typography
