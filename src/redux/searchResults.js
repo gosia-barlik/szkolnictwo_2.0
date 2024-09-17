@@ -6,7 +6,9 @@ export const searchResultsSlice = createSlice({
     qualifications: [],
     filters_industry: [],
     filters_area: [],
-    filters_phrase: []
+    filters_phrase: [],
+    graph_items: [],
+    selected_item: []
   },
   reducers: {
     changeResults: (state, action) => {
@@ -16,18 +18,22 @@ export const searchResultsSlice = createSlice({
       state.filters_industry = action.payload;
     },
     setFiltersArea: (state, action) => {
-      console.log(action.payload)
       state.filters_area = action.payload;
     },
     setFiltersPhrase: (state, action) => {
-      console.log(action.payload);
       state.filters_phrase = action.payload;
     },
+    setGraphItems: (state, action) => {
+      state.graph_items = action.payload
+    },
+    setSelectedItem: (state, action) => {
+      state.selected_item = action.payload
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { changeResults, setFiltersIndustry, setFiltersArea, setFiltersPhrase } =
+export const { changeResults, setFiltersIndustry, setFiltersArea, setFiltersPhrase, setGraphItems, setSelectedItem } =
   searchResultsSlice.actions;
 
 export default searchResultsSlice.reducer;

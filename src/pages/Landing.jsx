@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
 import InputAutocomplete from "../components/ui/Autocomplete";
 import Button from "@mui/material/Button";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,17 +14,32 @@ import PieChart from "../components/PieChart";
 import QualificationListItem from "../components/ui/QualificationListItem";
 import SingleSelect from "../components/ui/SingleSelect";
 import MostWantedQualifications from "../components/MostWantedQualifications";
+import QualificationsList from "../components/QualificationsList";
+import {
+  changeResults,
+  setFiltersIndustry,
+  setFiltersArea,
+  setGraphItems,
+  setSelectedItem,
+} from "../redux/searchResults";
 
 const Landing = () => {
   const [autocompleteOptions, setAutocompleteOptions] = React.useState([]);
   const [filtersOptions, setFiltersOptions] = React.useState([]);
   const [filtersAreas, setFiltersAreas] = React.useState([]);
   const [filtersIndustries, setFiltersIndustries] = React.useState([]);
-  const { qualifications, filters_industry, filters_area, filters_phrase } =
+  const { qualifications, filters_industry, filters_area, graph_items } =
     useSelector((state) => state.searchResults);
   const theme = useTheme();
   const listRef = useRef();
+  const dispatch = useDispatch();
 
+  const handleGraphItems = (newValue) => {
+    dispatch(setGraphItems(newValue));
+  };
+  const handleSelectItem = (newValue) => {
+    dispatch(setSelectedItem(newValue));
+  };
   useEffect(() => {
     getAutocompleteOptions();
   }, []);
@@ -33,7 +49,13 @@ const Landing = () => {
   }, []);
 
   useEffect(() => {
+    // get data to draw graph if there isnt any
+    if (graph_items.length <= 0) {
+      getGraphItemsFixture();
+    }
+  }, [graph_items]);
 
+  useEffect(() => {
     if (filters_area && filtersOptions.length > 0) {
       // Use filters_area directly if it's a string, not an array
       const foundIndustry = filtersOptions.find(
@@ -72,6 +94,16 @@ const Landing = () => {
     setFiltersAreas(areas);
   };
 
+  const getGraphItemsFixture = async () => {
+    handleSelectItem([]);
+    const response = await MainInfoAPI.getGraphItemsFixture()
+      .catch((error) => console.log([error.message]))
+      .finally(() => {
+        console.log("");
+      });
+    handleGraphItems(response.results);
+  };
+
   return (
     <Wrapper>
       <header className="home-header">
@@ -103,7 +135,7 @@ const Landing = () => {
               />
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
-              <PieChart />
+              <PieChart getGraphItemsFixture={getGraphItemsFixture} />
             </Grid>
           </Grid>
         </Box>
@@ -111,37 +143,12 @@ const Landing = () => {
       <main>
         {qualifications.length > 0 && (
           <section className="qualifications-list" ref={listRef}>
-            <div className="filters container">
-              <SingleSelect
-                options={filtersAreas}
-                label="obszar"
-                selected={filters_area}
-              />
-              <SingleSelect
-                options={filtersIndustries}
-                label="branża"
-                selected={filters_industry}
-                disabled={filters_area ? false : true}
-              />
-
-              <InputAutocomplete results={autocompleteOptions} label="fraza" />
-            </div>
-            <Typography
-              variant="h6"
-              component="h2"
-              style={{ marginTop: "24px" }}
-            >
-              Zawody
-            </Typography>
-            {qualifications.map((el) => (
-              <QualificationListItem
-                id={el.id}
-                key={el.id}
-                name={el.name}
-                prk_level={el.prk_level}
-                image_url={el.image_url}
-              />
-            ))}
+            <QualificationsList
+              filtersAreas={filtersAreas}
+              filtersIndustries={filtersIndustries}
+              autocompleteOptions={autocompleteOptions}
+              getGraphItemsFixture={getGraphItemsFixture}
+            />
           </section>
         )}
         <section className="qualifications-by-region">

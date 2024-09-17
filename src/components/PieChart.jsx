@@ -10,14 +10,17 @@ import {
   changeResults,
   setFiltersIndustry,
   setFiltersArea,
+  setGraphItems,
+  setSelectedItem,
 } from "../redux/searchResults";
 
-const PieChart = () => {
-  const [graphItems, setGraphItems] = React.useState([]);
-  const [selectedItem, setSelectedItem] = React.useState([]);
-  const { qualifications, filters_industry, filters_area } = useSelector(
-    (state) => state.searchResults
-  );
+const PieChart = (props) => {
+  const {
+    filters_industry,
+    filters_area,
+    graph_items,
+    selected_item,
+  } = useSelector((state) => state.searchResults);
   const dispatch = useDispatch();
 
   const handleSearchResults = (newValue) => {
@@ -27,8 +30,13 @@ const PieChart = () => {
     dispatch(setFiltersIndustry(newValue));
   };
   const handleFiltersArea = (newValue) => {
-    console.log(newValue)
     dispatch(setFiltersArea(newValue));
+  };
+  const handleGraphItems = (newValue) => {
+    dispatch(setGraphItems(newValue));
+  };
+  const handleSelectItem = (newValue) => {
+    dispatch(setSelectedItem(newValue));
   };
 
   const graphOptions = {
@@ -38,30 +46,13 @@ const PieChart = () => {
   };
 
   useEffect(() => {
-    // get data to draw graph if there isnt any
-    if (graphItems.length <= 0) {
-      getGraphItemsFixture(), [];
-    }
-  });
-
-  useEffect(() => {
-    drawGraph(graphItems);
+    drawGraph(graph_items);
     // Cleanup on component unmount
     return () => {
       d3.select("#graph").select("svg").remove();
       d3.select("#border").select("svg").remove();
     };
-  }, [graphItems]);
-
-  const getGraphItemsFixture = async () => {
-    setSelectedItem([]);
-    const response = await MainInfoAPI.getGraphItemsFixture()
-      .catch((error) => console.log([error.message]))
-      .finally(() => {
-        console.log("");
-      });
-    setGraphItems(response.results);
-  };
+  }, [graph_items]);
 
   const getGraphItemsChildrenFixture = async () => {
     const response = await MainInfoAPI.getGraphItemsChildrenFixture()
@@ -70,7 +61,7 @@ const PieChart = () => {
         console.log("");
       });
     if (response && response.results) {
-      setGraphItems([...response.results]);
+      handleGraphItems([...response.results]);
     } else {
       console.error("No data received from API");
     }
@@ -128,7 +119,6 @@ const PieChart = () => {
     }
 
     function handlePathClick(d, event) {
-      // console.log("Clicked slice data:", d.data[1]); // Debugging log
 
       if (d.data[1] && d.data[1].color) {
         // Set selected item to display on graph
@@ -139,7 +129,7 @@ const PieChart = () => {
           handleFiltersIndustry([d.data[1].name]);
         }
 
-        setSelectedItem(d.data[1].name);
+        handleSelectItem(d.data[1].name);
         // Reset all slices to the default color and reset font size
         d3.selectAll(".arc path")
           .transition()
@@ -318,7 +308,7 @@ const PieChart = () => {
         <div className="home-compass">
           {filters_area.length > 0 &&
             filters_industry.length <= 0 &&
-            selectedItem.length > 0 && (
+            selected_item.length > 0 && (
               <div className="flex-center">
                 <Typography variant="body2">wybrany obszar:</Typography>
                 <Typography variant="h6" align="center">
@@ -328,7 +318,7 @@ const PieChart = () => {
             )}
           {filters_area.length > 0 &&
             filters_industry.length > 0 &&
-            selectedItem.length > 0 && (
+            selected_item.length > 0 && (
               <div className="flex-center">
                 <Typography variant="body2">wybrana branża:</Typography>
                 <Typography variant="h6" align="center">
@@ -336,10 +326,10 @@ const PieChart = () => {
                 </Typography>
               </div>
             )}
-          {filters_area.length > 0 && selectedItem.length > 0 && (
+          {filters_area.length > 0 && selected_item.length > 0 && (
             <Button
               onClick={() => {
-                getGraphItemsFixture();
+                props.getGraphItemsFixture();
                 dispatch(setFiltersIndustry([]));
                 dispatch(setFiltersArea([]));
                 dispatch(changeResults([]));
