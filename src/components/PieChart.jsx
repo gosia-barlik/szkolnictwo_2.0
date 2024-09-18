@@ -10,6 +10,7 @@ import {
   changeResults,
   setFiltersIndustry,
   setFiltersArea,
+  setFiltersPhrase,
   setGraphItems,
   setSelectedItem,
 } from "../redux/searchResults";
@@ -330,6 +331,7 @@ const PieChart = (props) => {
             <Button
               onClick={() => {
                 props.getGraphItemsFixture();
+                dispatch(setFiltersPhrase(""))
                 dispatch(setFiltersIndustry([]));
                 dispatch(setFiltersArea([]));
                 dispatch(changeResults([]));

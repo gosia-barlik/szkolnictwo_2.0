@@ -15,6 +15,7 @@ import {
   changeResults,
   setFiltersIndustry,
   setFiltersArea,
+  setFiltersPhrase
 } from "../redux/searchResults";
 
 const QualificationsList = (props) => {
@@ -50,6 +51,7 @@ const QualificationsList = (props) => {
         <Button
           onClick={() => {
             props.getGraphItemsFixture();
+            dispatch(setFiltersPhrase(""))
             dispatch(setFiltersIndustry([]));
             dispatch(setFiltersArea([]));
             dispatch(changeResults([]));
