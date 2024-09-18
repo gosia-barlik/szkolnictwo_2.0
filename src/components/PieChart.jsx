@@ -16,12 +16,8 @@ import {
 } from "../redux/searchResults";
 
 const PieChart = (props) => {
-  const {
-    filters_industry,
-    filters_area,
-    graph_items,
-    selected_item,
-  } = useSelector((state) => state.searchResults);
+  const { filters_industry, filters_area, graph_items, selected_item } =
+    useSelector((state) => state.searchResults);
   const dispatch = useDispatch();
 
   const handleSearchResults = (newValue) => {
@@ -120,7 +116,6 @@ const PieChart = (props) => {
     }
 
     function handlePathClick(d, event) {
-
       if (d.data[1] && d.data[1].color) {
         // Set selected item to display on graph
 
@@ -307,6 +302,11 @@ const PieChart = (props) => {
         <div id="border"></div>
         <div id="graph"></div>
         <div className="home-compass">
+          {filters_area.length <= 0 && filters_industry.length <= 0 && (
+            <div className="flex-center">
+              <Typography variant="body2">wybierz obszar</Typography>
+            </div>
+          )}
           {filters_area.length > 0 &&
             filters_industry.length <= 0 &&
             selected_item.length > 0 && (
@@ -331,7 +331,7 @@ const PieChart = (props) => {
             <Button
               onClick={() => {
                 props.getGraphItemsFixture();
-                dispatch(setFiltersPhrase(""))
+                dispatch(setFiltersPhrase(""));
                 dispatch(setFiltersIndustry([]));
                 dispatch(setFiltersArea([]));
                 dispatch(changeResults([]));

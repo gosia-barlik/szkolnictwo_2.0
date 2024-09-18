@@ -11,7 +11,7 @@ export const clipboardSlice = createSlice({
         state.favorites = [...state.favorites, action.payload];
     },
     removeFromClipboard: (state, action) => {
-        state.favorites = state.favorites.filter((item) => item.id !== action.payload);
+        state.favorites = state.favorites.filter((item) => item.id != action.payload);
       },
   },
 });

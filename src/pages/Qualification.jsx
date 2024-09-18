@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { useLoaderData, Navigate, useNavigate } from "react-router-dom";
 import Wrapper from "../assets/wrappers/QualificationPage";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
@@ -5,7 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
+import IconButton from "@mui/material/IconButton";
 import Tabs from "../components/ui/Tabs";
+import { useDispatch, useSelector } from "react-redux";
+import { addToClipboard, removeFromClipboard } from "../redux/clipboard";
 import { qualificationFixture } from "../fixtures/qualificationFixture";
 
 const singleQualificationQuery = async (id) => {
@@ -27,8 +34,20 @@ export const loader =
 
 const Qualification = () => {
   const { id } = useLoaderData();
-  console.log(id);
+  const [isInClipboard, setIsInClipboard] = React.useState(false);
+  const { favorites } = useSelector((state) => state.clipboard);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(favorites)
+    console.log(id)
+    if (favorites.some((favorite) => favorite.id == id)) {
+      setIsInClipboard(true);
+    }
+    console.log(isInClipboard)
+  }, [favorites]);
+
 
   const { data, error, isLoading } = useQuery({
     queryKey: ["qualification", id],
@@ -46,6 +65,19 @@ const Qualification = () => {
 
   const { name, prk_level, image_url, area, industry } = qualification;
 
+  const addToFav = () => {
+    console.log(id)
+    console.log(name)
+    if (!favorites.some((favorite) => favorite.id == id)) {
+      dispatch(addToClipboard({ id: id, name: name }));
+      console.log(favorites);
+    }
+    setIsInClipboard(!isInClipboard);
+    if (isInClipboard === true) {
+      dispatch(removeFromClipboard(id));
+    }
+  };
+
   return (
     <Wrapper>
       <header className="qualification-header">
@@ -57,6 +89,19 @@ const Qualification = () => {
         >
           Wróć
         </Button>
+        <div className="icons-container">
+          <IconButton
+            aria-label="favorite"
+            title="dodaj do schowka"
+            onClick={() => addToFav()}
+          >
+            {!isInClipboard && <FavoriteBorderRoundedIcon color="action" />}
+            {isInClipboard && <FavoriteRoundedIcon color="action" />}
+          </IconButton>
+          <IconButton aria-label="print" title="drukuj">
+            <PrintOutlinedIcon color="action" />
+          </IconButton>
+        </div>
       </header>
       <div className="qualification">
         <img src={image_url} alt={name} className="img" />
@@ -77,7 +122,6 @@ const Qualification = () => {
         </div>
       </div>
       <div className="qualification-tabs">
-
         <Tabs />
       </div>
     </Wrapper>
