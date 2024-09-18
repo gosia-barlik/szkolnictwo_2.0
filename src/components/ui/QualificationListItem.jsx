@@ -10,6 +10,7 @@ import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import IconButton from "@mui/material/IconButton";
+import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import { useDispatch, useSelector } from "react-redux";
 import { addToClipboard, removeFromClipboard } from "../../redux/clipboard";
 
@@ -38,11 +39,11 @@ const QualificationListItem = (props) => {
 
   return (
     <Card className={"qualification-card" + " " + props.displayAsList+"-element"}>
-      {props.image_url && <CardMedia component="img" image={props.image_url} />}
+      {props.image_url?<CardMedia component="img" image={props.image_url} />:<VerifiedRoundedIcon color="primary" style={{margin:"14px"}}/>}
       <Link to={`/qualification/${props.id}`} className="link">
         <Box >
           <CardContent
-            sx={{ flex: "1 0 auto", display: "flex", width: "100%", padding:"2px 12px 2px 12px" }}
+            sx={{ flex: "1 0 auto", display: "flex", width: "100%" }}
           >
             <div style={{ width: "100%" }}>
               <Typography
