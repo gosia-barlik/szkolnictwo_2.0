@@ -19,6 +19,8 @@ const Wrapper = styled.div`
   .qualification,
   .qualification-header {
     font-family: Quicksand, serif;
+    display:flex;
+    justify-content:space-between;
   }
   .qualification {
     display: flex;

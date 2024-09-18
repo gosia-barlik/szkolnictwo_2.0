@@ -9,8 +9,10 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
+import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 import IconButton from "@mui/material/IconButton";
 import Tabs from "../components/ui/Tabs";
+import img from "../assets/img/zsk-logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addToClipboard, removeFromClipboard } from "../redux/clipboard";
 import { qualificationFixture } from "../fixtures/qualificationFixture";
@@ -40,14 +42,13 @@ const Qualification = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(favorites)
-    console.log(id)
+    console.log(favorites);
+    console.log(id);
     if (favorites.some((favorite) => favorite.id == id)) {
       setIsInClipboard(true);
     }
-    console.log(isInClipboard)
+    console.log(isInClipboard);
   }, [favorites]);
-
 
   const { data, error, isLoading } = useQuery({
     queryKey: ["qualification", id],
@@ -66,11 +67,8 @@ const Qualification = () => {
   const { name, prk_level, image_url, area, industry } = qualification;
 
   const addToFav = () => {
-    console.log(id)
-    console.log(name)
     if (!favorites.some((favorite) => favorite.id == id)) {
       dispatch(addToClipboard({ id: id, name: name }));
-      console.log(favorites);
     }
     setIsInClipboard(!isInClipboard);
     if (isInClipboard === true) {
@@ -89,18 +87,22 @@ const Qualification = () => {
         >
           Wróć
         </Button>
-        <div className="icons-container">
+        <div className="icons-container" style={{ display: "flex" }}>
           <IconButton
-            aria-label="favorite"
+            aria-label="dodaj do schowka"
             title="dodaj do schowka"
             onClick={() => addToFav()}
           >
             {!isInClipboard && <FavoriteBorderRoundedIcon color="action" />}
             {isInClipboard && <FavoriteRoundedIcon color="action" />}
           </IconButton>
-          <IconButton aria-label="print" title="drukuj">
+          <IconButton aria-label="drukuj" title="drukuj">
             <PrintOutlinedIcon color="action" />
           </IconButton>
+          <IconButton aria-label="udostępnij" title="udostępnij">
+            <ShareRoundedIcon />
+          </IconButton>
+          <img src={img} alt="logotyp ZSK" />
         </div>
       </header>
       <div className="qualification">
