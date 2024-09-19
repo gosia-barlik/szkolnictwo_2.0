@@ -2,16 +2,17 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
-  About,
+  RelatedApps,
   HomeLayout,
   Landing,
   Error,
   SinglePageError,
   Qualification,
-  Favorites
+  Favorites,
+  Dictionary
 } from './pages';
 
-import {loader as singleCocktailLoader} from './pages/Qualification'
+import {loader as singleQualificationLoader} from './pages/Qualification'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,17 +37,22 @@ const router = createBrowserRouter([
       {
         path: 'qualification/:id',
         errorElement: <SinglePageError />,
-        loader: singleCocktailLoader(queryClient),
+        loader: singleQualificationLoader(queryClient),
         element: <Qualification />,
       },
       {
-        path: 'about',
-        element: <About />,
+        path: 'related_apps',
+        element: <RelatedApps />,
         errorElement: <SinglePageError />,
       },
       {
         path: 'favorites',
         element: <Favorites />,
+        errorElement: <SinglePageError />,
+      },
+      {
+        path: 'dictionary',
+        element: <Dictionary />,
         errorElement: <SinglePageError />,
       },
   

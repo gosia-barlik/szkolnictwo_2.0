@@ -312,9 +312,10 @@ const PieChart = (props) => {
             selected_item.length > 0 && (
               <div className="flex-center">
                 <Typography variant="body2">wybrany obszar:</Typography>
-                <Typography variant="h6" align="center">
-                  {filters_area}
+                <Typography variant="body1" align="center">
+                  <strong>{filters_area}</strong>
                 </Typography>
+                <Typography variant="body2">wybierz branżę lub</Typography>
               </div>
             )}
           {filters_area.length > 0 &&
@@ -322,8 +323,8 @@ const PieChart = (props) => {
             selected_item.length > 0 && (
               <div className="flex-center">
                 <Typography variant="body2">wybrana branża:</Typography>
-                <Typography variant="h6" align="center">
-                  {filters_industry}
+                <Typography variant="body1" align="center">
+                <strong>{filters_industry}</strong>
                 </Typography>
               </div>
             )}

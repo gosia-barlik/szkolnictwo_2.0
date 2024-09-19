@@ -163,7 +163,7 @@ const Navbar = () => {
   return (
     <nav>
       <div className='nav-center'>
-        <span className='logo'>MixMaster</span>
+        <span className='logo'></span>
         <div className='nav-links'>
           <NavLink to='/' className='nav-link'>
             Home
@@ -272,18 +272,17 @@ Landing.jsx
 import { useLoaderData } from 'react-router-dom';
 import axios from 'axios';
 
-const cocktailSearchUrl =
-  'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+const qualificationSearchUrl =
+  'https://';
 
 export const loader = async () => {
-  const searchTerm = 'margarita';
-  const response = await axios.get(`${cocktailSearchUrl}${searchTerm}`);
-  return { drinks: response.data.drinks, searchTerm };
+  const searchTerm = '';
+  const response = await axios.get(`${qualificationSearchUrl}${searchTerm}`);
+  return { qualifications: response.data.qualification, searchTerm };
 };
 
 const Landing = () => {
   const { searchTerm, drinks } = useLoaderData();
-  console.log(drinks);
   return <h1>Landing page</h1>;
 };
 
@@ -295,7 +294,6 @@ export default Landing;
 
 #### More Errors
 
-- bubbles up
 - no return from loader
 - wrong url
 

@@ -9,6 +9,7 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
@@ -53,18 +54,27 @@ const Navbar = () => {
                   alignItems: "center",
                 }}
               >
-                <NavLink to="/about" className="nav-link">
+                <NavLink to="/related_apps" className="nav-link">
                   <Typography sx={{ mr: 1 }} component="div">
                     Powiązane narzędzia
                   </Typography>
                 </NavLink>
-                <NavLink to="/favorites" className="nav-link">
-                  <IconButton aria-label="favorite" title="schowek">
-                    <Badge badgeContent={favorites.length} color="primary">
-                      <FavoriteBorderRoundedIcon style={{ color: "black" }} />
-                    </Badge>
-                  </IconButton>
-                </NavLink>
+                <div>
+                  <NavLink to="/favorites" className="nav-link">
+                    Schowek
+                    <IconButton aria-label="favorite" title="schowek">
+                      <Badge badgeContent={favorites.length} color="primary">
+                        <FavoriteBorderRoundedIcon style={{ color: "black" }} />
+                      </Badge>
+                    </IconButton>
+                  </NavLink>
+                  <NavLink to="/dictionary" className="nav-link">
+                    Słownik
+                    <IconButton aria-label="favorite" title="słownik">
+                      <MenuBookRoundedIcon style={{ color: "black" }} />
+                    </IconButton>
+                  </NavLink>
+                </div>
               </Box>
             </Toolbar>
           </Container>
