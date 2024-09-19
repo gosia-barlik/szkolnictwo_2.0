@@ -11,20 +11,18 @@ import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import PieChart from "../components/PieChart";
 import MostWantedQualifications from "../components/MostWantedQualifications";
 import QualificationsList from "../components/QualificationsList";
-import {
-  setGraphItems,
-  setSelectedItem,
-} from "../redux/searchResults";
+import { setGraphItems, setSelectedItem } from "../redux/searchResults";
 
 const Landing = () => {
   const [autocompleteOptions, setAutocompleteOptions] = useState([]);
   const [filtersOptions, setFiltersOptions] = useState([]);
   const [filtersAreas, setFiltersAreas] = useState([]);
   const [filtersIndustries, setFiltersIndustries] = useState([]);
-  const [filtersVoivodeships, setFiltersVoivodeships] = useState(["Dolnośląskie","Kujawsko-Pomorskie","Lubuskie","Łódzkie","Lubelskie"]);
-  const [filtersPRKLevels, setFiltersPRKLevels] = useState(["I","II","III","IV"])
-  const { qualifications, filters_area, graph_items } =
-    useSelector((state) => state.searchResults);
+  const [filtersVoivodeships, setFiltersVoivodeships] = useState([]);
+  const [filtersPRKLevels, setFiltersPRKLevels] = useState([]);
+  const { qualifications, filters_area, graph_items } = useSelector(
+    (state) => state.searchResults
+  );
   const theme = useTheme();
   const listRef = useRef();
   const dispatch = useDispatch();
@@ -51,10 +49,12 @@ const Landing = () => {
   }, [graph_items]);
 
   useEffect(() => {
-    if (filters_area && filtersOptions.length > 0) {
-      const foundIndustry = filtersOptions.find(
-        (item) => item.area === filters_area[0]
-      );
+    if (
+      filters_area.length > 0 &&
+      filtersOptions.areas
+    ) {
+      const areas = filtersOptions.areas;
+      const foundIndustry = areas.find((item) => item.area === filters_area[0]);
       if (foundIndustry) {
         setFiltersIndustries(foundIndustry.industry);
       }
@@ -77,8 +77,10 @@ const Landing = () => {
       .catch((error) => console.log([error.message]))
       .finally(() => {});
     setFiltersOptions(response.results);
-    const areas = response.results.map((item) => item.area);
+    const areas = response.results.areas.map((item) => item.area);
     setFiltersAreas(areas);
+    setFiltersVoivodeships(response.results.voivodeships);
+    setFiltersPRKLevels(response.results.PRKLevels);
   };
 
   const getGraphItemsFixture = async () => {
@@ -135,7 +137,7 @@ const Landing = () => {
             <QualificationsList
               filtersAreas={filtersAreas}
               filtersIndustries={filtersIndustries}
-              filtersVoivodeships ={filtersVoivodeships}
+              filtersVoivodeships={filtersVoivodeships}
               filtersPRKLevels={filtersPRKLevels}
               autocompleteOptions={autocompleteOptions}
               getGraphItemsFixture={getGraphItemsFixture}
