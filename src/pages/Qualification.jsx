@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLoaderData, Navigate, useNavigate } from "react-router-dom";
 import Wrapper from "../assets/wrappers/QualificationPage";
-import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import { useQuery } from "@tanstack/react-query";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -36,14 +35,12 @@ export const loader =
 
 const Qualification = () => {
   const { id } = useLoaderData();
-  const [isInClipboard, setIsInClipboard] = React.useState(false);
+  const [isInClipboard, setIsInClipboard] = useState(false);
   const { favorites } = useSelector((state) => state.clipboard);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(favorites);
-    console.log(id);
     if (favorites.some((favorite) => favorite.id == id)) {
       setIsInClipboard(true);
     }

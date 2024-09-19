@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -8,8 +8,8 @@ import Box from "@mui/material/Box";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 
 const QualificationAccordion = (props) => {
-  const [expanded, setExpanded] = React.useState(false);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [expanded, setExpanded] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(1);
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -30,19 +30,19 @@ function getStyles(option, selectedOption, theme) {
 
 const SingleSelect = (props) => {
   const theme = useTheme();
-  const [selectedOption, setSelectedOption] = React.useState([]);
+  const [selectedOption, setSelectedOption] = useState([]);
   const dispatch = useDispatch();
 
   const handleFiltersIndustry = (newValue) => {
     const array = [];
-    array.push(newValue)
+    array.push(newValue);
     dispatch(setFiltersIndustry(array));
   };
+
   const handleFiltersArea = (newValue) => {
     const array = [];
-    array.push(newValue)
+    array.push(newValue);
     dispatch(setFiltersArea(array));
-    console.log(array)
   };
 
   useEffect(() => {
@@ -69,8 +69,8 @@ const SingleSelect = (props) => {
 
   return (
     <div className="multiple select">
-      <FormControl style={{ width: "100%" }} disabled={props.disabled}>
-        <InputLabel >{props.label}</InputLabel>
+      <FormControl fullWidth disabled={props.disabled}>
+        <InputLabel>{props.label}</InputLabel>
         <Select
           value={selectedOption}
           onChange={handleChange}

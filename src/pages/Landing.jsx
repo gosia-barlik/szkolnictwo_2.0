@@ -1,34 +1,29 @@
-import React, { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Wrapper from "../assets/wrappers/LandingPage";
 import Grid from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
 import InputAutocomplete from "../components/ui/Autocomplete";
-import Button from "@mui/material/Button";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import * as phrases from "./dictionaries/landing.dictionary.json";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import PieChart from "../components/PieChart";
-import QualificationListItem from "../components/ui/QualificationListItem";
-import SingleSelect from "../components/ui/SingleSelect";
 import MostWantedQualifications from "../components/MostWantedQualifications";
 import QualificationsList from "../components/QualificationsList";
 import {
-  changeResults,
-  setFiltersIndustry,
-  setFiltersArea,
   setGraphItems,
   setSelectedItem,
 } from "../redux/searchResults";
 
 const Landing = () => {
-  const [autocompleteOptions, setAutocompleteOptions] = React.useState([]);
-  const [filtersOptions, setFiltersOptions] = React.useState([]);
-  const [filtersAreas, setFiltersAreas] = React.useState([]);
-  const [filtersIndustries, setFiltersIndustries] = React.useState([]);
-  const { qualifications, filters_industry, filters_area, graph_items } =
+  const [autocompleteOptions, setAutocompleteOptions] = useState([]);
+  const [filtersOptions, setFiltersOptions] = useState([]);
+  const [filtersAreas, setFiltersAreas] = useState([]);
+  const [filtersIndustries, setFiltersIndustries] = useState([]);
+  const [filtersVoivodeships, setFiltersVoivodeships] = useState(["Dolnośląskie","Kujawsko-Pomorskie","Lubuskie","Łódzkie","Lubelskie"]);
+  const [filtersPRKLevels, setFiltersPRKLevels] = useState(["I","II","III","IV"])
+  const { qualifications, filters_area, graph_items } =
     useSelector((state) => state.searchResults);
   const theme = useTheme();
   const listRef = useRef();
@@ -57,15 +52,11 @@ const Landing = () => {
 
   useEffect(() => {
     if (filters_area && filtersOptions.length > 0) {
-      // Use filters_area directly if it's a string, not an array
       const foundIndustry = filtersOptions.find(
         (item) => item.area === filters_area[0]
       );
       if (foundIndustry) {
-        console.log(foundIndustry.industry);
         setFiltersIndustries(foundIndustry.industry);
-      } else {
-        console.log("Area not found");
       }
     }
   }, [filters_area, filtersOptions]);
@@ -77,18 +68,14 @@ const Landing = () => {
   const getAutocompleteOptions = async () => {
     const response = await MainInfoAPI.getAutocompleteOptions()
       .catch((error) => console.log([error.message]))
-      .finally(() => {
-        console.log("");
-      });
+      .finally(() => {});
     setAutocompleteOptions(response.results);
   };
 
   const getFiltersOptions = async () => {
     const response = await MainInfoAPI.getFiltersOptionsFixture()
       .catch((error) => console.log([error.message]))
-      .finally(() => {
-        console.log("");
-      });
+      .finally(() => {});
     setFiltersOptions(response.results);
     const areas = response.results.map((item) => item.area);
     setFiltersAreas(areas);
@@ -98,10 +85,12 @@ const Landing = () => {
     handleSelectItem([]);
     const response = await MainInfoAPI.getGraphItemsFixture()
       .catch((error) => console.log([error.message]))
-      .finally(() => {
-        console.log("");
-      });
+      .finally(() => {});
     handleGraphItems(response.results);
+  };
+
+  const clearFiltersOptions = () => {
+    setFiltersIndustries([]);
   };
 
   return (
@@ -146,8 +135,11 @@ const Landing = () => {
             <QualificationsList
               filtersAreas={filtersAreas}
               filtersIndustries={filtersIndustries}
+              filtersVoivodeships ={filtersVoivodeships}
+              filtersPRKLevels={filtersPRKLevels}
               autocompleteOptions={autocompleteOptions}
               getGraphItemsFixture={getGraphItemsFixture}
+              clearFiltersOptions={clearFiltersOptions}
             />
           </section>
         )}

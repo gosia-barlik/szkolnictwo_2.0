@@ -76,7 +76,7 @@ const MostWantedQualifications = () => {
           {phrases.landing.byRegion.action}
         </Typography>
 
-        <FormControl style={{ width: "100%", margin: "24px 0px" }}>
+        <FormControl fullWidth style={{margin: "24px 0px" }}>
           <InputLabel>Województwo</InputLabel>
           <Select
             value={voivodeship || ""}

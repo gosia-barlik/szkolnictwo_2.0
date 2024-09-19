@@ -1,26 +1,28 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Typography from "@mui/material/Typography";
-import InputAutocomplete from "../components/ui/Autocomplete";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import TableRowsRoundedIcon from "@mui/icons-material/TableRowsRounded";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
+import KeyboardDoubleArrowDownRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowDownRounded";
 import QualificationListItem from "../components/ui/QualificationListItem";
+import InputAutocomplete from "../components/ui/Autocomplete";
 import SingleSelect from "../components/ui/SingleSelect";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 import {
   changeResults,
   setFiltersIndustry,
   setFiltersArea,
-  setFiltersPhrase
+  setFiltersPhrase,
 } from "../redux/searchResults";
 
 const QualificationsList = (props) => {
   const [displayAsList, setDisplayAsList] = useState("");
-  const [page, setPage] = React.useState(1);
+  const [expandFilters, setExpandFilters] = useState(false);
+  const [page, setPage] = useState(1);
   const { qualifications, filters_industry, filters_area } = useSelector(
     (state) => state.searchResults
   );
@@ -47,11 +49,33 @@ const QualificationsList = (props) => {
         />
         <InputAutocomplete results={props.autocompleteOptions} label="fraza" />
       </div>
+
+      {expandFilters && (
+        <div className="filters container" style={{ width: "60%" }}>
+          <SingleSelect
+            options={props.filtersVoivodeships}
+            label="województwo"
+          />
+          <SingleSelect options={props.filtersPRKLevels} label="poziom PRK" />
+        </div>
+      )}
+
+      <div className="flex-center">
+        <IconButton
+          title="rozwiń filtry"
+          aria-label="Rozwiń filtry"
+          onClick={() => setExpandFilters(!expandFilters)}
+        >
+          <KeyboardDoubleArrowDownRoundedIcon />
+        </IconButton>
+      </div>
+
       <div className="controls container">
         <Button
           onClick={() => {
             props.getGraphItemsFixture();
-            dispatch(setFiltersPhrase(""))
+            props.clearFiltersOptions();
+            dispatch(setFiltersPhrase(""));
             dispatch(setFiltersIndustry([]));
             dispatch(setFiltersArea([]));
             dispatch(changeResults([]));

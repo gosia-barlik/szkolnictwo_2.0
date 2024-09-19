@@ -17,6 +17,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
   }
+    
   .qualifications-list .controls.container {
     display: flex;
     flex-direction: row;

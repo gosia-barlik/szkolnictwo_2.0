@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState} from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
@@ -43,7 +43,7 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
 );
 
 const Tabs = () => {
-  const [value, setValue] = React.useState("1");
+  const [value, setValue] = useState("1");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

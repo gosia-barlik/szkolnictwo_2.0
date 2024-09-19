@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -32,7 +32,7 @@ function getStyles(option, selectedOption, theme) {
 
 const MultipleSelect = (props) => {
   const theme = useTheme();
-  const [selectedOption, setSelectedOption] = React.useState([]);
+  const [selectedOption, setSelectedOption] = useState([]);
   const dispatch = useDispatch();
 
   const handleFiltersIndustry = (newValue) => {
@@ -66,7 +66,7 @@ const MultipleSelect = (props) => {
 
   return (
     <div className="multiple select">
-      <FormControl style={{ width: "100%" }}>
+      <FormControl fullWidth>
         <InputLabel >{props.label}</InputLabel>
         <Select
           multiple

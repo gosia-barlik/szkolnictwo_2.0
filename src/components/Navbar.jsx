@@ -1,4 +1,4 @@
-import React from "react";
+import { cloneElement } from "react";
 import Wrapper from "../assets/wrappers/Navbar";
 import { NavLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
@@ -22,7 +22,7 @@ function ElevationScroll(props) {
     threshold: 0,
   });
 
-  return React.cloneElement(children, {
+  return cloneElement(children, {
     elevation: trigger ? 4 : 0,
   });
 }

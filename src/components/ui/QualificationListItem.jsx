@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToClipboard, removeFromClipboard } from "../../redux/clipboard";
 
 const QualificationListItem = (props) => {
-  const [isInClipboard, setIsInClipboard] = React.useState(false);
+  const [isInClipboard, setIsInClipboard] = useState(false);
   const { favorites } = useSelector((state) => state.clipboard);
   const dispatch = useDispatch();
   const theme = useTheme();
