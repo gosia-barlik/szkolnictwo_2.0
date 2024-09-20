@@ -17,7 +17,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
   }
-    
+
   .qualifications-list .controls.container {
     display: flex;
     flex-direction: row;
@@ -43,6 +43,21 @@ const Wrapper = styled.div`
   .qualifications-by-region .qualification-card {
     display: flex;
     margin-top: 12px;
+  }
+
+  .qualifications-list .qualification-card a h5,
+  .qualifications-by-region .qualification-card a h5 {
+    font-family: "Quicksand";
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .qualifications-list .qualification-card a h6,
+  .qualifications-by-region .qualification-card a h6 {
+    font-family: "Quicksand";
+    margin-right: 12px;
+    margin-top: 4px;
+    font-size: 14px;
   }
 
   .qualifications-list img,
@@ -72,6 +87,13 @@ const Wrapper = styled.div`
     align-items: center;
     margin-right: 18px;
   }
+  .qualifications-list .details-container,
+  .qualifications-by-region .details-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-right: 18px;
+  }
 
   //Grid
   .qualifications-list .grid {
@@ -88,7 +110,6 @@ const Wrapper = styled.div`
     flex-direction: column;
     margin: 12px;
     width: 240px;
-    height: 260px;
   }
 
   .qualifications-list .grid .qualification-card.grid-element img {
@@ -96,12 +117,24 @@ const Wrapper = styled.div`
     margin: 8px 8px 0px 8px;
     width: 224px;
   }
+
+  .qualifications-list .grid .qualification-card a .details-container {
+    padding-bottom: 22px;
+  }
   .qualifications-list .grid .icons-container {
     position: absolute;
     bottom: 0;
   }
+  .qualifications-list .grid .details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-right: 18px;
+  }
+
   .MuiPagination-ul {
-  justify-content:center}
+    justify-content: center;
+  }
 
   @media (min-width: 768px) {
     .qualifications-list .filters.container {

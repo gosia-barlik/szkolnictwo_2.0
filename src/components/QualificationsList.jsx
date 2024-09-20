@@ -51,12 +51,13 @@ const QualificationsList = (props) => {
       </div>
 
       {expandFilters && (
-        <div className="filters container" style={{ width: "60%" }}>
+        <div className="filters container">
           <SingleSelect
             options={props.filtersVoivodeships}
             label="województwo"
           />
-          <SingleSelect options={props.filtersPRKLevels} label="poziom PRK" />
+          <div style={{ width: "100%" }}></div>
+          <div style={{ width: "100%" }}></div>
         </div>
       )}
 
@@ -115,6 +116,9 @@ const QualificationsList = (props) => {
             key={el.id}
             name={el.name}
             prk_level={el.prk_level}
+            area={el.area}
+            industry={el.industry}
+            field={el.field}
             image_url={el.image_url}
             displayAsList={displayAsList}
           />

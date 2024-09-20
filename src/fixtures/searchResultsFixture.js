@@ -8,6 +8,7 @@ const searchResultsFixture = {
       image_url: "/src/assets/img/Elektromechanik.jpg",
       area: "Elektryka, elektronika, informatyka",
       industry: "Elektroenergetyczna",
+      field: "Elektronika",
     },
     {
       id: 810,
@@ -17,6 +18,7 @@ const searchResultsFixture = {
       image_url: "/src/assets/img/Technik bezpieczenstwa i higieny pracy.jpg",
       area: "Zdrowie i bezpieczeństwo",
       industry: "Ochrony bezpieczeństwa osób i mienia",
+      field: "Bezpieczeństwo i higiena pracy",
     },
     {
       id: 811,
@@ -26,6 +28,7 @@ const searchResultsFixture = {
       image_url: "/src/assets/img/Technik ochrony fizycznej osob i mienia.jpg",
       area: "Zdrowie i bezpieczeństwo",
       industry: "Ochrony bezpieczeństwa osób i mienia",
+      field: "Ochrona osób i mienia",
     },
     {
       id: 812,
@@ -35,6 +38,7 @@ const searchResultsFixture = {
       image_url: "/src/assets/img/Technik pozarnictwa.jpg",
       area: "Zdrowie i bezpieczeństwo",
       industry: "Ochrony bezpieczeństwa osób i mienia",
+      field: "Bezpieczeństwo i higiena pracy",
     },
     {
       id: 12849,
@@ -44,6 +48,7 @@ const searchResultsFixture = {
       image_url: "/src/assets/img/Elektromechanik.jpg",
       area: "Elektryka, elektronika, informatyka",
       industry: "Elektroenergetyczna",
+      field: "Automatyka",
     },
     {
       id: 12850,
@@ -53,6 +58,7 @@ const searchResultsFixture = {
       image_url: "/src/assets/img/Technik bezpieczenstwa i higieny pracy.jpg",
       area: "Zdrowie i bezpieczeństwo",
       industry: "Ochrony bezpieczeństwa osób i mienia",
+      field: "Elektronika",
     },
     {
       id: 12851,
@@ -62,6 +68,7 @@ const searchResultsFixture = {
       image_url: "/src/assets/img/Technik ochrony fizycznej osob i mienia.jpg",
       area: "Zdrowie i bezpieczeństwo",
       industry: "Ochrony bezpieczeństwa osób i mienia",
+      field: "Ochrona osób i mienia",
     },
     {
       id: 12852,
@@ -71,6 +78,7 @@ const searchResultsFixture = {
       image_url: "/src/assets/img/Technik pozarnictwa.jpg",
       area: "Zdrowie i bezpieczeństwo",
       industry: "Ochrony bezpieczeństwa osób i mienia",
+      field: "Bezpieczeństwo i higiena pracy",
     },
   ],
 };
