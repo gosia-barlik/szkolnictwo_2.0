@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   }
 
   .qualifications-list .main.autocomplete,
-  .qualifications-list .multiple.select {
+  .qualifications-list .select {
     width: 100%;
     display: flex;
     justify-content: center;

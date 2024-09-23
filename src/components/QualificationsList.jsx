@@ -45,7 +45,7 @@ const QualificationsList = (props) => {
           options={props.filtersIndustries}
           label="branża"
           selected={filters_industry}
-          disabled={filters_area ? false : true}
+          disabled={filters_area? false : true}
         />
         <InputAutocomplete results={props.autocompleteOptions} label="fraza" />
       </div>

@@ -57,7 +57,7 @@ const Landing = () => {
       const foundIndustry = areas.find((item) => item.area === filters_area[0]);
       if (foundIndustry) {
         setFiltersIndustries(foundIndustry.industry);
-      }
+      } else {setFiltersIndustries([])}
     }
   }, [filters_area, filtersOptions]);
 
