@@ -68,12 +68,12 @@ const Navbar = () => {
                       </Badge>
                     </IconButton>
                   </NavLink>
-                  <NavLink to="/dictionary" className="nav-link">
+                  {/* <NavLink to="/dictionary" className="nav-link">
                     Słownik
                     <IconButton aria-label="favorite" title="słownik">
                       <MenuBookRoundedIcon style={{ color: "black" }} />
                     </IconButton>
-                  </NavLink>
+                  </NavLink> */}
                 </div>
               </Box>
             </Toolbar>

@@ -1,5 +1,6 @@
 import { Outlet, useNavigation } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Dictionary from "../components/ui/Dictionary";
 
 
 const HomeLayout = () => {
@@ -10,6 +11,7 @@ const HomeLayout = () => {
   return (
     <>
       <Navbar />
+      <Dictionary/>
       <section className="page">
       {isPageLoading ? (
           <div className='loading' />
