@@ -1,7 +1,8 @@
-import { useState} from "react";
+import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
+import Tab, { tabClasses } from "@mui/material/Tab";
+import Tabs, { tabsClasses } from "@mui/material/Tabs";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
@@ -10,39 +11,32 @@ import QualificationSchool from "../QualificationSchool";
 import QualificationDemand from "../QualificationDemand";
 import QualificationSimilar from "../QualificationSimilar";
 
-const AntTabs = styled(TabList)({
-  borderBottom: "1px solid #e8e8e8",
-  "& .MuiTabs-indicator": {
-    backgroundColor: "primary",
+const TabItem = styled(Tab)(({ theme }) => ({
+  textTransform: "none",
+  position: "relative",
+  borderRadius: "30px",
+  textAlign: "center",
+  transition: "all .5s",
+  padding: "10px 15px",
+  color: "#555555",
+  height: "auto",
+  margin: "10px 0",
+  float: "none",
+  fontSize: "14px",
+  fontWeight: "500",
+  fontFamily: "Quicksand",
+  [theme.breakpoints.up("md")]: {
+    minWidth: 120,
   },
-});
+  [`&.${tabClasses.selected}, &:hover`]: {
+    color: "black",
+    fontWeight: "700",
+    backgroundColor: "#fabd3a",
+    boxShadow: "8px 11px 29px -21px rgba(0, 99, 12, 1)",
+  },
+}));
 
-const AntTab = styled((props) => <Tab disableRipple {...props} />)(
-  ({ theme }) => ({
-    textTransform: "none",
-    minWidth: 0,
-    [theme.breakpoints.up("sm")]: {
-      minWidth: 0,
-    },
-    fontWeight: theme.typography.fontWeightMedium,
-    marginRight: theme.spacing(1),
-    color: "rgba(0, 0, 0, 0.95)",
-    fontFamily: ["Quicksand", '"Segoe UI"', "Roboto"].join(","),
-    "&:hover": {
-      color: "#black",
-      opacity: 1,
-    },
-    "&.Mui-selected": {
-      color: "black",
-      fontWeight: theme.typography.fontWeightBold,
-    },
-    "&.Mui-focusVisible": {
-      backgroundColor: "#d1eaff",
-    },
-  })
-);
-
-const Tabs = () => {
+const TabsPill = () => {
   const [value, setValue] = useState("1");
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -52,16 +46,25 @@ const Tabs = () => {
     <Box sx={{ width: "100%", typography: "body1", marginTop: "44px" }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <AntTabs
+          <Tabs
+            value={value}
             selectionFollowsFocus
+            variant="scrollable"
+            scrollButtons="auto"
             onChange={handleChange}
             aria-label="Zakładki"
+            sx={{
+              width: "100%",
+              [`& .${tabsClasses.indicator}`]: {
+                display: "none",
+              },
+            }}
           >
-            <AntTab label="Charakterystyka" value="1" />
-            <AntTab label="Szkoły i placówki" value="2" />
-            <AntTab label="Prognoza zapotrzebowania" value="3" />
-            <AntTab label="Pokrewne certyfikaty" value="4" />
-          </AntTabs>
+            <TabItem disableRipple label="Charakterystyka" value="1" />
+            <TabItem disableRipple label="Szkoły i placówki" value="2" />
+            <TabItem disableRipple label="Prognoza zapotrzebowania" value="3" />
+            <TabItem disableRipple label="Pokrewne certyfikaty" value="4" />
+          </Tabs>
         </Box>
         <TabPanel value="1">
           <QualificationCharacteristic />
@@ -79,4 +82,4 @@ const Tabs = () => {
     </Box>
   );
 };
-export default Tabs;
+export default TabsPill;

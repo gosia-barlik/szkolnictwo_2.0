@@ -28,7 +28,6 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
   }
-
   .qualification-info {
     background-color: var(--grey-100);
     padding: 60px 120px;

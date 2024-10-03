@@ -10,7 +10,7 @@ import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 import IconButton from "@mui/material/IconButton";
-import Tabs from "../components/ui/Tabs";
+import TabsPill from "../components/ui/Tabs";
 import img from "../assets/img/zsk-logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addToClipboard, removeFromClipboard } from "../redux/clipboard";
@@ -121,7 +121,7 @@ const Qualification = () => {
         </div>
       </div>
       <div className="qualification-tabs">
-        <Tabs />
+        <TabsPill />
       </div>
     </Wrapper>
   );

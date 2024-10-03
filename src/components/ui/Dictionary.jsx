@@ -16,13 +16,15 @@ const Dictionary = () => {
   return (
     <Wrapper>
       <Fab
+        variant="extended"
         className="dictionary-fab"
         title="Słownik"
         color="primary"
         aria-label="add"
         onClick={handleChange}
       >
-        <MenuBookRoundedIcon />
+        <MenuBookRoundedIcon sx={{ mr: 1 }} />
+        Słownik
       </Fab>
       <Box className={"dictionary" + (visible ? " show" : " hidden")}>
         <Paper className="content" elevation={4}>

@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   .dictionary-fab {
+    font-family: Quicksand, serif;
+    text-transform: none;
     position: fixed;
     top: 80px;
     right: 20px;
