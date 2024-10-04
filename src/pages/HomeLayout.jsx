@@ -1,5 +1,6 @@
 import { Outlet, useNavigation } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import Dictionary from "../components/ui/Dictionary";
 
 
@@ -19,6 +20,7 @@ const HomeLayout = () => {
           <Outlet context={{ value }} />
         )}
       </section>
+      <Footer/>
     </>
   );
 };

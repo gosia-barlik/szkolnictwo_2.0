@@ -70,7 +70,7 @@ body {
 }
 
 #root {
-  width: var(--view-width);
+  /* width: var(--view-width); */
   font-family: var(--headingFont);
 }
 
