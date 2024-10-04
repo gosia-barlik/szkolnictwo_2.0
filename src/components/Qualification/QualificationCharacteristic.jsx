@@ -1,6 +1,6 @@
-import Wrapper from "../assets/wrappers/QualificationPage";
+import Wrapper from "../../assets/wrappers/QualificationPage";
 import Typography from "@mui/material/Typography";
-import QualificationAccordion from "./ui/Accordion";
+import QualificationAccordion from "../ui/Accordion";
 
 const QualificationCharacteristic = () => {
   const accordions = [

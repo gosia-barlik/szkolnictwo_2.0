@@ -18,7 +18,7 @@ const Dictionary = () => {
       <Fab
         variant="extended"
         className="dictionary-fab"
-        title="Słownik"
+        title="słownik"
         color="primary"
         aria-label="add"
         onClick={handleChange}

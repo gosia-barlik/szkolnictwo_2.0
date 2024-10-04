@@ -9,6 +9,7 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import TableRowsRoundedIcon from "@mui/icons-material/TableRowsRounded";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import KeyboardDoubleArrowDownRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowDownRounded";
+import KeyboardDoubleArrowUpRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowUpRounded";
 import QualificationListItem from "../components/ui/QualificationListItem";
 import InputAutocomplete from "../components/ui/Autocomplete";
 import SingleSelect from "../components/ui/SingleSelect";
@@ -45,30 +46,41 @@ const QualificationsList = (props) => {
           options={props.filtersIndustries}
           label="branża"
           selected={filters_industry}
-          disabled={filters_area? false : true}
+          disabled={filters_area ? false : true}
         />
         <InputAutocomplete results={props.autocompleteOptions} label="fraza" />
       </div>
 
       {expandFilters && (
         <div className="filters container">
+          <SingleSelect options={props.filtersVoivodeships} label="dziedzina" />
           <SingleSelect
             options={props.filtersVoivodeships}
             label="województwo"
           />
           <div style={{ width: "100%" }}></div>
-          <div style={{ width: "100%" }}></div>
         </div>
       )}
 
       <div className="flex-center">
-        <IconButton
-          title="rozwiń filtry"
-          aria-label="Rozwiń filtry"
-          onClick={() => setExpandFilters(!expandFilters)}
-        >
-          <KeyboardDoubleArrowDownRoundedIcon />
-        </IconButton>
+        {!expandFilters && (
+          <IconButton
+            title="rozwiń filtry"
+            aria-label="Rozwiń filtry"
+            onClick={() => setExpandFilters(!expandFilters)}
+          >
+            <KeyboardDoubleArrowDownRoundedIcon />
+          </IconButton>
+        )}
+        {expandFilters && (
+          <IconButton
+            title="zwiń filtry"
+            aria-label="Zwiń filtry"
+            onClick={() => setExpandFilters(!expandFilters)}
+          >
+            <KeyboardDoubleArrowUpRoundedIcon />
+          </IconButton>
+        )}
       </div>
 
       <div className="controls container">

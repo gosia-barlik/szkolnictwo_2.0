@@ -6,10 +6,10 @@ import Tabs, { tabsClasses } from "@mui/material/Tabs";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import QualificationCharacteristic from "../QualificationCharacteristic";
-import QualificationSchool from "../QualificationSchool";
-import QualificationDemand from "../QualificationDemand";
-import QualificationSimilar from "../QualificationSimilar";
+import QualificationCharacteristic from "../Qualification/QualificationCharacteristic";
+import QualificationSchool from "../Qualification/QualificationSchool";
+import QualificationDemand from "../Qualification/QualificationDemand";
+import QualificationSimilar from "../Qualification/QualificationSimilar";
 
 const TabItem = styled(Tab)(({ theme }) => ({
   textTransform: "none",

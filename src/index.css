@@ -85,9 +85,11 @@ div.MuiTypography-body1,
 p.MuiTypography-body1,
 p.MuiTypography-body2,
 div.MuiTypography-subtitle1,
-p.MuiTypography-subtitle1 {
+p.MuiTypography-subtitle1,
+a {
   font-family: var(--headingFont);
   margin: 0;
+  text-decoration: none;
 }
 h2.MuiTypography-h6,
 .MuiTypography-root,

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { cloneElement } from "react";
 import Wrapper from "../assets/wrappers/Navbar";
 import { NavLink } from "react-router-dom";
@@ -9,26 +10,46 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
-import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import Menu from "@mui/material/Menu";
 import IconButton from "@mui/material/IconButton";
+import MenuItem from "@mui/material/MenuItem";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
 
-function ElevationScroll(props) {
-  const { children } = props;
+// ElevationScroll component to handle scroll-triggered elevation
+const ElevationScroll = ({ children }) => {
+  const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
+  return cloneElement(children, { elevation: trigger ? 4 : 0 });
+};
 
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-  });
+// Reusable component for menu links
+const NavLinkWithIcon = ({ to, label, badgeContent, IconComponent }) => (
+  <NavLink to={to} className="nav-link" style={{ color: "black" }}>
+    {label}
+    {IconComponent && (
+      <IconButton aria-label={label} title={label}>
+        <Badge badgeContent={badgeContent} color="primary">
+          <IconComponent style={{ color: "black" }} />
+        </Badge>
+      </IconButton>
+    )}
+  </NavLink>
+);
 
-  return cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
-}
+// Reusable component for mobile menu items
+const MobileMenuItem = ({ to, label, onClose, badgeContent, IconComponent }) => (
+  <MenuItem onClick={onClose}>
+    <NavLinkWithIcon to={to} label={label} badgeContent={badgeContent} IconComponent={IconComponent} />
+  </MenuItem>
+);
 
 const Navbar = () => {
   const { favorites } = useSelector((state) => state.clipboard);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+  const handleCloseNavMenu = () => setAnchorElNav(null);
 
   return (
     <Wrapper>
@@ -37,44 +58,57 @@ const Navbar = () => {
           <Container maxWidth="xl">
             <Toolbar>
               <img src={img} alt="logotyp" />
-
+              
               <NavLink to="/" className="nav-link logo">
-                <Typography color="black" className="text logo">
-                  Kompas szkolnictwa <br></br> branżowego
+                <Typography
+                  color="black"
+                  className="text logo"
+                  sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                >
+                  Kompas szkolnictwa <br /> branżowego
                 </Typography>
               </NavLink>
+
+              {/* Desktop Links */}
               <Box
-                sx={{
-                  flexGrow: 1,
-                  display: { xs: "none", md: "flex" },
-                  pl: 10,
-                }}
-                style={{
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
+                className="links-container"
+                sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, pl: 10 }}
               >
-                <NavLink to="/related_apps" className="nav-link">
-                  <Typography sx={{ mr: 1 }} component="div">
-                    Powiązane narzędzia
-                  </Typography>
-                </NavLink>
-                <div>
-                  <NavLink to="/favorites" className="nav-link">
-                    Schowek
-                    <IconButton aria-label="favorite" title="schowek">
-                      <Badge badgeContent={favorites.length} color="primary">
-                        <FavoriteBorderRoundedIcon style={{ color: "black" }} />
-                      </Badge>
-                    </IconButton>
-                  </NavLink>
-                  {/* <NavLink to="/dictionary" className="nav-link">
-                    Słownik
-                    <IconButton aria-label="favorite" title="słownik">
-                      <MenuBookRoundedIcon style={{ color: "black" }} />
-                    </IconButton>
-                  </NavLink> */}
-                </div>
+                <NavLinkWithIcon to="/related_apps" label="Powiązane narzędzia" />
+                <NavLinkWithIcon 
+                  to="/favorites" 
+                  label="Schowek" 
+                  badgeContent={favorites.length} 
+                  IconComponent={FavoriteBorderRoundedIcon} 
+                />
+              </Box>
+
+              {/* Mobile Menu */}
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
+                  <MenuRoundedIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  keepMounted
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{ display: { xs: "block", md: "none" } }}
+                >
+                  <MobileMenuItem 
+                    to="/related_apps" 
+                    label="Powiązane narzędzia" 
+                    onClose={handleCloseNavMenu} 
+                  />
+                  <MobileMenuItem 
+                    to="/favorites" 
+                    label="Schowek" 
+                    badgeContent={favorites.length} 
+                    onClose={handleCloseNavMenu} 
+                    IconComponent={FavoriteBorderRoundedIcon} 
+                  />
+                </Menu>
               </Box>
             </Toolbar>
           </Container>

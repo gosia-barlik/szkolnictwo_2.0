@@ -1,4 +1,4 @@
-import Wrapper from "../assets/wrappers/QualificationPage";
+import Wrapper from "../../assets/wrappers/QualificationPage";
 import Typography from "@mui/material/Typography";
 
 const QualificationSimilar = () => {

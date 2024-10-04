@@ -44,7 +44,6 @@ const Qualification = () => {
     if (favorites.some((favorite) => favorite.id == id)) {
       setIsInClipboard(true);
     }
-    console.log(isInClipboard);
   }, [favorites]);
 
   const { data, error, isLoading } = useQuery({
