@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -18,6 +18,10 @@ const QualificationAccordion = (props) => {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  useEffect(() => {
+    console.log(props.details);
+  }, [props]);
 
   return (
     <Accordion
@@ -39,18 +43,48 @@ const QualificationAccordion = (props) => {
         </Box>
         <Box display="flex" flexDirection="column">
           <Box>
-            <Typography className="item-title">
-              {props.summary}
-            </Typography>
+            <Typography className="item-title">{props.summary}</Typography>
           </Box>
         </Box>
       </AccordionSummary>
 
-      <AccordionDetails className="details">
-        {props.details.map((el) => (
-          <Typography variant="body2" key={el}>{el}</Typography>
-        ))}
-      </AccordionDetails>
+      {props.color != "blue" && (
+        <AccordionDetails className="details">
+          {props.details.map((el) => (
+            <Typography variant="body2" key={el}>
+              {el}
+            </Typography>
+          ))}
+        </AccordionDetails>
+      )}
+
+      {props.color == "blue" && (
+        <AccordionDetails className="details">
+          {props.details.map((detail) => (
+            <Accordion key={detail.id}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                {detail.name}
+              </AccordionSummary>
+              <AccordionDetails>
+                {detail.set_of_skills.map((set) => (
+                  <Accordion key={set.id}>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                      {set.name}
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      {set.skills.map((skill) => (
+                        <Typography variant="body2" key={skill.id}>
+                          {skill.name}
+                        </Typography>
+                      ))}
+                    </AccordionDetails>
+                  </Accordion>
+                ))}
+              </AccordionDetails>
+            </Accordion>
+          ))}
+        </AccordionDetails>
+      )}
     </Accordion>
   );
 };

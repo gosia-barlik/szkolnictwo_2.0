@@ -60,7 +60,16 @@ const Qualification = () => {
   const qualification = data.results[0];
   if (!qualification) return <Navigate to="/" />;
 
-  const { name, prk_level, image_url, area, industry } = qualification;
+  const {
+    name,
+    prk_level,
+    image_url,
+    area,
+    industry,
+    sub_qualifications,
+    characteristics,
+    professions,
+  } = qualification;
 
   const addToFav = () => {
     if (!favorites.some((favorite) => favorite.id == id)) {
@@ -120,7 +129,11 @@ const Qualification = () => {
         </div>
       </div>
       <div className="qualification-tabs">
-        <TabsPill />
+        <TabsPill
+          sub_qualifications={sub_qualifications}
+          characteristics={characteristics}
+          professions={professions}
+        />
       </div>
     </Wrapper>
   );

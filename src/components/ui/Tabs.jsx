@@ -36,7 +36,7 @@ const TabItem = styled(Tab)(({ theme }) => ({
   },
 }));
 
-const TabsPill = () => {
+const TabsPill = (props) => {
   const [value, setValue] = useState("1");
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -67,7 +67,11 @@ const TabsPill = () => {
           </Tabs>
         </Box>
         <TabPanel value="1">
-          <QualificationCharacteristic />
+          <QualificationCharacteristic
+            characteristics={props.characteristics}
+            sub_qualifications={props.sub_qualifications}
+            professions={props.professions}
+          />
         </TabPanel>
         <TabPanel value="2">
           <QualificationSchool />

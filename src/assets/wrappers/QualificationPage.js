@@ -19,8 +19,8 @@ const Wrapper = styled.div`
   .qualification,
   .qualification-header {
     font-family: Quicksand, serif;
-    display:flex;
-    justify-content:space-between;
+    display: flex;
+    justify-content: space-between;
   }
   .qualification {
     display: flex;
@@ -51,17 +51,51 @@ const Wrapper = styled.div`
     color: #ea144e;
   }
   .accordion .summary-blue {
-    border-bottom: 3px solid #6accd8;
+    border-bottom: 3px solid #1565c0;
   }
   .accordion .icon-blue {
-    color: #6accd8;
+    color: #1565c0;
   }
   .accordion .summary-green {
-    border-bottom: 3px solid #84c465;
+    border-bottom: 3px solid #388e3c;
   }
   .accordion .icon-green {
-    color: #84c465;
+    color: #388e3c;
   }
+
+  .accordion .summary-yellow {
+    border-bottom: 3px solid #ffab00;
+  }
+  .accordion .icon-yellow {
+    color: #ffab00;
+  }
+
+  .accordion .summary-deepPurple {
+    border-bottom: 3px solid #651fff;
+  }
+  .accordion .icon-deepPurple {
+    color: #651fff;
+  }
+
+  .accordion .summary-indigo {
+    border-bottom: 3px solid #3d5afe;
+  }
+  .accordion .icon-indigo {
+    color: #3d5afe;
+  }
+  .accordion .summary-lightGreen {
+    border-bottom: 3px solid #64dd17;
+  }
+  .accordion .icon-lightGreen {
+    color: #64dd17;
+  }
+  .accordion .summary-orange {
+    border-bottom: 3px solid #ef6c00;
+  }
+  .accordion .icon-orange {
+    color: #ef6c00;
+  }
+
   .summary p.item-title {
     margin-top: 4;
     font-weight: 600;

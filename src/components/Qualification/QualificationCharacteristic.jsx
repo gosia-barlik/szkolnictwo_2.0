@@ -1,41 +1,74 @@
 import Wrapper from "../../assets/wrappers/QualificationPage";
-import Typography from "@mui/material/Typography";
+import { Typography, Stack, Box } from "@mui/material";
 import QualificationAccordion from "../ui/Accordion";
 
-const QualificationCharacteristic = () => {
-  const accordions = [
-    {
-      summary: "Opis zawodu",
-      details: [
-        "Absolwent szkoły prowadzącej kształcenie w zawodzie elektromechanik powinien być przygotowany do wykonywania",
-      ],
-      color: "red",
-    },
-    {
-      summary: "Kwalifikacje zawodowe i zestawy efektów uczenia się",
-      details: ["Montaż i obsługa maszyn i urządzeń elektrycznych"],
-      color: "blue",
-    },
-    {
-      summary: "Po zdobyciu tego zawodu będziesz",
-      details: [
-        "montować i uruchamiać maszyny i urządzenia elektryczne na podstawie dokumentacji technicznej",
-        "oceniać stan techniczny maszyn i urządzeń elektrycznych po montażu na podstawie pomiarów",
-      ],
-      color: "green",
-    },
-  ];
+const QualificationCharacteristic = (props) => {
   return (
     <Wrapper>
       <Typography variant="h6">Charakterystyka zawodu</Typography>
-      {accordions.map((el) => (
+
+      {props.characteristics && (
         <QualificationAccordion
-          key={el.summary}
-          summary={el.summary}
-          details={el.details}
-          color ={el.color}
+          summary="Opis zawodu"
+          details={[props.characteristics]}
+          color="red"
         />
-      ))}
+      )}
+      {props.sub_qualifications && (
+        <QualificationAccordion
+          summary="Kwalifikacje zawodowe i zestawy efektów uczenia się"
+          details={props.sub_qualifications}
+          color="blue"
+        />
+      )}
+      {props.professions.skills && (
+        <QualificationAccordion
+          summary="Oczekiwania wobec osoby wykonującej zawód"
+          details={props.professions.skills}
+          color="green"
+        />
+      )}
+      {props.professions.predispositions && (
+        <QualificationAccordion
+          summary="Oczekiwania wobec osoby wykonującej zawód"
+          details={props.professions.predispositions}
+          color="yellow"
+        />
+      )}
+      <Stack direction="row" spacing={2}>
+        <Box style={{width: "50%"}}>
+          {props.professions.career_prospects && (
+            <QualificationAccordion
+              summary="Perspektywy zawodowe"
+              details={props.professions.career_prospects}
+              color="deepPurple"
+            />
+          )}
+          {props.professions.advantages && (
+            <QualificationAccordion
+              summary="Plusy"
+              details={props.professions.advantages}
+              color="lightGreen"
+            />
+          )}
+        </Box>
+        <Box style={{width: "50%"}}>
+          {props.professions.work_conditions && (
+            <QualificationAccordion
+              summary="Twoje szanse na zatrudnienie zwiększą"
+              details={props.professions.work_conditions}
+              color="indigo"
+            />
+          )}
+          {props.professions.disadvantages && (
+            <QualificationAccordion
+              summary="Minusy"
+              details={props.professions.disadvantages}
+              color="orange"
+            />
+          )}
+        </Box>
+      </Stack>
     </Wrapper>
   );
 };
