@@ -49,6 +49,7 @@ html {
   --max-width: 1120px;
   --fixed-width: 600px;
   --view-width: 95vw;
+  --view-height: 100vh;
   /* box shadow*/
   --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -155,6 +156,7 @@ PROJECT CSS
 .page {
   width: var(--view-width);
   max-width: var(--max-width);
+  min-height: var(--view-height);
   margin: 0 auto;
   padding: 5rem 2rem;
 }

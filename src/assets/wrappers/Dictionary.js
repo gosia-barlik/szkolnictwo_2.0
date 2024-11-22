@@ -7,6 +7,11 @@ const Wrapper = styled.div`
     position: fixed;
     top: 80px;
     right: 20px;
+   border: 2px solid white;
+  }
+  .dictionary-fab:hover {
+    background-color: white;
+    border: 2px solid black;
   }
   .dictionary {
     position: fixed;
