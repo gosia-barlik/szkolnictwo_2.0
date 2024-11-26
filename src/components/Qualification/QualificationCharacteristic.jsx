@@ -5,7 +5,7 @@ import QualificationAccordion from "../ui/Accordion";
 const QualificationCharacteristic = (props) => {
   return (
     <Wrapper>
-      <Typography variant="h6">Charakterystyka zawodu</Typography>
+      <Typography variant="h6" style={{marginBottom:"24px"}}>Charakterystyka zawodu</Typography>
 
       {props.characteristics && (
         <QualificationAccordion

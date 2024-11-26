@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Wrapper from "../../assets/wrappers/QualificationPage";
 import { MainInfoAPI } from "../../api/Qualifications/mainInfoApi";
 import SchoolTable from "./SchoolTable";
+import * as phrases from "../../pages/dictionaries/landing.dictionary.json"
 import PolandMap from "../ui/Polandmap";
 import {
   Typography,
@@ -28,7 +29,7 @@ const QualificationSchool = () => {
     const voivodeship = event.target.value;
     setSelectedVoivodeship(voivodeship);
     // if (selectedVoivodeship) {
-    //   getSearchResultsFixture(selectedVoivodeship);
+    //   getSearchResultsFixture(voivodeship);
     // }
   };
 
@@ -54,15 +55,15 @@ const QualificationSchool = () => {
       <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
         <Box sx={{ width: { xs: "100%", md: "60%" } }}>
         <Typography variant="h6">
-            Wybierz województwo z listy lub skorzystaj z mapy!
+        {phrases.landing.byRegion.action}
           </Typography>
           {selectedVoivodeship && (
-            <Typography style={{ fontWeight: "700" }}>
-              Wybrane województwo: {selectedVoivodeship.name}
+            <Typography variant="body2">
+              {phrases.common.selected_voivodeship} {selectedVoivodeship.name}
             </Typography>
           )}
           <FormControl fullWidth style={{ margin: "24px 0px" }}>
-            <InputLabel>Województwo</InputLabel>
+            <InputLabel>{phrases.common.labels.voivodeship}</InputLabel>
             <Select
               value={selectedVoivodeship || ""}
               label="województwo"

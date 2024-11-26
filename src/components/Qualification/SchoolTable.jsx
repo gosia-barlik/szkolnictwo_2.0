@@ -185,7 +185,7 @@ const SchoolTable = () => {
 
   return (
     <TableContainer component={Paper}>
-      <Table size="small" aria-label="collapsible table">
+      <Table  aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell />

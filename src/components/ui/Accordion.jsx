@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -8,25 +8,10 @@ import Box from "@mui/material/Box";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 
 const QualificationAccordion = (props) => {
-  const [expanded, setExpanded] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(1);
-
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
-  };
-
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
-
-  useEffect(() => {
-    console.log(props.details);
-  }, [props]);
 
   return (
     <Accordion
-      expanded={expanded === "panel1"}
-      onChange={handleChange("panel1")}
+      defaultExpanded={props.color === "red" ? true : false}
       className="accordion"
     >
       <AccordionSummary
