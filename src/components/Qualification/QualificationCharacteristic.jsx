@@ -35,7 +35,7 @@ const QualificationCharacteristic = (props) => {
           color="yellow"
         />
       )}
-      <Stack direction="row" spacing={2}>
+      <Stack direction={{xs: "column", md: "row"}} spacing={2}>
         <Box style={{width: "50%"}}>
           {props.professions.career_prospects && (
             <QualificationAccordion

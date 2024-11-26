@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  width: 100vw;
   header {
     display: flex;
     flex-direction: row;
@@ -102,6 +103,7 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 992px) {
+   width: 100%;
     .qualification {
       display: grid;
       grid-template-columns: 1fr 3fr;

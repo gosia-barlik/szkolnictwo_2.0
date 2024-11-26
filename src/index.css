@@ -75,6 +75,13 @@ body {
   font-family: var(--headingFont);
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
 .flex-center {
   display: flex;
   flex-direction: column;

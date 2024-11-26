@@ -10,5 +10,11 @@
       "title": "Sprawdź, w których zawodach szkolnictwa branżowego prognozowane jest największe zapotrzebowanie na pracowników w Twoim województwie",
       "action": "Wybierz województwo z listy lub skorzystaj z mapy!"
     }
+  },
+  "common": {
+    "labels": {
+      "voivodeship": "Województwo"
+    },
+    "selected_voivodeship": "Wybrane województwo: "
   }
 }

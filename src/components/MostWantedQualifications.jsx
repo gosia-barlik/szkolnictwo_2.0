@@ -77,7 +77,7 @@ const MostWantedQualifications = () => {
         </Typography>
 
         <FormControl fullWidth style={{margin: "24px 0px" }}>
-          <InputLabel>Województwo</InputLabel>
+          <InputLabel>{phrases.common.labels.voivodeship}</InputLabel>
           <Select
             value={voivodeship || ""}
             label="województwo"
@@ -92,7 +92,7 @@ const MostWantedQualifications = () => {
         </FormControl>
         {voivodeship && (
           <Typography ref={mostWantedRef} style={{fontWeight:"700"}}>
-            Wybrane województwo: {voivodeship.name}
+            {phrases.common.selected_voivodeship} {voivodeship.name}
           </Typography>
         )}
         {mostWanted.map((el) => (
