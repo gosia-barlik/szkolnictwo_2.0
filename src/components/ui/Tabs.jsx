@@ -9,7 +9,7 @@ import QualificationCharacteristic from "../Qualification/QualificationCharacter
 import QualificationSchool from "../Qualification/QualificationSchool";
 import QualificationDemand from "../Qualification/QualificationDemand";
 import QualificationSimilar from "../Qualification/QualificationSimilar";
-import * as phrases from "../../pages/dictionaries/pl.json"
+import * as phrases from "../../pages/dictionaries/pl.json";
 
 const TabItem = styled(Tab)(({ theme }) => ({
   textTransform: "none",
@@ -60,10 +60,26 @@ const TabsPill = (props) => {
               },
             }}
           >
-            <TabItem disableRipple label={phrases.qualification.characteristics} value="1" />
-            <TabItem disableRipple label={phrases.qualification.schools} value="2" />
-            <TabItem disableRipple label={phrases.qualification.demand} value="3" />
-            <TabItem disableRipple label={phrases.qualification.similar} value="4" />
+            <TabItem
+              disableRipple
+              label={phrases.qualification.characteristics}
+              value="1"
+            />
+            <TabItem
+              disableRipple
+              label={phrases.qualification.schools}
+              value="2"
+            />
+            <TabItem
+              disableRipple
+              label={phrases.qualification.demand}
+              value="3"
+            />
+            <TabItem
+              disableRipple
+              label={phrases.qualification.similar}
+              value="4"
+            />
           </Tabs>
         </Box>
         <TabPanel value="1">
@@ -77,7 +93,7 @@ const TabsPill = (props) => {
           <QualificationSchool />
         </TabPanel>
         <TabPanel value="3">
-          <QualificationDemand />
+          <QualificationDemand name={props.name} />
         </TabPanel>
         <TabPanel value="4">
           <QualificationSimilar />

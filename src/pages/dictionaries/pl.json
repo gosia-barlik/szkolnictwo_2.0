@@ -12,6 +12,9 @@
     }
   },
   "qualification": {
+    "area_of_study": "Obszar kształcenia: ",
+    "industry": "Branża: ",
+    "prk_level": "Poziom PRK: ",
     "characteristics": "Charakterystyka",
     "schools": "Szkoły i placówki",
     "demand": "Prognoza zapotrzebowania",
@@ -42,6 +45,17 @@
       "street": "Ulica: ",
       "phone": "Telefon: ",
       "website": "Strona: "
+    },
+    "demand_tab": {
+      "title": "Prognoza zapotrzebowania na pracowników w zawodzie",
+      "subtitle_1": "Prognoza zapotrzebowania na pracowników w zawodzie szkolnictwa branżowego",
+      "subtitle_2": " na krajowym i wojewódzkim rynku pracy.",
+      "description": " Prognoza stanowi syntetyczne ujęcie różnych źródeł opisujących tendencje na rynku pracy w odniesieniu do strategii rozwoju państwa i regionów. Celem prognozy jest dostarczenie informacji pozwalających na kształtowanie oferty szkolnictwa branżowego we właściwy sposób i dostosowanie jej do potrzeb krajowego i wojewódzkiego rynku pracy.",
+      "source": "Źródło: ",
+      "announcement": "Obwieszczenie Ministra Edukacji z dnia 24 stycznia 2024 r.",
+      "relevant": "Zapotrzebowanie istotne",
+      "moderate": "Zapotrzebowanie umiarkowane",
+      "not_included": "Nieujęte w prognozie: "
     }
   },
   "common": {

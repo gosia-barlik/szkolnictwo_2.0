@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLoaderData, Navigate, useNavigate } from "react-router-dom";
 import Wrapper from "../assets/wrappers/QualificationPage";
 import { useQuery } from "@tanstack/react-query";
-import {Typography, Button, IconButton} from "@mui/material";
+import { Typography, Button, IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
@@ -13,6 +13,7 @@ import img from "../assets/img/zsk-logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addToClipboard, removeFromClipboard } from "../redux/clipboard";
 import { qualificationFixture } from "../fixtures/qualificationFixture";
+import * as phrases from "../pages/dictionaries/pl.json"
 
 const singleQualificationQuery = async (id) => {
   return qualificationFixture;
@@ -116,18 +117,19 @@ const Qualification = () => {
           </Typography>
 
           <Typography variant="body1">
-            Obszar kształcenia: <strong>{area}</strong>
+            {phrases.qualification.area_of_study} <strong>{area}</strong>
           </Typography>
           <Typography variant="body1">
-            Branża: <strong>{industry}</strong>
+          {phrases.qualification.industry} <strong>{industry}</strong>
           </Typography>
           <Typography variant="body1">
-            Poziom PRK: <strong>{prk_level}</strong>
+          {phrases.qualification.prk_level} <strong>{prk_level}</strong>
           </Typography>
         </div>
       </div>
       <div className="qualification-tabs">
         <TabsPill
+          name={name}
           sub_qualifications={sub_qualifications}
           characteristics={characteristics}
           professions={professions}
