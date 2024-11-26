@@ -1,11 +1,12 @@
 import Wrapper from "../../assets/wrappers/QualificationPage";
 import { Typography, Stack, Box } from "@mui/material";
 import QualificationAccordion from "../ui/Accordion";
+import * as phrases from "../../pages/dictionaries/pl.json"
 
 const QualificationCharacteristic = (props) => {
   return (
     <Wrapper>
-      <Typography variant="h6" style={{marginBottom:"24px"}}>Charakterystyka zawodu</Typography>
+      <Typography variant="h6" style={{marginBottom:"24px"}}>{phrases.qualification.characteristics_tab.title}</Typography>
 
       {props.characteristics && (
         <QualificationAccordion
@@ -23,7 +24,7 @@ const QualificationCharacteristic = (props) => {
       )}
       {props.professions.skills && (
         <QualificationAccordion
-          summary="Oczekiwania wobec osoby wykonującej zawód"
+          summary="Po zdobyciu tego zawodu będziesz"
           details={props.professions.skills}
           color="green"
         />

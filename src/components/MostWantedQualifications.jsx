@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Grid from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material";
-import * as phrases from "../pages/dictionaries/landing.dictionary.json";
+import * as phrases from "../pages/dictionaries/pl.json";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";

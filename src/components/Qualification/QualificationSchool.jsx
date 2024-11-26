@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Wrapper from "../../assets/wrappers/QualificationPage";
 import { MainInfoAPI } from "../../api/Qualifications/mainInfoApi";
 import SchoolTable from "./SchoolTable";
-import * as phrases from "../../pages/dictionaries/landing.dictionary.json"
 import PolandMap from "../ui/Polandmap";
 import {
   Typography,
@@ -14,13 +13,13 @@ import {
   Stack,
   Pagination,
 } from "@mui/material";
+import * as phrases from "../../pages/dictionaries/pl.json"
 
 const QualificationSchool = () => {
   const [voivodeships, setVoivodeships] = useState([]);
   const [selectedVoivodeship, setSelectedVoivodeship] = useState([]);
   const [page, setPage] = useState(1);
 
-  // Fetch voivodeships on component mount
   useEffect(() => {
     getSelectOptions();
   }, []);
@@ -53,7 +52,7 @@ const QualificationSchool = () => {
   return (
     <Wrapper>
       <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-        <Box sx={{ width: { xs: "100%", md: "60%" } }}>
+        <Box sx={{ width: { xs: "100%", md: "65%" } }}>
         <Typography variant="h6">
         {phrases.landing.byRegion.action}
           </Typography>
@@ -77,21 +76,21 @@ const QualificationSchool = () => {
             </Select>
           </FormControl>
           <Typography variant="h6" style={{marginTop:"24px"}}>
-            Lista szkół i placówek oświatowych
+            {phrases.qualification.schools_tab.title}
           </Typography>
         </Box>
         <Box
           sx={{
-            width: { xs: "100%", md: "30%" },
-            paddingTop: { xs: 2, md: 8 },
-            paddingLeft: { xs: 2, md: 8 },
+            width: { xs: "100%", md: "20%" },
+            paddingTop: { xs: 2, md: 6 },
+            paddingLeft: { xs: 2, md: 6 },
           }}
         >
           <PolandMap />
         </Box>
       </Stack>
       <Box
-        sx={{ width: { xs: "100%", md: "60%" }, marginTop: { xs: 2, md: -28 } }}
+        sx={{ width: { xs: "100%", md: "65%" }, marginTop: { xs: 2, md: -26 } }}
       >
         <SchoolTable />
       </Box>
@@ -99,7 +98,7 @@ const QualificationSchool = () => {
         spacing={2}
         sx={{
           marginTop: 2,
-          width: { xs: "100%", md: "60%" },
+          width: { xs: "100%", md: "65%" },
           justifyContent: "center",
         }}
       >

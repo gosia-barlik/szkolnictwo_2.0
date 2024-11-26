@@ -6,7 +6,7 @@ import InputAutocomplete from "../components/ui/Autocomplete";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import * as phrases from "./dictionaries/landing.dictionary.json";
+import * as phrases from "./dictionaries/pl.json";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import PieChart from "../components/PieChart";
 import MostWantedQualifications from "../components/MostWantedQualifications";

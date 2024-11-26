@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import * as phrases from "../../pages/dictionaries/pl.json";
 
 const Row = (props) => {
   const [open, setOpen] = React.useState(false);
@@ -32,16 +33,22 @@ const Row = (props) => {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {props.name}
+          <Typography variant="body2" style={{ fontWeight: 500 }}>
+            {props.name}
+          </Typography>
         </TableCell>
-        <TableCell align="right">{props.city}</TableCell>
+        <TableCell align="right">
+          <Typography variant="body2" style={{ fontWeight: 500 }}>
+            {props.city}
+          </Typography>
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                Detale
+              <Typography variant="h6" gutterBottom style={{marginBottom:"10px"}}>
+                {phrases.qualification.schools_tab.details}
               </Typography>
 
               <Stack
@@ -50,39 +57,50 @@ const Row = (props) => {
               >
                 <Box sx={{ width: { xs: "100%", md: "50%" } }}>
                   <Typography variant="body2">
-                    Regon: <strong>{props.details.regon}</strong>
+                    {phrases.qualification.schools_tab.regon}
+                    <strong>{props.details.regon}</strong>
                   </Typography>
                   <Typography variant="body2">
-                    NIP: <strong>{props.details.nip}</strong>
+                    {phrases.qualification.schools_tab.nip}
+                    <strong>{props.details.nip}</strong>
                   </Typography>
                   <Typography variant="body2">
-                    Województwo: <strong>{props.details.voivodship}</strong>
+                    {phrases.qualification.schools_tab.voivodeship}
+                    <strong>{props.details.voivodship}</strong>
                   </Typography>
                   <Typography variant="body2">
-                    Kod pocztowy: <strong>{props.details.zip_code}</strong>
+                    {phrases.qualification.schools_tab.zip_code}
+                    <strong>{props.details.zip_code}</strong>
                   </Typography>
                   <Typography variant="body2">
-                    Email: <strong>{props.details.email_address}</strong>
+                    {phrases.qualification.schools_tab.email}
+                    <strong>{props.details.email_address}</strong>
                   </Typography>
                 </Box>
                 <Box sx={{ width: { xs: "100%", md: "50%" } }}>
                   <Typography variant="body2">
-                    Powiat: <strong>{props.details.district}</strong>
+                    {phrases.qualification.schools_tab.district}
+                    <strong>{props.details.district}</strong>
                   </Typography>
                   <Typography variant="body2">
-                    Gmina: <strong>{props.details.commune}</strong>
+                    {phrases.qualification.schools_tab.commune}
+                    <strong>{props.details.commune}</strong>
                   </Typography>
                   <Typography variant="body2">
-                    Miasto: <strong>{props.details.city}</strong>
+                    {phrases.qualification.schools_tab.city}
+                    <strong>{props.details.city}</strong>
                   </Typography>
                   <Typography variant="body2">
-                    Ulica: <strong>{props.details.street}</strong>
+                    {phrases.qualification.schools_tab.street}
+                    <strong>{props.details.street}</strong>
                   </Typography>
                   <Typography variant="body2">
-                    Telefon: <strong>{props.details.phone_number}</strong>
+                    {phrases.qualification.schools_tab.phone}
+                    <strong>{props.details.phone_number}</strong>
                   </Typography>
                   <Typography variant="body2">
-                    Strona: <strong>{props.details.website_url}</strong>
+                    {phrases.qualification.schools_tab.website}
+                    <strong>{props.details.website_url}</strong>
                   </Typography>
                 </Box>
               </Stack>
@@ -114,7 +132,7 @@ const SchoolTable = () => {
       },
     },
     {
-      name: "Rzemiślnicza Branżowa Szkoła I Stopnia w Tarnowie",
+      name: "Rzemieślnicza Branżowa Szkoła I Stopnia w Tarnowie",
       city: "Limanowa",
       details: {
         regon: "10468765",
@@ -131,61 +149,61 @@ const SchoolTable = () => {
       },
     },
     {
-        name: "Zespół Szkół Nr 2 w Andrychowie Im.Św.Jadwigi Królowej-Branżowa Szkoła I Stopnia Nr 2 w Andrychowie",
+      name: "Zespół Szkół Nr 2 w Andrychowie Im.Św.Jadwigi Królowej-Branżowa Szkoła I Stopnia Nr 2 w Andrychowie",
+      city: "Andrychów",
+      details: {
+        regon: "10468765",
+        nip: null,
+        voivodship: "mazowieckie",
+        zip_code: "34-600",
+        email_address: "zsmelimanowa@pro.onet.pl",
+        district: "limanowski",
+        commune: "Andrychów",
         city: "Andrychów",
-        details: {
-          regon: "10468765",
-          nip: null,
-          voivodship: "mazowieckie",
-          zip_code: "34-600",
-          email_address: "zsmelimanowa@pro.onet.pl",
-          district: "limanowski",
-          commune: "Andrychów",
-          city: "Andrychów",
-          street: "ul. Zygmunta Augusta",
-          phone_number: "183372602",
-          website_url: "www.zstio.edu.pl",
-        },
+        street: "ul. Zygmunta Augusta",
+        phone_number: "183372602",
+        website_url: "www.zstio.edu.pl",
       },
-      {
-        name: "Zespół Szkół Im.Ken -Branżowa Szkoła I Stopnia Nr 1 w Kalwarii Zebrzydowskiej",
-        city: "Kalwaria Zebrzydowska",
-        details: {
-          regon: "10468765",
-          nip: null,
-          voivodship: "mazowieckie",
-          zip_code: "34-600",
-          email_address: "zsmelimanowa@pro.onet.pl",
-          district: "limanowski",
-          commune: "Limanowa",
-          city: "Limanowa",
-          street: "ul. Zygmunta Augusta",
-          phone_number: "183372602",
-          website_url: "www.zstio.edu.pl",
-        },
+    },
+    {
+      name: "Zespół Szkół Im.Ken -Branżowa Szkoła I Stopnia Nr 1 w Kalwarii Zebrzydowskiej",
+      city: "Kalwaria Zebrzydowska",
+      details: {
+        regon: "10468765",
+        nip: null,
+        voivodship: "mazowieckie",
+        zip_code: "34-600",
+        email_address: "zsmelimanowa@pro.onet.pl",
+        district: "limanowski",
+        commune: "Limanowa",
+        city: "Limanowa",
+        street: "ul. Zygmunta Augusta",
+        phone_number: "183372602",
+        website_url: "www.zstio.edu.pl",
       },
-      {
-        name: "Zawodowa Szkoła Branżowa I Stopnia Cechu Rzemiosł Różnych w Nowym Targu",
-        city: "Nowy Targ",
-        details: {
-          regon: "10468765",
-          nip: null,
-          voivodship: "mazowieckie",
-          zip_code: "34-600",
-          email_address: "zsmelimanowa@pro.onet.pl",
-          district: "limanowski",
-          commune: "Limanowa",
-          city: "Limanowa",
-          street: "ul. Zygmunta Augusta",
-          phone_number: "183372602",
-          website_url: "www.zstio.edu.pl",
-        },
+    },
+    {
+      name: "Zawodowa Szkoła Branżowa I Stopnia Cechu Rzemiosł Różnych w Nowym Targu",
+      city: "Nowy Targ",
+      details: {
+        regon: "10468765",
+        nip: null,
+        voivodship: "mazowieckie",
+        zip_code: "34-600",
+        email_address: "zsmelimanowa@pro.onet.pl",
+        district: "limanowski",
+        commune: "Limanowa",
+        city: "Limanowa",
+        street: "ul. Zygmunta Augusta",
+        phone_number: "183372602",
+        website_url: "www.zstio.edu.pl",
       },
+    },
   ];
 
   return (
     <TableContainer component={Paper}>
-      <Table  aria-label="collapsible table">
+      <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell />

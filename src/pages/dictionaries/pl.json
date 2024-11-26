@@ -1,0 +1,53 @@
+{
+  "landing": {
+    "header": {
+      "title": "Wybierz zawód, który otworzy Ci drogę do rozwoju i zdobycia kwalifikacji",
+      "content": "Szukasz informacji o zawodach szkolnictwa branżowego? Próbujesz rozeznać swoją drogę kształcenia? Szukasz idealnej kwalifikacji? ",
+      "about": "",
+      "action": "Uzupełnij pole wyszukiwania lub skorzystaj z kompasu, wybierając w pierwszej kolejności obszar, a następnie branżę."
+    },
+    "byRegion": {
+      "title": "Sprawdź, w których zawodach szkolnictwa branżowego prognozowane jest największe zapotrzebowanie na pracowników w Twoim województwie",
+      "action": "Wybierz województwo z listy lub skorzystaj z mapy!"
+    }
+  },
+  "qualification": {
+    "characteristics": "Charakterystyka",
+    "schools": "Szkoły i placówki",
+    "demand": "Prognoza zapotrzebowania",
+    "similar": "Pokrewne certyfikaty",
+    "characteristics_tab": {
+      "title": "Charakterystyka zawodu",
+      "description": "Opis zawodu",
+      "qualifications_and_effects": "Kwalifikacje zawodowe i zestawy efektów uczenia się",
+      "predispositions": "Oczekiwania wobec osoby wykonującej zawód",
+      "skills": "Po zdobyciu tego zawodu będziesz",
+      "prospects": "Perspektywy zawodowe",
+      "conditions": "Twoje szanse na zatrudnienie zwiększą",
+      "pros": "Plusy",
+      "cons": "Minusy"
+    },
+    "schools_tab": {
+      "title": "Lista szkół i placówek oświatowych",
+      "name": "Nazwa szkoły lub placówki oświatowej",
+      "details": "Szczegółowe informacje",
+      "regon": "Regon: ",
+      "nip": "NIP: ",
+      "voivodeship": "Wojewódźtwo: ",
+      "zip_code": "Kod pocztowy: ",
+      "email": "Email: ",
+      "district": "Powiat: ",
+      "commune": "Gmina: ",
+      "city": "Miasto: ",
+      "street": "Ulica: ",
+      "phone": "Telefon: ",
+      "website": "Strona: "
+    }
+  },
+  "common": {
+    "labels": {
+      "voivodeship": "Województwo"
+    },
+    "selected_voivodeship": "Wybrane województwo: "
+  }
+}

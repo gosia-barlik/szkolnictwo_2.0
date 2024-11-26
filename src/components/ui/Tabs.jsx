@@ -4,12 +4,12 @@ import Box from "@mui/material/Box";
 import Tab, { tabClasses } from "@mui/material/Tab";
 import Tabs, { tabsClasses } from "@mui/material/Tabs";
 import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import QualificationCharacteristic from "../Qualification/QualificationCharacteristic";
 import QualificationSchool from "../Qualification/QualificationSchool";
 import QualificationDemand from "../Qualification/QualificationDemand";
 import QualificationSimilar from "../Qualification/QualificationSimilar";
+import * as phrases from "../../pages/dictionaries/pl.json"
 
 const TabItem = styled(Tab)(({ theme }) => ({
   textTransform: "none",
@@ -60,10 +60,10 @@ const TabsPill = (props) => {
               },
             }}
           >
-            <TabItem disableRipple label="Charakterystyka" value="1" />
-            <TabItem disableRipple label="Szkoły i placówki" value="2" />
-            <TabItem disableRipple label="Prognoza zapotrzebowania" value="3" />
-            <TabItem disableRipple label="Pokrewne certyfikaty" value="4" />
+            <TabItem disableRipple label={phrases.qualification.characteristics} value="1" />
+            <TabItem disableRipple label={phrases.qualification.schools} value="2" />
+            <TabItem disableRipple label={phrases.qualification.demand} value="3" />
+            <TabItem disableRipple label={phrases.qualification.similar} value="4" />
           </Tabs>
         </Box>
         <TabPanel value="1">
