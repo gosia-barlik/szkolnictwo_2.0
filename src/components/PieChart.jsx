@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import * as d3 from "d3";
 import Wrapper from "../assets/wrappers/PieChart";
 import { Typography } from "@mui/material";
@@ -311,8 +312,12 @@ const PieChart = (props) => {
             filters_industry.length <= 0 &&
             selected_item.length > 0 && (
               <div className="flex-center">
-                <Typography variant="body2">wybrany obszar:</Typography>
-                <Typography variant="body1" align="center">
+                <Typography variant="caption">wybrany obszar:</Typography>
+                <Typography
+                  variant="body2"
+                  align="center"
+                  style={{ lineHeight: 1 }}
+                >
                   <strong>{filters_area}</strong>
                 </Typography>
                 <Typography variant="body2">wybierz branżę lub</Typography>
@@ -322,10 +327,17 @@ const PieChart = (props) => {
             filters_industry.length > 0 &&
             selected_item.length > 0 && (
               <div className="flex-center">
-                <Typography variant="body2">wybrana branża:</Typography>
-                <Typography variant="body1" align="center">
-                <strong>{filters_industry}</strong>
+                <Typography variant="caption">wybrana branża:</Typography>
+                <Typography
+                  variant="body2"
+                  align="center"
+                  style={{ lineHeight: 1 }}
+                >
+                  <strong>{filters_industry}</strong>
                 </Typography>
+                <NavLink className="button" to="/search_results">
+                  Zatwierdź
+                </NavLink>
               </div>
             )}
           {filters_area.length > 0 && selected_item.length > 0 && (
@@ -337,9 +349,10 @@ const PieChart = (props) => {
                 dispatch(setFiltersArea([]));
                 dispatch(changeResults([]));
               }}
-              color="black"
-              endIcon={<CloseRoundedIcon />}
-              style={{ marginTop: "12px" }}
+              variant="outlined" 
+              color="gray"
+          
+              style={{ marginTop: "12px", textTransform: "none", borderRadius: "50px", border:"1px solid silver" }}
             >
               Wyczyść wynik
             </Button>

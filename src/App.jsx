@@ -11,6 +11,7 @@ import {
   Favorites,
   Dictionary
 } from './pages';
+import SearchResults from './components/SearchResults';
 
 import {loader as singleQualificationLoader} from './pages/Qualification'
 
@@ -53,6 +54,11 @@ const router = createBrowserRouter([
       {
         path: 'dictionary',
         element: <Dictionary />,
+        errorElement: <SinglePageError />,
+      },
+      {
+        path: 'search_results',
+        element: <SearchResults />,
         errorElement: <SinglePageError />,
       },
   

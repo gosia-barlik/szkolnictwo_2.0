@@ -85,6 +85,7 @@ const Qualification = () => {
       <header className="qualification-header">
         <Button
           color="black"
+          style={{textTransform:"none"}}
           onClick={() => navigate(-1)}
           variant="text"
           startIcon={<ArrowBackIcon />}

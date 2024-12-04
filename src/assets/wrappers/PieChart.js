@@ -69,6 +69,15 @@ const Wrapper = styled.div`
     padding: 24px;
     cursor: pointer;
   }
+
+  a.button {
+    border: 1px solid black;
+    border-radius: 50px;
+    padding: 8px 12px;
+    font-weight: 700;
+    margin-top: 10px;
+    background-color: #ffc107;
+  }
 `;
 
 export default Wrapper;

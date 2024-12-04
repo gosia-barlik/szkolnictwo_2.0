@@ -6,6 +6,18 @@ const Wrapper = styled.div`
   }
   .home-header .main.autocomplete {
     margin-top: 24px;
+    width:80%
+  }
+
+  .home-header a.button {
+    border: 1px solid black;
+    border-radius: 50px;
+    padding: 8px 12px;
+    font-weight: 700;
+    margin-top: 34px;
+    margin-left: 12px;
+    background-color: #ffc107;
+    height: 38px
   }
 
   .qualifications-list {

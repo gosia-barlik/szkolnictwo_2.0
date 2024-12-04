@@ -1,26 +1,21 @@
 import { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../assets/wrappers/LandingPage";
+import { useTheme } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
-import InputAutocomplete from "../components/ui/Autocomplete";
 import Box from "@mui/material/Box";
-import { useTheme } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import * as phrases from "./dictionaries/pl.json";
-import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
+import InputAutocomplete from "../components/ui/Autocomplete";
 import PieChart from "../components/PieChart";
 import MostWantedQualifications from "../components/MostWantedQualifications";
 import HighestSalaryQualifications from "../components/HighestSalaryQualifications";
-import QualificationsList from "../components/QualificationsList";
+import QualificationsList from "../components/SearchResults";
+import * as phrases from "./dictionaries/pl.json";
+import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import { setGraphItems, setSelectedItem } from "../redux/searchResults";
 
 const Landing = () => {
   const [autocompleteOptions, setAutocompleteOptions] = useState([]);
-  const [filtersOptions, setFiltersOptions] = useState([]);
-  const [filtersAreas, setFiltersAreas] = useState([]);
-  const [filtersIndustries, setFiltersIndustries] = useState([]);
-  const [filtersVoivodeships, setFiltersVoivodeships] = useState([]);
-  const [filtersPRKLevels, setFiltersPRKLevels] = useState([]);
   const { qualifications, filters_area, graph_items } = useSelector(
     (state) => state.searchResults
   );
@@ -28,19 +23,23 @@ const Landing = () => {
   const listRef = useRef();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    getAutocompleteOptions();
+  }, []);
+
+  const getAutocompleteOptions = async () => {
+    const response = await MainInfoAPI.getAutocompleteOptions()
+      .catch((error) => console.log([error.message]))
+      .finally(() => {});
+    setAutocompleteOptions(response.results);
+  };
   const handleGraphItems = (newValue) => {
     dispatch(setGraphItems(newValue));
   };
   const handleSelectItem = (newValue) => {
     dispatch(setSelectedItem(newValue));
   };
-  useEffect(() => {
-    getAutocompleteOptions();
-  }, []);
 
-  useEffect(() => {
-    getFiltersOptions();
-  }, []);
 
   useEffect(() => {
     // get data to draw graph if there isnt any
@@ -49,40 +48,11 @@ const Landing = () => {
     }
   }, [graph_items]);
 
-  useEffect(() => {
-    if (
-      filters_area.length > 0 &&
-      filtersOptions.areas
-    ) {
-      const areas = filtersOptions.areas;
-      const foundIndustry = areas.find((item) => item.area === filters_area[0]);
-      if (foundIndustry) {
-        setFiltersIndustries(foundIndustry.industry);
-      } else {setFiltersIndustries([])}
-    }
-  }, [filters_area, filtersOptions]);
+
 
   useEffect(() => {
     listRef.current?.scrollIntoView({ behavior: "smooth" }, [qualifications]);
   });
-
-  const getAutocompleteOptions = async () => {
-    const response = await MainInfoAPI.getAutocompleteOptions()
-      .catch((error) => console.log([error.message]))
-      .finally(() => {});
-    setAutocompleteOptions(response.results);
-  };
-
-  const getFiltersOptions = async () => {
-    const response = await MainInfoAPI.getFiltersOptionsFixture()
-      .catch((error) => console.log([error.message]))
-      .finally(() => {});
-    setFiltersOptions(response.results);
-    const areas = response.results.areas.map((item) => item.area);
-    setFiltersAreas(areas);
-    setFiltersVoivodeships(response.results.voivodeships);
-    setFiltersPRKLevels(response.results.PRKLevels);
-  };
 
   const getGraphItemsFixture = async () => {
     handleSelectItem([]);
@@ -90,10 +60,6 @@ const Landing = () => {
       .catch((error) => console.log([error.message]))
       .finally(() => {});
     handleGraphItems(response.results);
-  };
-
-  const clearFiltersOptions = () => {
-    setFiltersIndustries([]);
   };
 
   return (
@@ -133,19 +99,12 @@ const Landing = () => {
         </Box>
       </header>
       <main>
-        {qualifications.length > 0 && (
+        {/* {qualifications.length > 0 && (
           <section className="qualifications-list" ref={listRef}>
             <QualificationsList
-              filtersAreas={filtersAreas}
-              filtersIndustries={filtersIndustries}
-              filtersVoivodeships={filtersVoivodeships}
-              filtersPRKLevels={filtersPRKLevels}
-              autocompleteOptions={autocompleteOptions}
-              getGraphItemsFixture={getGraphItemsFixture}
-              clearFiltersOptions={clearFiltersOptions}
             />
           </section>
-        )}
+        )} */}
         {/* <section className="qualifications-by-region">
           <MostWantedQualifications />
         </section> */}
