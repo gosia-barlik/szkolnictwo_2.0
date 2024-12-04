@@ -34,26 +34,30 @@ const Wrapper = styled.div`
     padding-left: 6px;
     padding-top: 8px;
   }
-  .qualifications-by-region {
-    margin-top: 60px;
+  .qualifications-by-region,
+  .qualifications-by-salary {
+    margin-top: 80px;
   }
 
   //QualificationListItem
   .qualifications-list .qualification-card,
-  .qualifications-by-region .qualification-card {
+  .qualifications-by-region .qualification-card,
+  .qualifications-by-salary .qualification-card {
     display: flex;
     margin-top: 12px;
   }
 
   .qualifications-list .qualification-card a h5,
-  .qualifications-by-region .qualification-card a h5 {
+  .qualifications-by-region .qualification-card a h5,
+  .qualifications-by-salary .qualification-card a h5  {
     font-family: "Quicksand";
     font-size: 16px;
     font-weight: 600;
   }
 
   .qualifications-list .qualification-card a h6,
-  .qualifications-by-region .qualification-card a h6 {
+  .qualifications-by-region .qualification-card a h6,
+  .qualifications-by-salary .qualification-card a h6 {
     font-family: "Quicksand";
     margin-right: 12px;
     margin-top: 4px;
@@ -61,7 +65,8 @@ const Wrapper = styled.div`
   }
 
   .qualifications-list img,
-  .qualifications-by-region img {
+  .qualifications-by-region img,
+  .qualifications-by-salary img {
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 8px;
@@ -70,7 +75,8 @@ const Wrapper = styled.div`
   }
 
   .qualifications-list a.link,
-  .qualifications-by-region a.link {
+  .qualifications-by-region a.link,
+  .qualifications-by-salary a.link {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -80,7 +86,8 @@ const Wrapper = styled.div`
   }
 
   .qualifications-list .icons-container,
-  .qualifications-by-region .icons-container {
+  .qualifications-by-region .icons-container,
+  .qualifications-by-salary .icons-container{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -88,7 +95,8 @@ const Wrapper = styled.div`
     margin-right: 18px;
   }
   .qualifications-list .details-container,
-  .qualifications-by-region .details-container {
+  .qualifications-by-region .details-container,
+  .qualifications-by-salary .details-container{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;

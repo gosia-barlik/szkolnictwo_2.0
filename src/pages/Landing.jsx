@@ -10,6 +10,7 @@ import * as phrases from "./dictionaries/pl.json";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import PieChart from "../components/PieChart";
 import MostWantedQualifications from "../components/MostWantedQualifications";
+import HighestSalaryQualifications from "../components/HighestSalaryQualifications";
 import QualificationsList from "../components/QualificationsList";
 import { setGraphItems, setSelectedItem } from "../redux/searchResults";
 
@@ -145,8 +146,11 @@ const Landing = () => {
             />
           </section>
         )}
-        <section className="qualifications-by-region">
+        {/* <section className="qualifications-by-region">
           <MostWantedQualifications />
+        </section> */}
+        <section className="qualifications-by-salary">
+        <HighestSalaryQualifications/>
         </section>
       </main>
     </Wrapper>
