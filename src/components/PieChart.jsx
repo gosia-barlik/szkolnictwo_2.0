@@ -351,7 +351,6 @@ const PieChart = (props) => {
               }}
               variant="outlined" 
               color="gray"
-          
               style={{ marginTop: "12px", textTransform: "none", borderRadius: "50px", border:"1px solid silver" }}
             >
               Wyczyść wynik

@@ -1,22 +1,26 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import Wrapper from "../assets/wrappers/LandingPage";
+import Wrapper from "../assets/wrappers/SearchResults";
 import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import Checkbox from "@mui/material/Checkbox";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import TableRowsRoundedIcon from "@mui/icons-material/TableRowsRounded";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import KeyboardDoubleArrowDownRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowDownRounded";
 import KeyboardDoubleArrowUpRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowUpRounded";
-import QualificationListItem from "./ui/QualificationListItem";
-import InputAutocomplete from "./ui/Autocomplete";
+import QualificationListItem from "../components/ui/QualificationListItem";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import SingleSelect from "./ui/SingleSelect";
+import SingleSelect from "../components/ui/SingleSelect";
+
 import {
   changeResults,
   setFiltersIndustry,
@@ -36,9 +40,8 @@ const SearchResults = () => {
   const [displayAsList, setDisplayAsList] = useState("");
   const [expandFilters, setExpandFilters] = useState(false);
   const [page, setPage] = useState(1);
-  const { qualifications, filters_industry, filters_area } = useSelector(
-    (state) => state.searchResults
-  );
+  const { qualifications, filters_industry, filters_area, filters_phrase } =
+    useSelector((state) => state.searchResults);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -96,33 +99,76 @@ const SearchResults = () => {
           dispatch(setFiltersIndustry([]));
           dispatch(setFiltersArea([]));
           dispatch(changeResults([]));
-          dispatch(setGraphItems([]))
+          dispatch(setGraphItems([]));
         }}
       >
         Wróć
       </NavLink>
       <section className="qualifications-list">
-        <div className="filters container">
+        <Stack direction={{ md: "row", xs: "column" }} spacing={2}>
           <SingleSelect
             options={filtersAreas}
-            label="obszar"
+            label="Obszar"
             selected={filters_area}
           />
           <SingleSelect
             options={filtersIndustries}
-            label="branża"
+            label="Branża"
             selected={filters_industry}
             disabled={filters_area ? false : true}
           />
-          <InputAutocomplete results={autocompleteOptions} label="fraza" />
-        </div>
+          <Autocomplete
+            style={{ width: "100%", paddingTop: "8px" }}
+            value={filters_phrase}
+            freeSolo
+            disableClearable
+            options={autocompleteOptions}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Fraza"
+                slotProps={{
+                  input: {
+                    ...params.InputProps,
+                    type: "search",
+                  },
+                }}
+              />
+            )}
+          />
+
+          {/* <InputAutocomplete results={autocompleteOptions} label="fraza" /> */}
+        </Stack>
 
         {expandFilters && (
-          <div className="filters container">
-            <SingleSelect options={filtersVoivodeships} label="dziedzina" />
-            <SingleSelect options={filtersVoivodeships} label="województwo" />
-            <div style={{ width: "100%" }}></div>
-          </div>
+          <Stack>
+            <Stack direction={{ md: "row", xs: "column" }} spacing={2}>
+              <SingleSelect options={filtersVoivodeships} label="Dziedzina" />
+              <SingleSelect options={filtersVoivodeships} label="Województwo" />
+              <SingleSelect
+                options={filtersVoivodeships}
+                label="Zapotrzebowanie"
+              />
+            </Stack>
+            <Stack direction={{ md: "row", xs: "column" }} spacing={2}>
+              <SingleSelect
+                options={filtersVoivodeships}
+                label="Wynagrodzenie"
+              />
+              <Box style={{width:"100%"}}>
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Najniższy poziom bezrobocia"
+                />
+              </Box>
+              <Box style={{width:"100%"}}>
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Chcę poza dyplomem zawodowym zdać maturę"
+                />
+              </Box>
+            </Stack>
+          </Stack>
         )}
 
         <div className="flex-center">

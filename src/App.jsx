@@ -11,7 +11,7 @@ import {
   Favorites,
   Dictionary
 } from './pages';
-import SearchResults from './components/SearchResults';
+import SearchResults from './pages/SearchResults';
 
 import {loader as singleQualificationLoader} from './pages/Qualification'
 

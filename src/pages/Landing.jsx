@@ -9,7 +9,7 @@ import InputAutocomplete from "../components/ui/Autocomplete";
 import PieChart from "../components/PieChart";
 import MostWantedQualifications from "../components/MostWantedQualifications";
 import HighestSalaryQualifications from "../components/HighestSalaryQualifications";
-import QualificationsList from "../components/SearchResults";
+import QualificationsList from "./SearchResults";
 import * as phrases from "./dictionaries/pl.json";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import { setGraphItems, setSelectedItem } from "../redux/searchResults";

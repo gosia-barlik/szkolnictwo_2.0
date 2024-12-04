@@ -29,9 +29,9 @@ const SingleSelect = (props) => {
       target: { value },
     } = event;
     setSelectedOption(value);
-    if (props.label === "obszar") {
+    if (props.label === "Obszar") {
       handleFiltersArea(value);
-    } else if (props.label === "branża") {
+    } else if (props.label === "Branża") {
       handleFiltersIndustry(value);
     }
   };
