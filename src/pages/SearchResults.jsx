@@ -36,12 +36,23 @@ const SearchResults = () => {
   const [filtersIndustries, setFiltersIndustries] = useState([]);
   const [filtersVoivodeships, setFiltersVoivodeships] = useState([]);
   const [filtersPRKLevels, setFiltersPRKLevels] = useState([]);
+  const [filtersFields, setFiltersFields] = useState([]);
+  const [filtersSalaries, setFiltersSalaries] = useState([]);
+  const [filtersDemands, setFiltersDemands] = useState([]);
 
   const [displayAsList, setDisplayAsList] = useState("");
   const [expandFilters, setExpandFilters] = useState(false);
   const [page, setPage] = useState(1);
-  const { qualifications, filters_industry, filters_area, filters_phrase } =
-    useSelector((state) => state.searchResults);
+  const {
+    qualifications,
+    filters_industry,
+    filters_area,
+    filters_phrase,
+    filters_voivodeship,
+    filters_field,
+    filters_demand,
+    filters_salary,
+  } = useSelector((state) => state.searchResults);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -53,16 +64,35 @@ const SearchResults = () => {
   }, []);
 
   useEffect(() => {
+    getSearchResultsFixture();
+  }, [filters_industry, filters_area, filters_phrase]);
+
+  //Ustaw opcje branż jeżeli wybrano obszar
+  useEffect(() => {
     if (filters_area.length > 0 && filtersOptions.areas) {
       const areas = filtersOptions.areas;
-      const foundIndustry = areas.find((item) => item.area === filters_area[0]);
-      if (foundIndustry) {
-        setFiltersIndustries(foundIndustry.industry);
+      const foundArea = areas.find((area) => area.name === filters_area[0]);
+      if (foundArea) {
+        setFiltersIndustries(foundArea.industries);
       } else {
         setFiltersIndustries([]);
       }
     }
   }, [filters_area, filtersOptions]);
+
+  //Ustaw opcje dzidzin jeżeli wybrano branże
+  useEffect(() => {
+    if (filters_industry.length > 0 && filtersIndustries.length > 0) {
+      const foundIndustry = filtersIndustries.find(
+        (industry) => industry.name === filters_industry[0]
+      );
+      if (foundIndustry) {
+        setFiltersFields(foundIndustry.fields);
+      } else {
+        setFiltersFields([]);
+      }
+    }
+  }, [filtersIndustries, filters_industry]);
 
   const getAutocompleteOptions = async () => {
     const response = await MainInfoAPI.getAutocompleteOptions()
@@ -76,10 +106,28 @@ const SearchResults = () => {
       .catch((error) => console.log([error.message]))
       .finally(() => {});
     setFiltersOptions(response.results);
-    const areas = response.results.areas.map((item) => item.area);
+    const areas = response.results.areas.map((area) => ({
+      id: area.id,
+      name: area.name,
+    }));
     setFiltersAreas(areas);
     setFiltersVoivodeships(response.results.voivodeships);
     setFiltersPRKLevels(response.results.PRKLevels);
+    setFiltersDemands(response.results.demands);
+    setFiltersSalaries(response.results.salaries);
+  };
+
+  const getSearchResultsFixture = async () => {
+    try {
+      const response = await MainInfoAPI.getSearchResultsFixture();
+      if (response && response.results) {
+        dispatch(changeResults([...response.results]));
+      } else {
+        console.error("No data received from API");
+      }
+    } catch (error) {
+      console.error("Error fetching search results:", error.message);
+    }
   };
 
   const clearFiltersOptions = () => {
@@ -115,53 +163,43 @@ const SearchResults = () => {
             options={filtersIndustries}
             label="Branża"
             selected={filters_industry}
-            disabled={filters_area ? false : true}
+            disabled={filters_area.length > 0 ? false : true}
           />
           <Autocomplete
             style={{ width: "100%", paddingTop: "8px" }}
             value={filters_phrase}
             freeSolo
-            disableClearable
             options={autocompleteOptions}
+            getOptionLabel={(option) =>
+              typeof option === "string" ? option : ""
+            }
+            filterSelectedOptions
             renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Fraza"
-                slotProps={{
-                  input: {
-                    ...params.InputProps,
-                    type: "search",
-                  },
-                }}
-              />
+              <TextField fullWidth {...params} label="Fraza" />
             )}
           />
-
-          {/* <InputAutocomplete results={autocompleteOptions} label="fraza" /> */}
         </Stack>
 
         {expandFilters && (
           <Stack>
             <Stack direction={{ md: "row", xs: "column" }} spacing={2}>
-              <SingleSelect options={filtersVoivodeships} label="Dziedzina" />
-              <SingleSelect options={filtersVoivodeships} label="Województwo" />
               <SingleSelect
-                options={filtersVoivodeships}
-                label="Zapotrzebowanie"
+                options={filtersFields}
+                label="Dziedzina"
+                disabled={filters_industry.length > 0 ? false : true}
               />
+              <SingleSelect options={filtersVoivodeships} label="Województwo" />
+              <SingleSelect options={filtersDemands} label="Zapotrzebowanie" />
             </Stack>
             <Stack direction={{ md: "row", xs: "column" }} spacing={2}>
-              <SingleSelect
-                options={filtersVoivodeships}
-                label="Wynagrodzenie"
-              />
-              <Box style={{width:"100%"}}>
+              <SingleSelect options={filtersSalaries} label="Wynagrodzenie" />
+              <Box style={{ width: "100%" }}>
                 <FormControlLabel
                   control={<Checkbox />}
                   label="Najniższy poziom bezrobocia"
                 />
               </Box>
-              <Box style={{width:"100%"}}>
+              <Box style={{ width: "100%" }}>
                 <FormControlLabel
                   control={<Checkbox />}
                   label="Chcę poza dyplomem zawodowym zdać maturę"
@@ -204,7 +242,7 @@ const SearchResults = () => {
             }}
             color="black"
             endIcon={<CloseRoundedIcon />}
-            style={{ marginTop: "12px", width: "164px" }}
+            style={{ marginTop: "12px", width: "164px", textTransform: "none" }}
           >
             Wyczyść filtry
           </Button>

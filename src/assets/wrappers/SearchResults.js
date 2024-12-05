@@ -104,6 +104,7 @@ const Wrapper = styled.div`
     justify-content: flex-start;
     margin-right: 18px;
   }
+    
   //QualificationListItem
   .qualifications-list .qualification-card {
     display: flex;

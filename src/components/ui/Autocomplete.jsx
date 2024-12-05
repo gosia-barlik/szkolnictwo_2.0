@@ -11,8 +11,6 @@ const InputAutocomplete = (props) => {
   const { filters_phrase } = useSelector((state) => state.searchResults);
   const dispatch = useDispatch();
 
-  useEffect(() => {}, [props.results]);
-
   const handleChange = (newValue) => {
     if (newValue) {
       dispatch(setFiltersPhrase(newValue));

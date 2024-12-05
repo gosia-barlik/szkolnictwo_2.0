@@ -4,7 +4,14 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { setFiltersArea, setFiltersIndustry } from "../../redux/searchResults";
+import {
+  setFiltersArea,
+  setFiltersIndustry,
+  setFiltersField,
+  setFiltersDemand,
+  setFiltersSalary,
+  setFiltersVoivodeship
+} from "../../redux/searchResults";
 
 const SingleSelect = (props) => {
   const [selectedOption, setSelectedOption] = useState([]);
@@ -16,6 +23,20 @@ const SingleSelect = (props) => {
 
   const handleFiltersArea = (newValue) => {
     dispatch(setFiltersArea([newValue]));
+  };
+
+  const handleFiltersField = (newValue) => {
+    dispatch(setFiltersField([newValue]));
+  };
+
+  const handleFiltersDemand = (newValue) => {
+    dispatch(setFiltersDemand([newValue]));
+  };
+  const handleFiltersSalary = (newValue) => {
+    dispatch(setFiltersSalary([newValue]));
+  };
+  const handleFiltersVoivodeship = (newValue) => {
+    dispatch(setFiltersVoivodeship([newValue]));
   };
 
   useEffect(() => {
@@ -31,8 +52,21 @@ const SingleSelect = (props) => {
     setSelectedOption(value);
     if (props.label === "Obszar") {
       handleFiltersArea(value);
-    } else if (props.label === "Branża") {
+    }
+    if (props.label === "Branża") {
       handleFiltersIndustry(value);
+    }
+    if (props.label === "Dziedzina") {
+      handleFiltersField(value);
+    }
+    if (props.label === "Zapotrzebowanie") {
+      handleFiltersDemand(value);
+    }
+    if (props.label === "Wynagrodzenie") {
+      handleFiltersSalary(value);
+    }
+    if (props.label === "Województwo") {
+      handleFiltersVoivodeship(value);
     }
   };
 
@@ -50,8 +84,8 @@ const SingleSelect = (props) => {
           </MenuItem>
           {props.options &&
             props.options.map((option) => (
-              <MenuItem key={option} value={option}>
-                {option}
+              <MenuItem key={option.id} value={option.name}>
+                {option.name}
               </MenuItem>
             ))}
         </Select>
