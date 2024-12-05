@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import { Button, Box } from "@mui/material";
+import { Button, Box, Autocomplete, TextField } from "@mui/material";
 import { MainInfoAPI } from "../../api/Qualifications/mainInfoApi";
 import { useDispatch, useSelector } from "react-redux";
 import { changeResults, setFiltersPhrase } from "../../redux/searchResults";

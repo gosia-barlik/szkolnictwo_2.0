@@ -1,11 +1,8 @@
 import { useState } from "react";
-import Box from "@mui/material/Box";
-import Fab from "@mui/material/Fab";
-import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
-import KeyboardDoubleArrowLeftRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftRounded';
-import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
+import { Box, Fab, Paper, Typography } from "@mui/material";
+import KeyboardDoubleArrowLeftRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftRounded";
+import KeyboardDoubleArrowRightRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowRightRounded";
+
 import Wrapper from "../../assets/wrappers/Dictionary";
 
 const Dictionary = () => {
@@ -20,12 +17,13 @@ const Dictionary = () => {
       <Fab
         variant="extended"
         className="dictionary-fab"
-        title={visible?"zwiń słownik":"rozwiń słownik"}
+        title={visible ? "zwiń słownik" : "rozwiń słownik"}
         color="primary"
         aria-label="słownik"
         onClick={handleChange}
-      >{!visible&&<KeyboardDoubleArrowLeftRoundedIcon sx={{ mr: 1 }} />}
-        {visible&&<KeyboardDoubleArrowRightRoundedIcon sx={{ mr: 1 }} />}
+      >
+        {!visible && <KeyboardDoubleArrowLeftRoundedIcon sx={{ mr: 1 }} />}
+        {visible && <KeyboardDoubleArrowRightRoundedIcon sx={{ mr: 1 }} />}
         Słownik
       </Fab>
       <Box className={"dictionary" + (visible ? " show" : " hidden")}>

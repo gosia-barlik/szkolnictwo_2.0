@@ -1,16 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Wrapper from "../assets/wrappers/LandingPage";
 import { useTheme } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import {Typography, Box} from "@mui/material";
 import InputAutocomplete from "../components/ui/Autocomplete";
 import PieChart from "../components/PieChart";
-import MostWantedQualifications from "../components/MostWantedQualifications";
 import HighestSalaryQualifications from "../components/HighestSalaryQualifications";
-import QualificationsList from "./SearchResults";
 import * as phrases from "./dictionaries/pl.json";
+import Wrapper from "../assets/wrappers/LandingPage";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import { setGraphItems, setSelectedItem } from "../redux/searchResults";
 

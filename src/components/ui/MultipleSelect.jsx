@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import Chip from "@mui/material/Chip";
+import {Box, OutlinedInput, InputLabel, MenuItem, FormControl, Select, Chip} from "@mui/material";
 import { setFiltersArea, setFiltersIndustry } from "../../redux/searchResults";
 
 const ITEM_HEIGHT = 48;

@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import Wrapper from "../assets/wrappers/SearchResults";
 import Typography from "@mui/material/Typography";
 import {
-  Box,
   IconButton,
   Button,
   FormControlLabel,
@@ -22,6 +21,7 @@ import KeyboardDoubleArrowUpRoundedIcon from "@mui/icons-material/KeyboardDouble
 import QualificationListItem from "../components/ui/QualificationListItem";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import SingleSelect from "../components/ui/SingleSelect";
+import { useSearchParams } from "react-router-dom";
 
 import {
   changeResults,
@@ -45,6 +45,7 @@ const SearchResults = () => {
   const [expandFilters, setExpandFilters] = useState(false);
   const [displayAsList, setDisplayAsList] = useState("");
   const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const {
     qualifications,
@@ -141,6 +142,22 @@ const SearchResults = () => {
       setFiltersFields([]);
     }
   };
+
+  // Synchronizacja query stringów przy zmianie filtrów
+  useEffect(() => {
+    const newQueryParams = {
+      area: filters_area.join(","), // Ustawienie wartości domyślnej
+      industry: filters_industry.join(","),
+      phrase: [filters_phrase].join(","),
+      voivodeship: filters_voivodeship.join(","),
+      field: filters_field.join(","),
+      demand: filters_demand.join(","),
+      salary: filters_salary,
+    };
+
+    // Aktualizowanie query stringów po każdej zmianie filtra
+    setSearchParams(newQueryParams);
+  }, [filters_area, filters_industry, filters_phrase, filters_voivodeship, filters_field, filters_demand, setSearchParams]);
 
   const clearAllFilters = () => {
     dispatch(setFiltersIndustry([]));

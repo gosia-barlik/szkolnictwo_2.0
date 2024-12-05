@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLoaderData, Navigate, useNavigate } from "react-router-dom";
-import Wrapper from "../assets/wrappers/QualificationPage";
+import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { Typography, Button, IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -10,10 +10,10 @@ import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 import TabsPill from "../components/ui/Tabs";
 import img from "../assets/img/zsk-logo.svg";
-import { useDispatch, useSelector } from "react-redux";
 import { addToClipboard, removeFromClipboard } from "../redux/clipboard";
 import { qualificationFixture } from "../fixtures/qualificationFixture";
-import * as phrases from "../pages/dictionaries/pl.json"
+import * as phrases from "../pages/dictionaries/pl.json";
+import Wrapper from "../assets/wrappers/QualificationPage";
 
 const singleQualificationQuery = async (id) => {
   return qualificationFixture;
