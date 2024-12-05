@@ -3,15 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Wrapper from "../assets/wrappers/SearchResults";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import Button from "@mui/material/Button";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
-import Checkbox from "@mui/material/Checkbox";
+import {
+  Box,
+  IconButton,
+  Button,
+  FormControlLabel,
+  Stack,
+  Checkbox,
+  Pagination,
+  TextField,
+} from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import TableRowsRoundedIcon from "@mui/icons-material/TableRowsRounded";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
@@ -26,23 +28,24 @@ import {
   setFiltersIndustry,
   setFiltersArea,
   setFiltersPhrase,
+  setFiltersField,
+  setFiltersSalary,
+  setFiltersDemand,
+  setFiltersVoivodeship,
   setGraphItems,
 } from "../redux/searchResults";
 
 const SearchResults = () => {
+  const dispatch = useDispatch();
   const [autocompleteOptions, setAutocompleteOptions] = useState([]);
   const [filtersOptions, setFiltersOptions] = useState([]);
   const [filtersAreas, setFiltersAreas] = useState([]);
   const [filtersIndustries, setFiltersIndustries] = useState([]);
-  const [filtersVoivodeships, setFiltersVoivodeships] = useState([]);
-  const [filtersPRKLevels, setFiltersPRKLevels] = useState([]);
   const [filtersFields, setFiltersFields] = useState([]);
-  const [filtersSalaries, setFiltersSalaries] = useState([]);
-  const [filtersDemands, setFiltersDemands] = useState([]);
-
-  const [displayAsList, setDisplayAsList] = useState("");
   const [expandFilters, setExpandFilters] = useState(false);
+  const [displayAsList, setDisplayAsList] = useState("");
   const [page, setPage] = useState(1);
+
   const {
     qualifications,
     filters_industry,
@@ -53,75 +56,58 @@ const SearchResults = () => {
     filters_demand,
     filters_salary,
   } = useSelector((state) => state.searchResults);
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    getFiltersOptions();
+    fetchFiltersOptions();
+    fetchAutocompleteOptions();
   }, []);
 
   useEffect(() => {
-    getAutocompleteOptions();
-  }, []);
-
-  useEffect(() => {
-    getSearchResultsFixture();
-  }, [filters_industry, filters_area, filters_phrase]);
-
-  //Ustaw opcje branż jeżeli wybrano obszar
-  useEffect(() => {
-    if (filters_area.length > 0 && filtersOptions.areas) {
-      const areas = filtersOptions.areas;
-      const foundArea = areas.find((area) => area.name === filters_area[0]);
-      if (foundArea) {
-        setFiltersIndustries(foundArea.industries);
-      } else {
-        setFiltersIndustries([]);
-      }
-    }
+    updateIndustries();
   }, [filters_area, filtersOptions]);
 
-  //Ustaw opcje dzidzin jeżeli wybrano branże
   useEffect(() => {
-    if (filters_industry.length > 0 && filtersIndustries.length > 0) {
-      const foundIndustry = filtersIndustries.find(
-        (industry) => industry.name === filters_industry[0]
-      );
-      if (foundIndustry) {
-        setFiltersFields(foundIndustry.fields);
-      } else {
-        setFiltersFields([]);
-      }
-    }
+    updateFields();
   }, [filtersIndustries, filters_industry]);
 
-  const getAutocompleteOptions = async () => {
-    const response = await MainInfoAPI.getAutocompleteOptions()
-      .catch((error) => console.log([error.message]))
-      .finally(() => {});
-    setAutocompleteOptions(response.results);
+  useEffect(() => {
+    fetchSearchResults();
+  }, [
+    filters_industry,
+    filters_area,
+    filters_phrase,
+    filters_voivodeship,
+    filters_field,
+    filters_demand,
+    filters_salary,
+  ]);
+
+  const fetchFiltersOptions = async () => {
+    try {
+      const response = await MainInfoAPI.getFiltersOptionsFixture();
+      setFiltersOptions(response.results);
+      setFiltersAreas(
+        response.results.areas.map(({ id, name }) => ({ id, name }))
+      );
+    } catch (error) {
+      console.error("Error fetching filters options:", error.message);
+    }
   };
 
-  const getFiltersOptions = async () => {
-    const response = await MainInfoAPI.getFiltersOptionsFixture()
-      .catch((error) => console.log([error.message]))
-      .finally(() => {});
-    setFiltersOptions(response.results);
-    const areas = response.results.areas.map((area) => ({
-      id: area.id,
-      name: area.name,
-    }));
-    setFiltersAreas(areas);
-    setFiltersVoivodeships(response.results.voivodeships);
-    setFiltersPRKLevels(response.results.PRKLevels);
-    setFiltersDemands(response.results.demands);
-    setFiltersSalaries(response.results.salaries);
+  const fetchAutocompleteOptions = async () => {
+    try {
+      const response = await MainInfoAPI.getAutocompleteOptions();
+      setAutocompleteOptions(response.results);
+    } catch (error) {
+      console.error("Error fetching autocomplete options:", error.message);
+    }
   };
 
-  const getSearchResultsFixture = async () => {
+  const fetchSearchResults = async () => {
     try {
       const response = await MainInfoAPI.getSearchResultsFixture();
       if (response && response.results) {
-        dispatch(changeResults([...response.results]));
+        dispatch(changeResults(response.results));
       } else {
         console.error("No data received from API");
       }
@@ -130,8 +116,41 @@ const SearchResults = () => {
     }
   };
 
-  const clearFiltersOptions = () => {
-    setFiltersIndustries([]);
+  const updateIndustries = () => {
+    if (
+      filters_area.length > 0 &&
+      filtersOptions.areas &&
+      Array.isArray(filtersOptions.areas)
+    ) {
+      const foundArea = filtersOptions.areas.find(
+        (area) => area.name === filters_area[0]
+      );
+      setFiltersIndustries(foundArea ? foundArea.industries : []);
+    } else {
+      setFiltersIndustries([]);
+    }
+  };
+
+  const updateFields = () => {
+    if (filters_industry.length > 0) {
+      const foundIndustry = filtersIndustries.find(
+        (industry) => industry.name === filters_industry[0]
+      );
+      setFiltersFields(foundIndustry ? foundIndustry.fields : []);
+    } else {
+      setFiltersFields([]);
+    }
+  };
+
+  const clearAllFilters = () => {
+    dispatch(setFiltersIndustry([]));
+    dispatch(setFiltersArea([]));
+    dispatch(setFiltersPhrase([]));
+    dispatch(setFiltersField([]));
+    dispatch(setFiltersSalary([]));
+    dispatch(setFiltersDemand([]));
+    dispatch(setFiltersVoivodeship([]));
+    dispatch(setGraphItems([]));
   };
 
   const handlePageChange = (event, value) => {
@@ -140,18 +159,10 @@ const SearchResults = () => {
 
   return (
     <Wrapper>
-      <NavLink
-        to="/"
-        onClick={() => {
-          dispatch(setFiltersPhrase(""));
-          dispatch(setFiltersIndustry([]));
-          dispatch(setFiltersArea([]));
-          dispatch(changeResults([]));
-          dispatch(setGraphItems([]));
-        }}
-      >
+      <NavLink to="/" onClick={() => clearAllFilters()}>
         Wróć
       </NavLink>
+
       <section className="qualifications-list">
         <Stack direction={{ md: "row", xs: "column" }} spacing={2}>
           <SingleSelect
@@ -163,7 +174,7 @@ const SearchResults = () => {
             options={filtersIndustries}
             label="Branża"
             selected={filters_industry}
-            disabled={filters_area.length > 0 ? false : true}
+            disabled={!filters_area.length}
           />
           <Autocomplete
             style={{ width: "100%", paddingTop: "8px" }}
@@ -181,84 +192,69 @@ const SearchResults = () => {
         </Stack>
 
         {expandFilters && (
-          <Stack>
+          <Stack spacing={2}>
             <Stack direction={{ md: "row", xs: "column" }} spacing={2}>
               <SingleSelect
                 options={filtersFields}
+                selected={filters_field}
                 label="Dziedzina"
-                disabled={filters_industry.length > 0 ? false : true}
+                disabled={!filters_industry.length}
               />
-              <SingleSelect options={filtersVoivodeships} label="Województwo" />
-              <SingleSelect options={filtersDemands} label="Zapotrzebowanie" />
+              <SingleSelect
+                options={filtersOptions.voivodeships}
+                selected={filters_voivodeship}
+                label="Województwo"
+              />
+              <SingleSelect
+                options={filtersOptions.demands}
+                selected={filters_demand}
+                label="Zapotrzebowanie"
+              />
             </Stack>
             <Stack direction={{ md: "row", xs: "column" }} spacing={2}>
-              <SingleSelect options={filtersSalaries} label="Wynagrodzenie" />
-              <Box style={{ width: "100%" }}>
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label="Najniższy poziom bezrobocia"
-                />
-              </Box>
-              <Box style={{ width: "100%" }}>
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label="Chcę poza dyplomem zawodowym zdać maturę"
-                />
-              </Box>
+              <SingleSelect
+                options={filtersOptions.salaries}
+                selected={filters_salary}
+                label="Wynagrodzenie"
+              />
+              <FormControlLabel
+                style={{ width: "100%" }}
+                control={<Checkbox />}
+                label="Najniższy poziom bezrobocia"
+              />
+              <FormControlLabel
+                style={{ width: "100%" }}
+                control={<Checkbox />}
+                label="Matura z dyplomem zawodowym"
+              />
             </Stack>
           </Stack>
         )}
 
         <div className="flex-center">
-          {!expandFilters && (
-            <IconButton
-              title="rozwiń filtry"
-              aria-label="Rozwiń filtry"
-              onClick={() => setExpandFilters(!expandFilters)}
-            >
-              <KeyboardDoubleArrowDownRoundedIcon />
-            </IconButton>
-          )}
-          {expandFilters && (
-            <IconButton
-              title="zwiń filtry"
-              aria-label="Zwiń filtry"
-              onClick={() => setExpandFilters(!expandFilters)}
-            >
+          <IconButton onClick={() => setExpandFilters(!expandFilters)}>
+            {expandFilters ? (
               <KeyboardDoubleArrowUpRoundedIcon />
-            </IconButton>
-          )}
+            ) : (
+              <KeyboardDoubleArrowDownRoundedIcon />
+            )}
+          </IconButton>
         </div>
 
         <div className="controls container">
           <Button
-            onClick={() => {
-              // props.getGraphItemsFixture();
-              clearFiltersOptions();
-              dispatch(setFiltersPhrase(""));
-              dispatch(setFiltersIndustry([]));
-              dispatch(setFiltersArea([]));
-              dispatch(changeResults([]));
-            }}
+            onClick={clearAllFilters}
             color="black"
             endIcon={<CloseRoundedIcon />}
-            style={{ marginTop: "12px", width: "164px", textTransform: "none" }}
+            style={{ marginTop: "12px", textTransform: "none" }}
           >
             Wyczyść filtry
           </Button>
           <div style={{ marginTop: "12px" }}>
-            <IconButton
-              title="lista"
-              aria-label="wyświetl w formie listy"
-              onClick={() => setDisplayAsList("")}
-            >
+            <IconButton onClick={() => setDisplayAsList("")}>
               <TableRowsRoundedIcon />
             </IconButton>
-            <IconButton
-              title="kafelki"
-              aria-label="wyświetl w formie kafelków"
-              onClick={() => setDisplayAsList("grid")}
-            >
+            <IconButton onClick={() => setDisplayAsList("grid")}>
               <GridViewRoundedIcon />
             </IconButton>
           </div>
@@ -271,18 +267,13 @@ const SearchResults = () => {
         <div className={displayAsList}>
           {qualifications.map((el) => (
             <QualificationListItem
-              id={el.id}
               key={el.id}
-              name={el.name}
-              prk_level={el.prk_level}
-              area={el.area}
-              industry={el.industry}
-              field={el.field}
-              image_url={el.image_url}
+              {...el}
               displayAsList={displayAsList}
             />
           ))}
         </div>
+
         {qualifications.length > 6 && (
           <Stack spacing={2} sx={{ marginTop: "24px" }}>
             <Pagination count={5} page={page} onChange={handlePageChange} />
