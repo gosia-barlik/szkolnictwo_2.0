@@ -32,6 +32,11 @@ import {
   setFiltersSalary,
   setFiltersDemand,
   setFiltersVoivodeship,
+  setFiltersFinalExam,
+  setFiltersUnemployment,
+  setExpandFilters,
+  setDisplayAsList,
+  setPage,
   setGraphItems,
 } from "../redux/searchResults";
 
@@ -42,9 +47,11 @@ const SearchResults = () => {
   const [filtersAreas, setFiltersAreas] = useState([]);
   const [filtersIndustries, setFiltersIndustries] = useState([]);
   const [filtersFields, setFiltersFields] = useState([]);
-  const [expandFilters, setExpandFilters] = useState(false);
-  const [displayAsList, setDisplayAsList] = useState("");
-  const [page, setPage] = useState(1);
+  // const [finalExam, setFinalExam] = useState(false);
+  // const [unemployment, setUnemployment] = useState(false);
+  // const [expandFilters, setExpandFilters] = useState(false);
+  // const [displayAsList, setDisplayAsList] = useState("");
+  // const [page, setPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const {
@@ -56,6 +63,11 @@ const SearchResults = () => {
     filters_field,
     filters_demand,
     filters_salary,
+    filters_final_exam,
+    filters_unemployment,
+    expand_filters,
+    display_as_list,
+    page,
   } = useSelector((state) => state.searchResults);
 
   useEffect(() => {
@@ -148,16 +160,38 @@ const SearchResults = () => {
     const newQueryParams = {
       area: filters_area.join(","), // Ustawienie wartości domyślnej
       industry: filters_industry.join(","),
-      phrase: [filters_phrase].join(","),
+      phrase: [filters_phrase] || "",
       voivodeship: filters_voivodeship.join(","),
       field: filters_field.join(","),
       demand: filters_demand.join(","),
-      salary: filters_salary,
+      salary: filters_salary || "",
     };
+    // Usuń klucze z wartościami `false` lub pustymi stringami
+    if (!filters_unemployment) {
+      delete newQueryParams.unemployment;
+    } else {
+      newQueryParams.unemployment = filters_unemployment;
+    }
+    if (!filters_final_exam) {
+      delete newQueryParams.exam;
+    } else {
+      newQueryParams.exam = filters_final_exam;
+    }
+
 
     // Aktualizowanie query stringów po każdej zmianie filtra
     setSearchParams(newQueryParams);
-  }, [filters_area, filters_industry, filters_phrase, filters_voivodeship, filters_field, filters_demand, setSearchParams]);
+  }, [
+    filters_area,
+    filters_industry,
+    filters_phrase,
+    filters_voivodeship,
+    filters_field,
+    filters_demand,
+    filters_unemployment,
+    filters_final_exam,
+    setSearchParams,
+  ]);
 
   const clearAllFilters = () => {
     dispatch(setFiltersIndustry([]));
@@ -167,11 +201,21 @@ const SearchResults = () => {
     dispatch(setFiltersSalary([]));
     dispatch(setFiltersDemand([]));
     dispatch(setFiltersVoivodeship([]));
+    dispatch(setFiltersFinalExam(false));
+    dispatch(setFiltersUnemployment(false));
     dispatch(setGraphItems([]));
   };
 
+  const handleCheckboxChange = (event, id) => {
+    if (id === 1) {
+      dispatch(setFiltersUnemployment(event.target.checked));
+    } else if (id === 2) {
+      dispatch(setFiltersFinalExam(event.target.checked));
+    }
+  };
+
   const handlePageChange = (event, value) => {
-    setPage(value);
+    dispatch(setPage(value));
   };
 
   return (
@@ -208,7 +252,7 @@ const SearchResults = () => {
           />
         </Stack>
 
-        {expandFilters && (
+        {expand_filters && (
           <Stack spacing={2}>
             <Stack direction={{ md: "row", xs: "column" }} spacing={2}>
               <SingleSelect
@@ -236,12 +280,22 @@ const SearchResults = () => {
               />
               <FormControlLabel
                 style={{ width: "100%" }}
-                control={<Checkbox />}
+                control={
+                  <Checkbox
+                    checked={filters_unemployment}
+                    onChange={(event) => handleCheckboxChange(event, 1)}
+                  />
+                }
                 label="Najniższy poziom bezrobocia"
               />
               <FormControlLabel
                 style={{ width: "100%" }}
-                control={<Checkbox />}
+                control={
+                  <Checkbox
+                    checked={filters_final_exam}
+                    onChange={(event) => handleCheckboxChange(event, 2)}
+                  />
+                }
                 label="Matura z dyplomem zawodowym"
               />
             </Stack>
@@ -249,8 +303,10 @@ const SearchResults = () => {
         )}
 
         <div className="flex-center">
-          <IconButton onClick={() => setExpandFilters(!expandFilters)}>
-            {expandFilters ? (
+          <IconButton
+            onClick={() => dispatch(setExpandFilters(!expand_filters))}
+          >
+            {expand_filters ? (
               <KeyboardDoubleArrowUpRoundedIcon />
             ) : (
               <KeyboardDoubleArrowDownRoundedIcon />
@@ -268,10 +324,10 @@ const SearchResults = () => {
             Wyczyść filtry
           </Button>
           <div style={{ marginTop: "12px" }}>
-            <IconButton onClick={() => setDisplayAsList("")}>
+            <IconButton onClick={() => dispatch(setDisplayAsList(""))}>
               <TableRowsRoundedIcon />
             </IconButton>
-            <IconButton onClick={() => setDisplayAsList("grid")}>
+            <IconButton onClick={() => dispatch(setDisplayAsList("grid"))}>
               <GridViewRoundedIcon />
             </IconButton>
           </div>
@@ -281,12 +337,12 @@ const SearchResults = () => {
           Zawody
         </Typography>
 
-        <div className={displayAsList}>
+        <div className={display_as_list}>
           {qualifications.map((el) => (
             <QualificationListItem
               key={el.id}
               {...el}
-              displayAsList={displayAsList}
+              displayAsList={display_as_list}
             />
           ))}
         </div>

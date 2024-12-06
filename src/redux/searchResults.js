@@ -10,7 +10,12 @@ export const searchResultsSlice = createSlice({
     filters_field: [],
     filters_voivodeship: [],
     filters_salary: [],
-    filters_demand:[],
+    filters_demand: [],
+    filters_final_exam: false,
+    filters_unemployment: false,
+    expand_filters: false,
+    display_as_list: "",
+    page: 1,
     graph_items: [],
     selected_item: [],
   },
@@ -39,6 +44,21 @@ export const searchResultsSlice = createSlice({
     setFiltersField: (state, action) => {
       state.filters_field = action.payload;
     },
+    setFiltersFinalExam: (state, action) => {
+      state.filters_final_exam = action.payload;
+    },
+    setFiltersUnemployment: (state, action) => {
+      state.filters_unemployment = action.payload;
+    },
+    setExpandFilters: (state, action) => {
+      state.expand_filters = action.payload;
+    },
+    setDisplayAsList: (state, action) => {
+      state.display_as_list = action.payload;
+    },
+    setPage: (state, action) => {
+      state.page = action.payload;
+    },
     setGraphItems: (state, action) => {
       state.graph_items = action.payload;
     },
@@ -58,6 +78,11 @@ export const {
   setFiltersSalary,
   setFiltersDemand,
   setFiltersVoivodeship,
+  setFiltersFinalExam,
+  setFiltersUnemployment,
+  setExpandFilters,
+  setDisplayAsList,
+  setPage,
   setGraphItems,
   setSelectedItem,
 } = searchResultsSlice.actions;
