@@ -3,6 +3,7 @@ import { Typography, Link, Stack, Box } from "@mui/material";
 import SignalCellularAltRoundedIcon from "@mui/icons-material/SignalCellularAltRounded";
 import SignalCellularAlt2BarRoundedIcon from "@mui/icons-material/SignalCellularAlt2BarRounded";
 import QuestionMarkRoundedIcon from "@mui/icons-material/QuestionMarkRounded";
+import QualificationDemandMap from "./QualificationDemandMap";
 import * as phrases from "../../pages/dictionaries/pl.json";
 
 const QualificationDemand = (props) => {
@@ -79,7 +80,7 @@ const QualificationDemand = (props) => {
             alignItems: "center",
           }}
         >
-          mapa
+       <QualificationDemandMap/>
         </Box>
       </Stack>
     </Wrapper>

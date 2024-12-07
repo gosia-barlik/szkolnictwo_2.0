@@ -9,6 +9,7 @@ import { searchResultsFixture } from "../../fixtures/searchResultsFixture";
 import { qualificationFixture } from "../../fixtures/qualificationFixture";
 import { filtersOptionsFixture } from "../../fixtures/filtersOptionsFixture";
 import { voivodeships } from "../../fixtures/voivodeships";
+import { demandMapFixture } from "../../fixtures/qualificationDemandMapFixture";
 
 export const MainInfoAPI = {
   getAutocompleteOptions: async function (array, cancel = false) {
@@ -31,6 +32,9 @@ export const MainInfoAPI = {
   },
   getVoivodeships: async function (array, cancel = false) {
     return voivodeships;
+  },
+  getQualificationDemandMapFixture: async function (array, cancel = false) {
+    return demandMapFixture;
   },
 };
 
