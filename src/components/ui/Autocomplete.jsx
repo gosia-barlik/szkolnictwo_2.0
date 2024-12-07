@@ -50,7 +50,7 @@ const InputAutocomplete = (props) => {
             <TextField fullWidth {...params} label={props.label} />
           )}
         />
-        <NavLink className="button" to="/search_results">
+        <NavLink className="button" to="/search_results" style={{color:"black"}}>
           Zatwierdź
         </NavLink>
       </Box>

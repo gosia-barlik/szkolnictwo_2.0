@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Wrapper from "../assets/wrappers/SearchResults";
-import Typography from "@mui/material/Typography";
 import {
+  Box,
   IconButton,
   Button,
   FormControlLabel,
@@ -11,6 +11,7 @@ import {
   Checkbox,
   Pagination,
   TextField,
+  Typography,
 } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
@@ -18,6 +19,7 @@ import TableRowsRoundedIcon from "@mui/icons-material/TableRowsRounded";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import KeyboardDoubleArrowDownRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowDownRounded";
 import KeyboardDoubleArrowUpRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowUpRounded";
+import KeyboardDoubleArrowLeftRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftRounded";
 import QualificationListItem from "../components/ui/QualificationListItem";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
 import SingleSelect from "../components/ui/SingleSelect";
@@ -47,11 +49,6 @@ const SearchResults = () => {
   const [filtersAreas, setFiltersAreas] = useState([]);
   const [filtersIndustries, setFiltersIndustries] = useState([]);
   const [filtersFields, setFiltersFields] = useState([]);
-  // const [finalExam, setFinalExam] = useState(false);
-  // const [unemployment, setUnemployment] = useState(false);
-  // const [expandFilters, setExpandFilters] = useState(false);
-  // const [displayAsList, setDisplayAsList] = useState("");
-  // const [page, setPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const {
@@ -178,7 +175,6 @@ const SearchResults = () => {
       newQueryParams.exam = filters_final_exam;
     }
 
-
     // Aktualizowanie query stringów po każdej zmianie filtra
     setSearchParams(newQueryParams);
   }, [
@@ -221,7 +217,10 @@ const SearchResults = () => {
   return (
     <Wrapper>
       <NavLink to="/" onClick={() => clearAllFilters()}>
-        Wróć
+        <Stack direction="row">
+          <KeyboardDoubleArrowLeftRoundedIcon fontSize="small" style={{marginRight:"6px"}} />
+          <Typography variant="body2">Wróć</Typography>
+        </Stack>
       </NavLink>
 
       <section className="qualifications-list">

@@ -70,13 +70,15 @@ const Wrapper = styled.div`
     cursor: pointer;
   }
 
-  a.button {
+  .home-compass a.button {
     border: 1px solid black;
     border-radius: 50px;
-    padding: 8px 12px;
+    padding: 12px 16px;
     font-weight: 700;
     margin-top: 10px;
+    margin-left:0px;
     background-color: #ffc107;
+    height: 42px
   }
 `;
 

@@ -335,7 +335,7 @@ const PieChart = (props) => {
                 >
                   <strong>{filters_industry}</strong>
                 </Typography>
-                <NavLink className="button" to="/search_results">
+                <NavLink className="button" to="/search_results" style={{color:"black"}}>
                   Zatwierdź
                 </NavLink>
               </div>

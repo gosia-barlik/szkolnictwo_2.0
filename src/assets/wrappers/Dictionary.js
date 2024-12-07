@@ -5,13 +5,15 @@ const Wrapper = styled.div`
     font-family: Quicksand, serif;
     text-transform: none;
     position: fixed;
+    font-weight: 700;
+    font-size: 16px;
     top: 80px;
     right: 20px;
-   border: 2px solid white;
+    border: 1px solid black;
   }
   .dictionary-fab:hover {
     background-color: white;
-    border: 2px solid black;
+    border: 1px solid black;
   }
   .dictionary {
     position: fixed;

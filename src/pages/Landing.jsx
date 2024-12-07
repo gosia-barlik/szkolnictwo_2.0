@@ -64,7 +64,7 @@ const Landing = () => {
       <header className="home-header">
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
-            <Grid size={{ xs: 12, md: 6 }}>
+            <Grid size={{ xs: 12, md: 6 }} className="column-left">
               <Typography
                 variant="h5"
                 component="h1"

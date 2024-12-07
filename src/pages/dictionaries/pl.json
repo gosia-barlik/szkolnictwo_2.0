@@ -20,7 +20,7 @@
     "demand": "Sprawdź zapotrzebowanie",
     "similar": "Znajdź pokrewne certyfikaty",
     "characteristics_tab": {
-      "title": "Charakterystyka zawodu",
+      "title": "Poznaj zawód",
       "description": "Opis zawodu",
       "qualifications_and_effects": "Kwalifikacje zawodowe i zestawy efektów uczenia się",
       "predispositions": "Oczekiwania wobec osoby wykonującej zawód",
@@ -62,6 +62,8 @@
     "labels": {
       "voivodeship": "Województwo"
     },
-    "selected_voivodeship": "Wybrane województwo: "
+    "selected_voivodeship": "Wybrane województwo: ",
+    "clear_filters": "Wyczyść fitry",
+    "go_back": "Wróć"
   }
 }

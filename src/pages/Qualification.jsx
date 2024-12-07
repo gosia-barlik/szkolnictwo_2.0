@@ -3,6 +3,7 @@ import { useLoaderData, Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { Typography, Button, IconButton } from "@mui/material";
+import KeyboardDoubleArrowLeftRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftRounded";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
@@ -88,7 +89,7 @@ const Qualification = () => {
           style={{textTransform:"none"}}
           onClick={() => navigate(-1)}
           variant="text"
-          startIcon={<ArrowBackIcon />}
+          startIcon={<KeyboardDoubleArrowLeftRoundedIcon />}
         >
           Wróć
         </Button>

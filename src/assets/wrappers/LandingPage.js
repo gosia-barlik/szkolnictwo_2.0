@@ -9,25 +9,20 @@ const Wrapper = styled.div`
     width:80%
   }
 
-  .home-header a.button {
+  .column-left a.button {
     border: 1px solid black;
     border-radius: 50px;
-    padding: 8px 12px;
+    padding: 12px 16px;
     font-weight: 700;
     margin-top: 34px;
     margin-left: 12px;
     background-color: #ffc107;
-    height: 38px
+    height: 42px
   }
-
-
-
-
-
 
   .qualifications-by-region,
   .qualifications-by-salary {
-    margin-top: 80px;
+    margin-top: 120px;
   }
 
   //QualificationListItem

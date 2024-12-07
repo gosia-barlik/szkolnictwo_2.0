@@ -49,18 +49,21 @@ const Wrapper = styled.div`
     border-bottom: 3px solid #ea144e;
   }
   .accordion .icon-red {
+    margin-right: 12px;
     color: #ea144e;
   }
   .accordion .summary-blue {
     border-bottom: 3px solid #1565c0;
   }
   .accordion .icon-blue {
+    margin-right: 12px;
     color: #1565c0;
   }
   .accordion .summary-green {
     border-bottom: 3px solid #388e3c;
   }
   .accordion .icon-green {
+    margin-right: 12px;
     color: #388e3c;
   }
 
@@ -68,6 +71,7 @@ const Wrapper = styled.div`
     border-bottom: 3px solid #ffab00;
   }
   .accordion .icon-yellow {
+    margin-right: 12px;
     color: #ffab00;
   }
 
@@ -103,7 +107,7 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 992px) {
-   width: 100%;
+    width: 100%;
     .qualification {
       display: grid;
       grid-template-columns: 1fr 3fr;
