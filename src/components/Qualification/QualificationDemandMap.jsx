@@ -2,31 +2,13 @@ import React, { useEffect } from "react";
 import { Stack, Box } from "@mui/material";
 import { MainInfoAPI } from "../../api/Qualifications/mainInfoApi";
 
-const QualificationDemandMap = () => {
-  const [demandData, setDemandData] = React.useState([]);
-
-  useEffect(() => {
-    getDemandDataFixture();
-  }, []);
-
-  const getDemandDataFixture = async () => {
-    try {
-      const response = await MainInfoAPI.getQualificationDemandMapFixture();
-      if (response && response.results) {
-        setDemandData(response.results.voivodeship_demands);
-      } else {
-        console.error("No search results received from API");
-      }
-    } catch (error) {
-      console.error("Error fetching search results:", error.message);
-    }
-  };
+const QualificationDemandMap = (props) => {
 
   // Get color for a specific voivodeship
   const getColorById = (id) => {
     const searchedVoivodeship =
-      demandData &&
-      demandData.find((item) => item.voivodeship_demand_id === id);
+      props.demandData &&
+      props.demandData.find((item) => item.voivodeship_demand_id === id);
     if (!searchedVoivodeship) return "#dcdcdc";
 
     return searchedVoivodeship.demand === "2"
