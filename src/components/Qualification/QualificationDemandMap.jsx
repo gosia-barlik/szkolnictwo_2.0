@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Stack, Box } from "@mui/material";
-import { MainInfoAPI } from "../../api/Qualifications/mainInfoApi";
 
 const QualificationDemandMap = (props) => {
 

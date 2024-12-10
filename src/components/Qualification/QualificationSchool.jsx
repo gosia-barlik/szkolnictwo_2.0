@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Wrapper from "../../assets/wrappers/QualificationPage";
 import { MainInfoAPI } from "../../api/Qualifications/mainInfoApi";
+import { DictionaryAPI } from "../../api/Dictionaries/dictionaryApi";
 import SchoolTable from "./SchoolTable";
 import PolandMap from "../ui/Polandmap";
 import {
@@ -13,35 +14,57 @@ import {
   Stack,
   Pagination,
 } from "@mui/material";
-import * as phrases from "../../pages/dictionaries/pl.json"
+import * as phrases from "../../pages/dictionaries/pl.json";
 
 const QualificationSchool = () => {
-  const [voivodeships, setVoivodeships] = useState([]);
+  const [voivodeshipOptions, setVoivodeshipOptions] = useState([]);
   const [selectedVoivodeship, setSelectedVoivodeship] = useState([]);
+  const [cityOptions, setCityOptions] = useState([]);
+  const [selectedCity, setSelectedCity] = useState([]);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    getSelectOptions();
+    fetchVoivodeships();
+    console.log(selectedVoivodeship);
   }, []);
 
-  const handleSelectChange = (event) => {
-    const voivodeship = event.target.value;
-    setSelectedVoivodeship(voivodeship);
-    // if (selectedVoivodeship) {
-    //   getSearchResultsFixture(voivodeship);
-    // }
-  };
+  useEffect(() => {
+    fetchCities();
+  }, [selectedVoivodeship]);
 
-  const getSelectOptions = async () => {
+  // Funkcja do pobierania województw
+  const fetchVoivodeships = async () => {
     try {
-      const response = await MainInfoAPI.getVoivodeships();
+      const response = await DictionaryAPI.voivodeships();
       if (response && response.results) {
-        setVoivodeships(response.results);
+        setVoivodeshipOptions(response.results);
       } else {
         console.error("No voivodeship data received from API");
       }
     } catch (error) {
       console.error("Error fetching voivodeships:", error.message);
+    }
+  };
+
+  // Funkcja do pobierania miast
+  const fetchCities = async () => {
+    try {
+      const response = await DictionaryAPI.cities(selectedVoivodeship.name);
+      setCityOptions(response.results);
+    } catch (error) {
+      console.error("Error fetching locations:", error);
+    }
+  };
+
+  const handleSelectChange = (event, id) => {
+    if (id === 1) {
+      const voivodeship = event.target.value;
+      setSelectedVoivodeship(voivodeship);
+      console.log(selectedVoivodeship);
+    } else if (id === 2) {
+      const city = event.target.value;
+      setSelectedCity(city);
+      console.log(selectedCity);
     }
   };
 
@@ -53,8 +76,8 @@ const QualificationSchool = () => {
     <Wrapper>
       <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
         <Box sx={{ width: { xs: "100%", md: "65%" } }}>
-        <Typography variant="h6">
-        {phrases.landing.byRegion.action}
+          <Typography variant="h6">
+            {phrases.landing.byRegion.action}
           </Typography>
           {selectedVoivodeship && (
             <Typography variant="body2">
@@ -66,16 +89,30 @@ const QualificationSchool = () => {
             <Select
               value={selectedVoivodeship || ""}
               label="województwo"
-              onChange={handleSelectChange}
+              onChange={(event) => handleSelectChange(event, 1)}
             >
-              {voivodeships.map((el) => (
+              {voivodeshipOptions.map((el) => (
                 <MenuItem key={el.id} value={el}>
                   {el.name}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
-          <Typography variant="h6" style={{marginTop:"24px"}}>
+          <FormControl fullWidth disabled={selectedVoivodeship.length==0}>
+            <InputLabel>{phrases.common.labels.city}</InputLabel>
+            <Select
+              value={selectedCity || ""}
+              label="miasto"
+              onChange={(event) => handleSelectChange(event, 2)}
+            >
+              {cityOptions.map((el) => (
+                <MenuItem key={el.id} value={el}>
+                  {el.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <Typography variant="h6" style={{ marginTop: "24px" }}>
             {phrases.qualification.schools_tab.title}
           </Typography>
         </Box>
@@ -90,7 +127,7 @@ const QualificationSchool = () => {
         </Box>
       </Stack>
       <Box
-        sx={{ width: { xs: "100%", md: "65%" }, marginTop: { xs: 2, md: -26 } }}
+        sx={{ width: { xs: "100%", md: "65%" }, marginTop: { xs: 2, md: -20 } }}
       >
         <SchoolTable />
       </Box>

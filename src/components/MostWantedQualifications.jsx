@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material";
 import * as phrases from "../pages/dictionaries/pl.json";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
+import { DictionaryAPI } from "../api/Dictionaries/dictionaryApi";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -39,7 +40,7 @@ const MostWantedQualifications = () => {
 
   const getSelectOptions = async () => {
     try {
-      const response = await MainInfoAPI.getVoivodeships();
+      const response = await DictionaryAPI.voivodeships();
       if (response && response.results) {
         setVoivodeships(response.results);
       } else {

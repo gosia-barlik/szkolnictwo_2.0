@@ -22,6 +22,7 @@ import KeyboardDoubleArrowUpRoundedIcon from "@mui/icons-material/KeyboardDouble
 import KeyboardDoubleArrowLeftRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftRounded";
 import QualificationListItem from "../components/ui/QualificationListItem";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
+import { DictionaryAPI } from "../api/Dictionaries/dictionaryApi";
 import SingleSelect from "../components/ui/SingleSelect";
 import { useSearchParams } from "react-router-dom";
 
@@ -94,7 +95,7 @@ const SearchResults = () => {
 
   const fetchFiltersOptions = async () => {
     try {
-      const response = await MainInfoAPI.getFiltersOptionsFixture();
+      const response = await DictionaryAPI.getFiltersOptionsFixture();
       setFiltersOptions(response.results);
       setFiltersAreas(
         response.results.areas.map(({ id, name }) => ({ id, name }))
@@ -106,7 +107,7 @@ const SearchResults = () => {
 
   const fetchAutocompleteOptions = async () => {
     try {
-      const response = await MainInfoAPI.getAutocompleteOptions();
+      const response = await DictionaryAPI.getAutocompleteOptions();
       setAutocompleteOptions(response.results);
     } catch (error) {
       console.error("Error fetching autocomplete options:", error.message);

@@ -9,6 +9,7 @@ import HighestSalaryQualifications from "../components/HighestSalaryQualificatio
 import * as phrases from "./dictionaries/pl.json";
 import Wrapper from "../assets/wrappers/LandingPage";
 import { MainInfoAPI } from "../api/Qualifications/mainInfoApi";
+import { DictionaryAPI } from "../api/Dictionaries/dictionaryApi";
 import { setGraphItems, setSelectedItem } from "../redux/searchResults";
 
 const Landing = () => {
@@ -25,7 +26,7 @@ const Landing = () => {
   }, []);
 
   const getAutocompleteOptions = async () => {
-    const response = await MainInfoAPI.getAutocompleteOptions()
+    const response = await DictionaryAPI.getAutocompleteOptions()
       .catch((error) => console.log([error.message]))
       .finally(() => {});
     setAutocompleteOptions(response.results);
