@@ -47,15 +47,23 @@
       "website": "Strona: "
     },
     "demand_tab": {
-      "title": "Prognoza zapotrzebowania na pracowników w zawodzie",
-      "subtitle_1": "Prognoza zapotrzebowania na pracowników w zawodzie szkolnictwa branżowego",
-      "subtitle_2": " na krajowym i wojewódzkim rynku pracy.",
-      "description": " Prognoza stanowi syntetyczne ujęcie różnych źródeł opisujących tendencje na rynku pracy w odniesieniu do strategii rozwoju państwa i regionów. Celem prognozy jest dostarczenie informacji pozwalających na kształtowanie oferty szkolnictwa branżowego we właściwy sposób i dostosowanie jej do potrzeb krajowego i wojewódzkiego rynku pracy.",
+      "demand_title": "Prognoza zapotrzebowania na pracowników w zawodzie",
+      "demand_subtitle_1": "Prognoza zapotrzebowania na pracowników w zawodzie szkolnictwa branżowego",
+      "demand_subtitle_2": " na krajowym i wojewódzkim rynku pracy.",
+      "demand_description": " Prognoza stanowi syntetyczne ujęcie różnych źródeł opisujących tendencje na rynku pracy w odniesieniu do strategii rozwoju państwa i regionów. Celem prognozy jest dostarczenie informacji pozwalających na kształtowanie oferty szkolnictwa branżowego we właściwy sposób i dostosowanie jej do potrzeb krajowego i wojewódzkiego rynku pracy.",
       "source": "Źródło: ",
-      "announcement": "Obwieszczenie Ministra Edukacji z dnia 24 stycznia 2024 r.",
-      "relevant": "Zapotrzebowanie istotne",
-      "moderate": "Zapotrzebowanie umiarkowane",
-      "not_included": "Nieujęte w prognozie: "
+      "demand_announcement": "Obwieszczenie Ministra Edukacji z dnia 24 stycznia 2024 r.",
+      "demand_high": "Zapotrzebowanie istotne",
+      "demand_moderate": "Zapotrzebowanie umiarkowane",
+      "demand_not_included": "Nieujęte w prognozie: ",
+      "popularity_title": "Popularność",
+      "popularity_subtitle_1": "Dane o popularności wskazują jaki odsetek absolwentów ukończyło szkołę w zawodzie Elektromechanik w danym roku.",
+      "popularity_description": "Porównanie informacji o zapotrzebowaniu oraz o popularności danego zawodu pomoże Ci bardziej świadomie wybrać zawód dla Ciebie.",
+      "popularity_announcement": "Dane z systemu monitoringu karier absolwentów",
+      "popularity_high": "Popularność wysoka",
+      "popularity_moderate": "Popularność średnia",
+      "popularity_low": "Popularność niska",
+      "popularity_not_included": "Brak szkół"
     }
   },
   "common": {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Stack, Box, Typography } from "@mui/material";
 
-const QualificationDemandMap = (props) => {
+const QualificationPopularityMap = (props) => {
   // Get color for a specific voivodeship
   const getColorById = (id) => {
     const searchedVoivodeship =
@@ -9,21 +9,26 @@ const QualificationDemandMap = (props) => {
       props.demandData.find((item) => item.voivodeship_demand_id === id);
     if (!searchedVoivodeship) return "#dcdcdc";
 
-    return searchedVoivodeship.demand === "2"
-      ? "#fa9839"
+    return searchedVoivodeship.demand === "3"
+      ? "#66325B"
+      : searchedVoivodeship.demand === "2"
+      ? "#A54F93"
       : searchedVoivodeship.demand === "1"
-      ? "#f7ce77"
+      ? "#D5BAD0"
       : "#dcdcdc";
   };
 
   return (
-    <div className="qualification-demand-map" style={{ marginLeft: "100px" }}>
+    <div
+      className="qualification-popularity-map"
+      style={{ marginLeft: "100px" }}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="300"
         height="262.172"
         viewBox="0 0 426.078 372.353"
-        className="demand-map-svg"
+        className="popularity-map-svg"
       >
         <g
           id="Group_3813"
@@ -225,17 +230,22 @@ const QualificationDemandMap = (props) => {
       <Stack direction="row" className="legend">
         <Box className="legend-item" style={{ borderTop: "5px solid #dcdcdc" }}>
           <Typography variant="caption" style={{ lineHeight: "1" }}>
-            Nieujete w prognozie
+            Brak szkół
           </Typography>
         </Box>
-        <Box className="legend-item" style={{ borderTop: "5px solid #f7ce77" }}>
+        <Box className="legend-item" style={{ borderTop: "5px solid #D5BAD0" }}>
           <Typography variant="caption" style={{ lineHeight: "1" }}>
-            Umiarkowane
+            Niska
           </Typography>
         </Box>
-        <Box className="legend-item" style={{ borderTop: "5px solid #fa9839" }}>
+        <Box className="legend-item" style={{ borderTop: "5px solid #A54F93" }}>
           <Typography variant="caption" style={{ lineHeight: "1" }}>
-            Istotne
+            Średnia
+          </Typography>
+        </Box>
+        <Box className="legend-item" style={{ borderTop: "5px solid #66325B" }}>
+          <Typography variant="caption" style={{ lineHeight: "1" }}>
+            Wysoka
           </Typography>
         </Box>
       </Stack>
@@ -243,4 +253,4 @@ const QualificationDemandMap = (props) => {
   );
 };
 
-export default QualificationDemandMap;
+export default QualificationPopularityMap;

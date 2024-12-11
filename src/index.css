@@ -88,6 +88,7 @@ body,
   justify-content: center;
   align-items: center;
 }
+.MuiTypography-root,
 .MuiButtonBase-root.MuiButton-root,
 div.MuiTypography-body1,
 span.MuiTypography-body1,
@@ -96,13 +97,13 @@ p.MuiTypography-body2,
 a.MuiTypography-inherit,
 div.MuiTypography-subtitle1,
 p.MuiTypography-subtitle1,
+span.MuiTypography-caption,
 a {
   font-family: var(--headingFont);
   margin: 0;
   text-decoration: none;
 }
 h2.MuiTypography-h6,
-.MuiTypography-root,
 h1.MuiTypography-h1,
 h2.MuiTypography-h2,
 h1.MuiTypography-h2,

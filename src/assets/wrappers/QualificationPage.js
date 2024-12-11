@@ -106,6 +106,25 @@ const Wrapper = styled.div`
     font-weight: 600;
   }
 
+  //Demand tab
+  .map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 26px;
+  }
+
+  .legend {
+    width: 400px;
+    margin: 24px 0 0 24px;
+  }
+  .legend .legend-item {
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
+
   @media (min-width: 992px) {
     width: 100%;
     .qualification {
@@ -117,6 +136,10 @@ const Wrapper = styled.div`
     .qualification-info {
       margin-left: -120px;
       margin-top: 0px;
+    }
+    .demand-map-svg,
+    .popularity-map-svg {
+      margin-left: 60px;
     }
   }
 `;
