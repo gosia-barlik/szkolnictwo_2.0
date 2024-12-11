@@ -101,6 +101,7 @@ span.MuiTypography-caption,
 a {
   font-family: var(--headingFont);
   margin: 0;
+  font-weight: 500;
   text-decoration: none;
 }
 h2.MuiTypography-h6,

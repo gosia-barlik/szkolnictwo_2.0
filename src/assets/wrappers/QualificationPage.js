@@ -50,6 +50,7 @@ const Wrapper = styled.div`
   }
   .accordion .icon-red {
     margin-right: 12px;
+    margin-left: 34px;
     color: #ea144e;
   }
   .accordion .summary-blue {
@@ -57,6 +58,7 @@ const Wrapper = styled.div`
   }
   .accordion .icon-blue {
     margin-right: 12px;
+    margin-left: 34px;
     color: #1565c0;
   }
   .accordion .summary-green {
@@ -64,6 +66,7 @@ const Wrapper = styled.div`
   }
   .accordion .icon-green {
     margin-right: 12px;
+    margin-left: 34px;
     color: #388e3c;
   }
 
@@ -72,6 +75,7 @@ const Wrapper = styled.div`
   }
   .accordion .icon-yellow {
     margin-right: 12px;
+    margin-left: 34px;
     color: #ffab00;
   }
 
@@ -79,6 +83,8 @@ const Wrapper = styled.div`
     border-bottom: 3px solid #651fff;
   }
   .accordion .icon-deepPurple {
+    margin-right: 12px;
+    margin-left: 34px;
     color: #651fff;
   }
 
@@ -86,18 +92,24 @@ const Wrapper = styled.div`
     border-bottom: 3px solid #3d5afe;
   }
   .accordion .icon-indigo {
+    margin-right: 12px;
+    margin-left: 34px;
     color: #3d5afe;
   }
   .accordion .summary-lightGreen {
     border-bottom: 3px solid #64dd17;
   }
   .accordion .icon-lightGreen {
+    margin-right: 12px;
+    margin-left: 34px;
     color: #64dd17;
   }
   .accordion .summary-orange {
     border-bottom: 3px solid #ef6c00;
   }
   .accordion .icon-orange {
+    margin-right: 12px;
+    margin-left: 34px;
     color: #ef6c00;
   }
 
