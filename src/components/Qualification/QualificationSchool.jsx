@@ -3,7 +3,7 @@ import Wrapper from "../../assets/wrappers/QualificationPage";
 import { MainInfoAPI } from "../../api/Qualifications/mainInfoApi";
 import { DictionaryAPI } from "../../api/Dictionaries/dictionaryApi";
 import SchoolTable from "./SchoolTable";
-import PolandMap from "../ui/Polandmap";
+import QualificationSchoolMap from "./QualificationSchoolMap";
 import {
   Typography,
   InputLabel,
@@ -16,55 +16,100 @@ import {
 } from "@mui/material";
 import * as phrases from "../../pages/dictionaries/pl.json";
 
+const useFetchData = (fetchFunction, dependencies = []) => {
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchFunction();
+        if (response?.results) {
+          setData(response.results);
+        } else {
+          throw new Error("No data received");
+        }
+      } catch (err) {
+        setError(err.message);
+        console.error(err.message);
+      }
+    };
+
+    fetchData();
+  }, dependencies);
+
+  return { data, error };
+};
+
+const Dropdown = ({ label, options, value, onChange, disabled }) => (
+  <FormControl fullWidth style={{ margin: "12px 0px" }} disabled={disabled}>
+    <InputLabel>{label}</InputLabel>
+    <Select value={value || ""} label={label} onChange={onChange}>
+      {options.map((option) => (
+        <MenuItem key={option.id} value={option.id}>
+          {option.name}
+        </MenuItem>
+      ))}
+    </Select>
+  </FormControl>
+);
+
 const QualificationSchool = () => {
-  const [voivodeshipOptions, setVoivodeshipOptions] = useState([]);
-  const [selectedVoivodeship, setSelectedVoivodeship] = useState([]);
-  const [cityOptions, setCityOptions] = useState([]);
-  const [selectedCity, setSelectedCity] = useState([]);
+  const [selectedVoivodeship, setSelectedVoivodeship] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
   const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    fetchVoivodeships();
-    console.log(selectedVoivodeship);
-  }, []);
+  const { data: voivodeshipOptions } = useFetchData(DictionaryAPI.voivodeships);
 
+  // Ustawienie domyślnego województwa
   useEffect(() => {
-    fetchCities();
-  }, [selectedVoivodeship]);
-
-  // Funkcja do pobierania województw
-  const fetchVoivodeships = async () => {
-    try {
-      const response = await DictionaryAPI.voivodeships();
-      if (response && response.results) {
-        setVoivodeshipOptions(response.results);
-      } else {
-        console.error("No voivodeship data received from API");
+    if (voivodeshipOptions.length > 0 && !selectedVoivodeship) {
+      const defaultVoivodeship = voivodeshipOptions.find(
+        (voivodeship) => voivodeship.name === "Opolskie"
+      );
+      if (defaultVoivodeship) {
+        setSelectedVoivodeship(defaultVoivodeship);
       }
-    } catch (error) {
-      console.error("Error fetching voivodeships:", error.message);
     }
-  };
+  }, [voivodeshipOptions, selectedVoivodeship]);
 
-  // Funkcja do pobierania miast
-  const fetchCities = async () => {
-    try {
-      const response = await DictionaryAPI.cities(selectedVoivodeship.name);
-      setCityOptions(response.results);
-    } catch (error) {
-      console.error("Error fetching locations:", error);
-    }
-  };
+  const { data: cityOptions } = useFetchData(
+    () => DictionaryAPI.cities(selectedVoivodeship?.name),
+    [selectedVoivodeship]
+  );
 
-  const handleSelectChange = (event, id) => {
-    if (id === 1) {
-      const voivodeship = event.target.value;
+  const { data: schoolData } = useFetchData(MainInfoAPI.getSchoolDataFixture, [
+    selectedVoivodeship,
+    selectedCity,
+  ]);
+
+  const handleSelectChange = (event, type) => {
+    const value = event.target.value;
+
+    if (type === "voivodeship") {
+      const voivodeship = voivodeshipOptions.find(
+        (option) => option.id === value
+      );
       setSelectedVoivodeship(voivodeship);
-      console.log(selectedVoivodeship);
-    } else if (id === 2) {
-      const city = event.target.value;
-      setSelectedCity(city);
-      console.log(selectedCity);
+      setSelectedCity(null); // Reset miasta przy zmianie województwa
+    } else if (type === "city") {
+      setSelectedCity(value);
+    }
+  };
+
+  // Obsługa zmiany województwa z mapy
+  const handleMapChange = (event) => {
+    const voivodeshipName = event.target.getAttribute("data-province");
+    const voivodeshipId = event.target.getAttribute("id");
+
+    // Znajdź województwo w liście opcji
+    const voivodeship = voivodeshipOptions.find(
+      (option) => option.id === voivodeshipId
+    );
+
+    if (voivodeship) {
+      setSelectedVoivodeship(voivodeship);
+      setSelectedCity(null); // Reset miasta przy zmianie województwa
     }
   };
 
@@ -79,58 +124,52 @@ const QualificationSchool = () => {
           <Typography variant="h6">
             {phrases.landing.byRegion.action}
           </Typography>
-          {selectedVoivodeship && (
-            <Typography variant="body2">
-              {phrases.common.selected_voivodeship} {selectedVoivodeship.name}
-            </Typography>
-          )}
-          <FormControl fullWidth style={{ margin: "24px 0px" }}>
-            <InputLabel>{phrases.common.labels.voivodeship}</InputLabel>
-            <Select
-              value={selectedVoivodeship || ""}
-              label="województwo"
-              onChange={(event) => handleSelectChange(event, 1)}
-            >
-              {voivodeshipOptions.map((el) => (
-                <MenuItem key={el.id} value={el}>
-                  {el.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl fullWidth disabled={selectedVoivodeship.length==0}>
-            <InputLabel>{phrases.common.labels.city}</InputLabel>
-            <Select
-              value={selectedCity || ""}
-              label="miasto"
-              onChange={(event) => handleSelectChange(event, 2)}
-            >
-              {cityOptions.map((el) => (
-                <MenuItem key={el.id} value={el}>
-                  {el.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+
+          <Dropdown
+            label={phrases.common.labels.voivodeship}
+            options={voivodeshipOptions}
+            value={selectedVoivodeship?.id || ""} // Ustawiamy tylko `id` jako wartość
+            onChange={(event) => handleSelectChange(event, "voivodeship")}
+            disabled={voivodeshipOptions.length === 0}
+          />
+
+          <Dropdown
+            label={phrases.common.labels.city}
+            options={cityOptions}
+            value={selectedCity}
+            onChange={(event) => handleSelectChange(event, "city")}
+            disabled={!selectedVoivodeship}
+          />
+
           <Typography variant="h6" style={{ marginTop: "24px" }}>
             {phrases.qualification.schools_tab.title}
           </Typography>
         </Box>
+
+        {/* Sekcja z mapą */}
         <Box
           sx={{
-            width: { xs: "100%", md: "20%" },
-            paddingTop: { xs: 2, md: 6 },
-            paddingLeft: { xs: 2, md: 6 },
+            width: { xs: "100%", md: "30%" },
+            padding: 4
           }}
         >
-          <PolandMap />
+          {selectedVoivodeship && (
+            <Typography variant="body2" style={{ marginBottom: "12px", width:400 }}>
+              {phrases.common.selected_voivodeship} {selectedVoivodeship.name}
+            </Typography>
+          )}
+          <QualificationSchoolMap handleMapChange={handleMapChange} />
         </Box>
       </Stack>
+
+      {/* Tabela szkół */}
       <Box
-        sx={{ width: { xs: "100%", md: "65%" }, marginTop: { xs: 2, md: -20 } }}
+        sx={{ width: { xs: "100%", md: "65%" }, marginTop: { xs: 2, md: -14 } }}
       >
-        <SchoolTable />
+        <SchoolTable results={schoolData} />
       </Box>
+
+      {/* Paginacja */}
       <Stack
         spacing={2}
         sx={{

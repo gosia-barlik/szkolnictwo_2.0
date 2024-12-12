@@ -4,39 +4,15 @@ import { MainInfoAPI } from "../../api/Qualifications/mainInfoApi";
 import { useDispatch, useSelector } from "react-redux";
 import { changeResults, setVoivodeship } from "../../redux/mostWanted";
 
-const PolandMap = () => {
-  const dispatch = useDispatch();
-
-  const handleChange = (event) => {
-    const voivodeshipName = event.target.getAttribute("data-province");
-    const voivodeshipId = event.target.getAttribute("id");
-    const selectedVoivodeship = { id: voivodeshipId, name: voivodeshipName };
-    dispatch(setVoivodeship(selectedVoivodeship));
-    if (selectedVoivodeship) {
-      getSearchResultsFixture(selectedVoivodeship);
-    }
-  };
-
-  const getSearchResultsFixture = async (voivodeship) => {
-    try {
-      const response = await MainInfoAPI.getSearchResultsFixture();
-      if (response && response.results) {
-        dispatch(changeResults(response.results));
-      } else {
-        console.error("No search results received from API");
-      }
-    } catch (error) {
-      console.error("Error fetching search results:", error.message);
-    }
-  };
+const QualificationSchoolMap = (props) => {
 
   return (
     <Wrapper>
       <svg
-        className="qualification-map-svg"
+        className="school-map-svg"
         xmlns="http://www.w3.org/2000/svg"
-        width="426.078"
-        height="372.353"
+        width="300"
+        height="262.172"
         viewBox="0 0 426.078 372.353"
       >
         <g
@@ -54,7 +30,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
           >
             <title>Kujawsko-pomorskie</title>
           </path>
@@ -68,7 +44,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
           >
             <title>Warmińsko-mazurskie</title>
           </path>
@@ -82,7 +58,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
           >
             <title>Podlaskie</title>
           </path>
@@ -96,7 +72,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
           >
             <title>Lubelskie</title>
           </path>
@@ -110,7 +86,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
           >
             <title>Podkarpackie</title>
           </path>
@@ -124,7 +100,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
           > <title>Małopolskie</title></path>
           <path
             id="PL-24"
@@ -136,7 +112,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
             > <title>Śląskie</title></path>
           <path
             id="PL-16"
@@ -148,7 +124,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
             > <title>Opolskie</title></path>
           <path
             id="PL-02"
@@ -160,7 +136,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
             > <title>Dolnośląskie</title></path>
           <path
             id="PL-08"
@@ -172,7 +148,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
             > <title>Lubuskie</title></path>
           <path
             id="PL-32"
@@ -184,7 +160,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
             > <title>Zachodnio-pomorskie</title></path>
           <path
             id="PL-22"
@@ -196,7 +172,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
             > <title>Pomorskie</title></path>
           <path
             id="PL-14"
@@ -208,7 +184,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
             > <title>Mazowieckie</title></path>
           <path
             id="PL-26"
@@ -220,7 +196,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
             > <title>Świętokrzyskie</title></path>
           <path
             id="PL-10"
@@ -232,7 +208,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
             > <title>Łódzkie</title></path>
           <path
             id="PL-30"
@@ -244,7 +220,7 @@ const PolandMap = () => {
             stroke="#2da0ce"
             strokeWidth="1"
             tabIndex="0"
-            onClick={(e) => handleChange(e)}
+            onClick={(e) => props.handleMapChange(e)}
             > <title>Wielkopolskie</title></path>
         </g>
       </svg>
@@ -252,4 +228,4 @@ const PolandMap = () => {
   );
 };
 
-export default PolandMap;
+export default QualificationSchoolMap;

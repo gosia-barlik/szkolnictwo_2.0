@@ -180,7 +180,7 @@ const QualificationCharacteristic = (props) => {
               <CardMedia
                 component="iframe"
                 sx={{ height: 430 }}
-                src="https://www.youtube.com/embed/Ui59depm1js"
+                // src="https://www.youtube.com/embed/Ui59depm1js"
                 title="YouTube video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

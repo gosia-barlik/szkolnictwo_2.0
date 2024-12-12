@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import UnfoldMoreRoundedIcon from "@mui/icons-material/UnfoldMoreRounded";
 import * as phrases from "../../pages/dictionaries/pl.json";
 
 const Row = (props) => {
@@ -47,7 +48,11 @@ const Row = (props) => {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom style={{marginBottom:"10px"}}>
+              <Typography
+                variant="h6"
+                gutterBottom
+                style={{ marginBottom: "10px" }}
+              >
                 {phrases.qualification.schools_tab.details}
               </Typography>
 
@@ -66,7 +71,7 @@ const Row = (props) => {
                   </Typography>
                   <Typography variant="body2">
                     {phrases.qualification.schools_tab.voivodeship}
-                    <strong>{props.details.voivodship}</strong>
+                    <strong>{props.details.voivodeship}</strong>
                   </Typography>
                   <Typography variant="body2">
                     {phrases.qualification.schools_tab.zip_code}
@@ -112,94 +117,7 @@ const Row = (props) => {
   );
 };
 
-const SchoolTable = () => {
-  const results = [
-    {
-      name: "Branżowa szkoła I stopnia w Trzebini Zakładu Doskonalenia Zaowodowego",
-      city: "Trzebnia",
-      details: {
-        regon: "492829881",
-        nip: null,
-        voivodship: "mazowieckie",
-        zip_code: "34-600",
-        email_address: "zsmelimanowa@pro.onet.pl",
-        district: "limanowski",
-        commune: "Limanowa",
-        city: "Limanowa",
-        street: "ul. Zygmunta Augusta",
-        phone_number: "183372602",
-        website_url: "www.zstio.edu.pl",
-      },
-    },
-    {
-      name: "Rzemieślnicza Branżowa Szkoła I Stopnia w Tarnowie",
-      city: "Limanowa",
-      details: {
-        regon: "10468765",
-        nip: null,
-        voivodship: "mazowieckie",
-        zip_code: "34-600",
-        email_address: "zsmelimanowa@pro.onet.pl",
-        district: "łódzkie",
-        commune: "Limanowa",
-        city: "Limanowa",
-        street: "ul. Zygmunta Augusta",
-        phone_number: "183372602",
-        website_url: "www.zstio.edu.pl",
-      },
-    },
-    {
-      name: "Zespół Szkół Nr 2 w Andrychowie Im.Św.Jadwigi Królowej-Branżowa Szkoła I Stopnia Nr 2 w Andrychowie",
-      city: "Andrychów",
-      details: {
-        regon: "10468765",
-        nip: null,
-        voivodship: "mazowieckie",
-        zip_code: "34-600",
-        email_address: "zsmelimanowa@pro.onet.pl",
-        district: "limanowski",
-        commune: "Andrychów",
-        city: "Andrychów",
-        street: "ul. Zygmunta Augusta",
-        phone_number: "183372602",
-        website_url: "www.zstio.edu.pl",
-      },
-    },
-    {
-      name: "Zespół Szkół Im.Ken -Branżowa Szkoła I Stopnia Nr 1 w Kalwarii Zebrzydowskiej",
-      city: "Kalwaria Zebrzydowska",
-      details: {
-        regon: "10468765",
-        nip: null,
-        voivodship: "mazowieckie",
-        zip_code: "34-600",
-        email_address: "zsmelimanowa@pro.onet.pl",
-        district: "limanowski",
-        commune: "Limanowa",
-        city: "Limanowa",
-        street: "ul. Zygmunta Augusta",
-        phone_number: "183372602",
-        website_url: "www.zstio.edu.pl",
-      },
-    },
-    {
-      name: "Zawodowa Szkoła Branżowa I Stopnia Cechu Rzemiosł Różnych w Nowym Targu",
-      city: "Nowy Targ",
-      details: {
-        regon: "10468765",
-        nip: null,
-        voivodship: "mazowieckie",
-        zip_code: "34-600",
-        email_address: "zsmelimanowa@pro.onet.pl",
-        district: "limanowski",
-        commune: "Limanowa",
-        city: "Limanowa",
-        street: "ul. Zygmunta Augusta",
-        phone_number: "183372602",
-        website_url: "www.zstio.edu.pl",
-      },
-    },
-  ];
+const SchoolTable = (props) => {
 
   return (
     <TableContainer component={Paper}>
@@ -208,19 +126,25 @@ const SchoolTable = () => {
           <TableRow>
             <TableCell />
             <TableCell>
-              <Typography variant="body2" style={{ fontWeight: 700 }}>
-                Nazwa szkoły lub placówki oświatowej
-              </Typography>
+              <Stack direction="row" >
+                <UnfoldMoreRoundedIcon />
+                <Typography variant="body2" style={{ fontWeight: 700 }}>
+                  Nazwa szkoły lub placówki oświatowej
+                </Typography>
+              </Stack>
             </TableCell>
-            <TableCell align="right">
-              <Typography variant="body2" style={{ fontWeight: 700 }}>
-                Miasto
-              </Typography>
+            <TableCell >
+              <Stack direction="row" sx={{ justifyContent:"flex-end" }}>
+                <UnfoldMoreRoundedIcon />
+                <Typography variant="body2" style={{ fontWeight: 700 }}>
+                  Miasto
+                </Typography>
+              </Stack>
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {results.map((row) => (
+          {props.results.map((row) => (
             <Row
               key={row.name}
               name={row.name}
