@@ -55,6 +55,7 @@ const Dropdown = ({ label, options, value, onChange, disabled }) => (
 );
 
 const QualificationSchool = () => {
+  const [activeProvinceId, setActiveProvinceId] = useState("PL-16"); 
   const [selectedVoivodeship, setSelectedVoivodeship] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
   const [page, setPage] = useState(1);
@@ -83,6 +84,7 @@ const QualificationSchool = () => {
     selectedCity,
   ]);
 
+ // Obsługa zmiany selectów
   const handleSelectChange = (event, type) => {
     const value = event.target.value;
 
@@ -109,6 +111,7 @@ const QualificationSchool = () => {
 
     if (voivodeship) {
       setSelectedVoivodeship(voivodeship);
+      setActiveProvinceId(voivodeshipId);
       setSelectedCity(null); // Reset miasta przy zmianie województwa
     }
   };
@@ -128,7 +131,7 @@ const QualificationSchool = () => {
           <Dropdown
             label={phrases.common.labels.voivodeship}
             options={voivodeshipOptions}
-            value={selectedVoivodeship?.id || ""} // Ustawiamy tylko `id` jako wartość
+            value={selectedVoivodeship?.id || ""} 
             onChange={(event) => handleSelectChange(event, "voivodeship")}
             disabled={voivodeshipOptions.length === 0}
           />
@@ -158,7 +161,7 @@ const QualificationSchool = () => {
               {phrases.common.selected_voivodeship} {selectedVoivodeship.name}
             </Typography>
           )}
-          <QualificationSchoolMap handleMapChange={handleMapChange} />
+          <QualificationSchoolMap handleMapChange={handleMapChange} activeProvinceId={activeProvinceId}/>
         </Box>
       </Stack>
 

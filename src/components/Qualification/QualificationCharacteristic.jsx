@@ -82,43 +82,43 @@ const QualificationCharacteristic = (props) => {
       </Typography>
 
       {characteristics && (
-        <Section iconColor="#ea144e" title="Jakie zadania będę wykonywać">
+        <Section iconColor="#1565c0" title="Jakie zadania będę wykonywać">
           <Typography variant="body2">{characteristics}</Typography>
         </Section>
       )}
 
       {sub_qualifications && (
-        <Section iconColor="#1565c0" title="Czego się będę uczyć">
+        <Section iconColor="#3d5afe" title="Czego się będę uczyć">
           <NestedAccordion data={sub_qualifications} />
         </Section>
       )}
 
       {professions.skills && (
-        <Section iconColor="#388e3c" title="Po zdobyciu tego zawodu będziesz">
-          <ListWithIcons items={professions.skills} iconColor="#388e3c" />
+        <Section iconColor="#651fff" title="Po zdobyciu tego zawodu będziesz">
+          <ListWithIcons items={professions.skills} iconColor="#651fff" />
         </Section>
       )}
 
       {professions.predispositions && (
         <Section
-          iconColor="#ffab00"
+          iconColor="#ea144e"
           title="Jakie powinienem mieć predyspozycje"
         >
           <ListWithIcons
             items={professions.predispositions}
-            iconColor="#ffab00"
+            iconColor="#ea144e"
           />
         </Section>
       )}
 
       {professions.career_prospects && (
-        <Section iconColor="#651fff" title="Gdzie mogę pracować">
+        <Section iconColor="#EF6C00" title="Gdzie mogę pracować">
           <Grid container spacing={2} columns={{ xs: 4, md: 12 }}>
             {professions.career_prospects.map((el, index) => (
               <Grid size={6} key={index}>
                 <Stack direction="row">
                   <CheckRoundedIcon
-                    sx={{ color: "#651fff", marginRight: "12px" }}
+                    sx={{ color: "#EF6C00", marginRight: "12px" }}
                     fontSize="small"
                   />
                   <Typography variant="body2">{el}</Typography>
@@ -130,13 +130,13 @@ const QualificationCharacteristic = (props) => {
       )}
 
       {professions.work_conditions && (
-        <Section iconColor="#3d5afe" title="Jak będę pracować">
+        <Section iconColor="#ffab00" title="Jak będę pracować">
           <Grid container spacing={2} columns={{ xs: 4, md: 12 }}>
             {professions.work_conditions.map((el, index) => (
               <Grid size={6} key={index}>
                 <Stack direction="row">
                   <CheckRoundedIcon
-                    sx={{ color: "#3d5afe", marginRight: "12px" }}
+                    sx={{ color: "#ffab00", marginRight: "12px" }}
                     fontSize="small"
                   />
                   <Typography variant="body2">{el}</Typography>
@@ -147,23 +147,29 @@ const QualificationCharacteristic = (props) => {
         </Section>
       )}
 
+      {characteristics && (
+        <Section iconColor="#64dd17" title="Gdzie będę się uczyć">
+          <Typography variant="body2">{characteristics}</Typography>
+        </Section>
+      )}
+
       <Grid container spacing={2} columns={{ xs: 4, md: 12 }}>
         <Grid size={6}>
           {professions.advantages && (
-            <Section iconColor="#64dd17" title="Plusy">
+            <Section iconColor="#1B5E20" title="Plusy">
               <ListWithIcons
                 items={professions.advantages}
-                iconColor="#64dd17"
+                iconColor="#1B5E20"
               />
             </Section>
           )}
         </Grid>
         <Grid size={6}>
           {professions.disadvantages && (
-            <Section iconColor="#ef6c00" title="Minusy">
+            <Section iconColor="#E65100" title="Minusy">
               <ListWithIcons
                 items={professions.disadvantages}
-                iconColor="#ef6c00"
+                iconColor="#E65100"
               />
             </Section>
           )}

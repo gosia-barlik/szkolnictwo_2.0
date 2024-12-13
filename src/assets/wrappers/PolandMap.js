@@ -1,16 +1,23 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-
   path {
     cursor: pointer;
-    &.active {
-      fill: $accent-color;
-    }
   }
 
   .school-map-svg path:focus {
-    outline: none; /* Remove default outline */
+    outline: none; 
+  }
+
+  .school-map-svg .map-region {
+    fill: #fff;
+    stroke: #2da0ce;
+    stroke-width: 1;
+  }
+
+    .school-map-svg .map-region.active {
+    fill: #fabd3a;
+    stroke-width: 2;
   }
 
   .school-map-svg path:focus-visible {
