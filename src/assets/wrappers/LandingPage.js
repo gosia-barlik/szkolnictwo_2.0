@@ -27,20 +27,23 @@ const Wrapper = styled.div`
 
   //QualificationListItem
   .qualifications-by-region .qualification-card,
-  .qualifications-by-salary .qualification-card {
+  .qualifications-by-salary .qualification-card,
+  .qualifications-list .qualification-card {
     display: flex;
     margin-top: 12px;
   }
 
   .qualifications-by-region .qualification-card a h5,
-  .qualifications-by-salary .qualification-card a h5  {
+  .qualifications-by-salary .qualification-card a h5,
+  .qualifications-list .qualification-card a h5  {
     font-family: "Quicksand";
     font-size: 16px;
     font-weight: 600;
   }
 
   .qualifications-by-region .qualification-card a h6,
-  .qualifications-by-salary .qualification-card a h6 {
+  .qualifications-by-salary .qualification-card a h6,
+  .qualifications-list .qualification-card a h6 {
     font-family: "Quicksand";
     margin-right: 12px;
     margin-top: 4px;
@@ -48,7 +51,8 @@ const Wrapper = styled.div`
   }
 
   .qualifications-by-region img,
-  .qualifications-by-salary img {
+  .qualifications-by-salary img,
+  .qualifications-list img {
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 8px;
@@ -57,7 +61,8 @@ const Wrapper = styled.div`
   }
 
   .qualifications-by-region a.link,
-  .qualifications-by-salary a.link {
+  .qualifications-by-salary a.link,
+  .qualifications-list a.link {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -67,7 +72,8 @@ const Wrapper = styled.div`
   }
 
   .qualifications-by-region .icons-container,
-  .qualifications-by-salary .icons-container{
+  .qualifications-by-salary .icons-container,
+  .qualifications-list .icons-container{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -76,7 +82,8 @@ const Wrapper = styled.div`
   }
 
   .qualifications-by-region .details-container,
-  .qualifications-by-salary .details-container{
+  .qualifications-by-salary .details-container,
+  .qualifications-list .details-container{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
