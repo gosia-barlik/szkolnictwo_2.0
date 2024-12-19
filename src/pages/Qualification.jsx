@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { Typography, Button, IconButton } from "@mui/material";
 import KeyboardDoubleArrowLeftRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftRounded";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
@@ -69,6 +68,7 @@ const Qualification = () => {
     sub_qualifications,
     characteristics,
     professions,
+    similar_qualifications,
   } = qualification;
 
   const addToFav = () => {
@@ -135,6 +135,7 @@ const Qualification = () => {
           sub_qualifications={sub_qualifications}
           characteristics={characteristics}
           professions={professions}
+          similar_qualifications={similar_qualifications}
         />
       </div>
     </Wrapper>

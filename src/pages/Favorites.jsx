@@ -28,7 +28,7 @@ const Favorites = () => {
           <>
             <Typography variant="h6" style={{marginTop:"60px"}}>Twój schowek jest pusty.</Typography>
             <Typography>
-              Wygląda na to, że nie dodałeś jeszcze nic do schowka.{" "}
+              Wygląda na to, że nie dodałeś jeszcze nic do schowka.
             </Typography>
           </>
         )}

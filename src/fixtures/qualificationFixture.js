@@ -80,9 +80,29 @@ const qualificationFixture = {
           "Umiejętności praktyczne będziesz zdobywać w pracowni bezpieczeństwa i higieny pracy",
           "Kształcenie praktyczne może mieć miejsce w pracowniach szkolnych, placówkach kształcenia ustawicznego, placówkach kształcenia praktycznego oraz podmiotach stanowiących potencjalne miejsce zatrudnienia absolwentów szkół kształcących w zawodzie",
         ],
-        advantages: ["duży rynek pracy zarówno w Polsce, jak i za granicą","możliwość pracy w wielu sektorach gospodarki"],
-        disadvantages: ["powtarzalność wykonywanych czynności."]
+        advantages: [
+          "duży rynek pracy zarówno w Polsce, jak i za granicą",
+          "możliwość pracy w wielu sektorach gospodarki",
+        ],
+        disadvantages: ["powtarzalność wykonywanych czynności."],
       },
+      similar_qualifications: [
+        {
+          id: 1660,
+          name: "Diagnozowanie i naprawa pojazdów elektrycznych i hybrydowych",
+          url_to_zrk: "https://kwalifikacje.gov.pl/k?id_kw=13986",
+        },
+        {
+          id: 1572,
+          name: "Montowanie manualne komponentów i urządzeń elektrycznych, elektronicznych i mechatronicznych",
+          url_to_zrk: "https://kwalifikacje.gov.pl/k?id_kw=13892",
+        },
+        {
+          id: 670,
+          name: "Naprawa, konserwacja i modernizacja rowerów",
+          url_to_zrk: "https://kwalifikacje.gov.pl/k?id_kw=12690",
+        },
+      ],
     },
   ],
 };

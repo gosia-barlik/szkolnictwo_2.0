@@ -96,7 +96,9 @@ const TabsPill = (props) => {
           <QualificationDemand name={props.name} />
         </TabPanel>
         <TabPanel value="4">
-          <QualificationSimilar />
+          <QualificationSimilar
+            similar_qualifications={props.similar_qualifications}
+          />
         </TabPanel>
       </TabContext>
     </Box>

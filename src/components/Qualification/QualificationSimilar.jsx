@@ -1,3 +1,4 @@
+import React from "react";
 import Wrapper from "../../assets/wrappers/QualificationPage";
 import {
   Typography,
@@ -7,57 +8,64 @@ import {
   ListItemText,
   Divider,
   Box,
+  Stack,
+  Checkbox,
+  FormControlLabel,
 } from "@mui/material";
+import certificate from "../../assets/img/certificate.svg";
 
-const QualificationSimilar = () => {
-  const similar_qualifications = [
-    {
-      id: 1660,
-      name: "Diagnozowanie i naprawa pojazdów elektrycznych i hybrydowych",
-      url_to_zrk: "https://kwalifikacje.gov.pl/k?id_kw=13986",
-    },
-    {
-      id: 1572,
-      name: "Montowanie manualne komponentów i urządzeń elektrycznych, elektronicznych i mechatronicznych",
-      url_to_zrk: "https://kwalifikacje.gov.pl/k?id_kw=13892",
-    },
-    {
-      id: 670,
-      name: "Naprawa, konserwacja i modernizacja rowerów",
-      url_to_zrk: "https://kwalifikacje.gov.pl/k?id_kw=12690",
-    },
-  ];
+const QualificationSimilar = (props) => {
 
   return (
     <Wrapper>
-      <Typography variant="h6">
-        Zobacz jakie jeszcze certyfikaty potwierdzające umiejętności możesz
-        zdobyć
-      </Typography>
-      <Typography>
-        Skorzystaj z listy wybranych kwalifikacji ujętych w Zintegrowanym
-        Rejestrze Kwalifikacji
-      </Typography>
-      <Typography
-        variant="body2"
-        style={{ marginTop: "24px", fontWeight: 700 }}
+      <Stack
+        direction={{ xs: "column", md: "row" }}
+        sx={{ marginBottom: "36px" }}
+        spacing={2}
       >
-        Nazwa kwalifikacji
-      </Typography>
-      <Box sx={{ width: { xs: "100%", md: "65%" } }}>
-        <List>
-          {similar_qualifications.map((item) => (
-            <>
-              <ListItem key={item.id}>
-                <ListItemButton component="a" href={item.url_to_zrk}>
-                  <ListItemText primary={item.name} />
-                </ListItemButton>
-              </ListItem>
-              <Divider />
-            </>
-          ))}
-        </List>
-      </Box>
+        <Box sx={{ width: { xs: "100%", md: "65%" } }}>
+          <Typography variant="h6">
+            Zobacz jakie jeszcze certyfikaty potwierdzające umiejętności możesz
+            zdobyć
+          </Typography>
+          <Typography>
+            Skorzystaj z listy wybranych kwalifikacji ujętych w Zintegrowanym
+            Rejestrze Kwalifikacji
+          </Typography>
+          <FormControlLabel
+            style={{ width: "100%" }}
+            control={<Checkbox />}
+            label="Jako uczeń mogę zdobyć za darmo"
+          />
+          <Typography
+            variant="body2"
+            style={{ marginTop: "24px", fontWeight: 700 }}
+          >
+            Nazwa kwalifikacji
+          </Typography>
+          <Box sx={{ width: "100%" }}>
+            <List>
+              {props.similar_qualifications&&props.similar_qualifications.map((item) => (
+                <React.Fragment key={item.id}>
+                  <ListItem key={item.id} style={{paddingLeft:0}}>
+                    <ListItemButton component="a" href={item.url_to_zrk} style={{paddingLeft:0}}>
+                      <ListItemText primary={item.name} />
+                    </ListItemButton>
+                  </ListItem>
+                  <Divider />
+                </React.Fragment>
+              ))}
+            </List>
+          </Box>
+        </Box>
+        <Box>
+          <img
+            src={certificate}
+            alt=""
+            style={{ width: "240px", marginLeft: "120px" }}
+          />
+        </Box>
+      </Stack>
     </Wrapper>
   );
 };
