@@ -11,6 +11,17 @@
       "action": "Wybierz województwo z listy lub skorzystaj z mapy!"
     }
   },
+  "footer":{
+    "application_name": "Kompas szkolnictwa branżowego",
+    "see_also": "Zobacz również",
+    "website_regulations": "Regulamin serwisu",
+    "privacy_policy": "Polityka prywatności",
+    "accessibility_declaration": "Deklaracja dostępności",
+    "contact": "Kontakt",
+    "institution_name": "Instytut Badań Edukacyjnych",
+    "email": "rejestr@ibe.edu.pl",
+    "address": "ul.Górczewska 8, 01-180 Warszawa"
+  },
   "qualification": {
     "area_of_study": "Obszar kształcenia: ",
     "industry": "Branża: ",
