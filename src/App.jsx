@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
-  RelatedApps,
+  About,
   HomeLayout,
   Landing,
   Error,
@@ -42,8 +42,8 @@ const router = createBrowserRouter([
         element: <Qualification />,
       },
       {
-        path: 'related_apps',
-        element: <RelatedApps />,
+        path: 'about',
+        element: <About />,
         errorElement: <SinglePageError />,
       },
       {

@@ -38,9 +38,20 @@ const NavLinkWithIcon = ({ to, label, badgeContent, IconComponent }) => (
 );
 
 // Reusable component for mobile menu items
-const MobileMenuItem = ({ to, label, onClose, badgeContent, IconComponent }) => (
+const MobileMenuItem = ({
+  to,
+  label,
+  onClose,
+  badgeContent,
+  IconComponent,
+}) => (
   <MenuItem onClick={onClose}>
-    <NavLinkWithIcon to={to} label={label} badgeContent={badgeContent} IconComponent={IconComponent} />
+    <NavLinkWithIcon
+      to={to}
+      label={label}
+      badgeContent={badgeContent}
+      IconComponent={IconComponent}
+    />
   </MenuItem>
 );
 
@@ -58,34 +69,48 @@ const Navbar = () => {
           <Container maxWidth="xl">
             <Toolbar>
               <img src={img} alt="logotyp" />
-              
-              <NavLink to="/" className="nav-link logo">
-                <Typography
-                  color="black"
-                  className="text logo"
-                  sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-                >
-                  Kompas szkolnictwa <br /> branżowego
-                </Typography>
-              </NavLink>
+              <Box
+                style={{ display: "flex", flexDirection: "row", width: 180 }}
+              >
+                <NavLink to="/" className="nav-link logo">
+                  <Typography
+                    color="black"
+                    className="text logo"
+                    sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                  >
+                    Kompas szkolnictwa branżowego
+                  </Typography>
+                </NavLink>
+              </Box>
 
               {/* Desktop Links */}
               <Box
                 className="links-container"
-                sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, pl: 10 }}
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", md: "flex" },
+                  pl: 10,
+                }}
               >
-                <NavLinkWithIcon to="/related_apps" label="Powiązane narzędzia" />
-                <NavLinkWithIcon 
-                  to="/favorites" 
-                  label="Schowek" 
-                  badgeContent={favorites.length} 
-                  IconComponent={FavoriteBorderRoundedIcon} 
+                <NavLinkWithIcon
+                  to="/about"
+                  label="O aplikacji"
+                />
+                <NavLinkWithIcon
+                  to="/favorites"
+                  label="Schowek"
+                  badgeContent={favorites.length}
+                  IconComponent={FavoriteBorderRoundedIcon}
                 />
               </Box>
 
               {/* Mobile Menu */}
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
+                <IconButton
+                  size="large"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                >
                   <MenuRoundedIcon />
                 </IconButton>
                 <Menu
@@ -96,17 +121,17 @@ const Navbar = () => {
                   onClose={handleCloseNavMenu}
                   sx={{ display: { xs: "block", md: "none" } }}
                 >
-                  <MobileMenuItem 
-                    to="/related_apps" 
-                    label="Powiązane narzędzia" 
-                    onClose={handleCloseNavMenu} 
+                  <MobileMenuItem
+                    to="/about"
+                    label="Powiązane narzędzia"
+                    onClose={handleCloseNavMenu}
                   />
-                  <MobileMenuItem 
-                    to="/favorites" 
-                    label="Schowek" 
-                    badgeContent={favorites.length} 
-                    onClose={handleCloseNavMenu} 
-                    IconComponent={FavoriteBorderRoundedIcon} 
+                  <MobileMenuItem
+                    to="/favorites"
+                    label="Schowek"
+                    badgeContent={favorites.length}
+                    onClose={handleCloseNavMenu}
+                    IconComponent={FavoriteBorderRoundedIcon}
                   />
                 </Menu>
               </Box>

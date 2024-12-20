@@ -11,7 +11,7 @@
       "action": "Wybierz województwo z listy lub skorzystaj z mapy!"
     }
   },
-  "footer":{
+  "footer": {
     "application_name": "Kompas szkolnictwa branżowego",
     "see_also": "Zobacz również",
     "website_regulations": "Regulamin serwisu",
@@ -82,8 +82,43 @@
       "voivodeship": "Województwo",
       "city": "Miasto"
     },
+    "application_name": "Kompas szkolnictwa branżowego",
     "selected_voivodeship": "Wybrane województwo: ",
     "clear_filters": "Wyczyść fitry",
     "go_back": "Wróć"
+  },
+  "about": {
+    "title": "O aplikacji",
+    "for_whom": {
+      "title": "Dla kogo",
+      "description": "Aplikacja powstała z myślą o:",
+      "recipients": {
+        "primary_students": "uczniach szkół podstawowych ",
+        "primary_students_description": "(zwłaszcza klas 7-8), którzy szukają praktycznego zawodu i szkoły, w której będą mogli się go nauczyć;",
+        "vocational_students": "uczniach szkół branżowych i techników, ",
+        "vocational_students_description": "którzy nie są zadowoleni z wybranego zawodu i którzy szukają innych możliwości;",
+        "parents": "rodzicach uczniów ",
+        "parents_description": "jako pomoc w rozmowie o przyszłym zawodzie;",
+        "counselors": "doradcach zawodowych, ",
+        "counselors_description": "którzy pracują w szkołach i wspierają młodzież w wyborze ścieżki kształcenia po szkole podstawowej."
+      }
+    },
+    "help": {
+      "title": "Jak możemy Ci pomóc",
+      "description": "Aplikacja Kompas Szkolnictwa Branżowego (KSZB):",
+      "item_1": "umożliwia przeglądanie kwalifikacji ze szkolnictwa branżowego - zawodów,",
+      "item_2": "wspomaga wybór dróg rozwoju edukacyjno-zawodowego",
+      "item_3": "ułatwia wybór zawodu i szkoły w oparciu o rzetelne dane pochodzące z publicznych źródeł."
+    },
+    "sources": {
+      "title":"Z jakich źródeł korzystamy",
+      "description": "Aplikacja przedstawia ponad 200 zawodów i kwalifikacji zawodowych ze szkolnictwa branżowego określonych w podstawach programowych kształcenia w zawodach z roku 2019, 2023 i 2024 roku.Zawody są pogrupowane wg obszarów kształcenia i branż. Gromadzimy i udostępniamy informacje o zawodach pochodzące z różnych źródeł.",
+      "job_description": {
+        "title": "Poznaj zawód",
+        "item_1": " - opis zawodu o sekcja kwalifikacje zawodowe i zestawy efektów uczenia się pochodzą ze Zintegrowanego Rejestru Kwalifikacji i są dynamicznie uaktualniane.",
+        "item_2": " - pozostałe informacje pochodzą z informatorów o zawodach przygotowywanych przez Ośrodek Rozwoju Edukacji. W obecnej wersji aplikacji wykorzystujemy dane z informatorów z lat 2020 i 2023. Brakuje w nich jednak części zawodów. Dane aktualizujemy w momencie opublikowania nowego informatora",
+        "item_3": " - Multimedia to materiały filmowe udostępnione przez opiekunów portalu Infozawodowe."
+      }
+    }
   }
 }
