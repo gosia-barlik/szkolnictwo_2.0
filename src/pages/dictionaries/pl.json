@@ -111,13 +111,30 @@
       "item_3": "ułatwia wybór zawodu i szkoły w oparciu o rzetelne dane pochodzące z publicznych źródeł."
     },
     "sources": {
-      "title":"Z jakich źródeł korzystamy",
+      "title": "Z jakich źródeł korzystamy",
       "description": "Aplikacja przedstawia ponad 200 zawodów i kwalifikacji zawodowych ze szkolnictwa branżowego określonych w podstawach programowych kształcenia w zawodach z roku 2019, 2023 i 2024 roku.Zawody są pogrupowane wg obszarów kształcenia i branż. Gromadzimy i udostępniamy informacje o zawodach pochodzące z różnych źródeł.",
       "job_description": {
         "title": "Poznaj zawód",
         "item_1": " - opis zawodu o sekcja kwalifikacje zawodowe i zestawy efektów uczenia się pochodzą ze Zintegrowanego Rejestru Kwalifikacji i są dynamicznie uaktualniane.",
         "item_2": " - pozostałe informacje pochodzą z informatorów o zawodach przygotowywanych przez Ośrodek Rozwoju Edukacji. W obecnej wersji aplikacji wykorzystujemy dane z informatorów z lat 2020 i 2023. Brakuje w nich jednak części zawodów. Dane aktualizujemy w momencie opublikowania nowego informatora",
         "item_3": " - Multimedia to materiały filmowe udostępnione przez opiekunów portalu Infozawodowe."
+      },
+      "find_school": {
+        "title": "Znajdź szkołę",
+        "description": " - lista i dane adresowe szkół pochodzą z Rejestru Szkół i Placówek Oświatowych administrowanego przez Centrum Informatyczne Edukacji"
+      },
+      "demand": {
+        "title": "Sprawdź zapotrzebowanie",
+        "item_1": " - dane o prognozie zapotrzebowania pochodzą z Obwieszczenia Ministra Edukacji z dnia 24 stycznia 2024 r. Minister Edukacji publikuje obwieszczenia co roku w styczniu. Dane w aplikacji publikujemy w styczniu/lutym.",
+        "item_2": " - dane o popularności to wskaźnik pochodzący z monitoringu losów absolwentów publicznych i niepublicznych szkół ponadpodstawowych. Na początku każdego roku Ministerstwo Edukacji publikuje raport. Dane aktualizujemy w styczniu/lutym."
+      },
+      "similar_certificates": {
+        "title": "Znajdź pokrewne certyfikaty",
+        "description": " – dane pochodzą z modelu AI pracującego na danych ze Zintegrowanego Rejestru Kwalifikacji"
+      },
+      "salary": {
+        "title": "Dane o wynagrodzeniu oraz wskaźnikach bezrobocia",
+        "description": " wykorzystane w filtrach to informacje pochodzące z monitoringu losów absolwentów publicznych i niepublicznych szkół ponadpodstawowych. Na początku każdego roku Ministerstwo Edukacji publikuje raport. Dane aktualizujemy w styczniu/lutym."
       }
     }
   }
