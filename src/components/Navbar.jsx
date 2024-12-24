@@ -1,66 +1,39 @@
-import React, { useState } from "react";
-import { cloneElement } from "react";
-import Wrapper from "../assets/wrappers/Navbar";
-import { NavLink, Link } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Menu from "@mui/material/Menu";
-import IconButton from "@mui/material/IconButton";
-import MenuItem from "@mui/material/MenuItem";
-import Badge from "@mui/material/Badge";
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import { styled } from "@mui/material/styles";
-import img from "../assets/img/szkolnictwo-logotyp.svg";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
-import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import React, { useState, cloneElement, forwardRef } from "react";
 import { useSelector } from "react-redux";
+import { NavLink, Link } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+  Container,
+  Menu,
+  IconButton,
+  MenuItem,
+  Badge,
+  useScrollTrigger,
+  Tooltip,
+  styled,
+} from "@mui/material";
+import {
+  FavoriteBorderRounded as FavoriteIcon,
+  MenuRounded as MenuIcon,
+} from "@mui/icons-material";
+import img from "../assets/img/szkolnictwo-logotyp.svg";
+import Wrapper from "../assets/wrappers/Navbar";
+import * as phrases from "../pages/dictionaries/pl.json";
 
-// ElevationScroll component to handle scroll-triggered elevation
+// Scroll elevation wrapper
 const ElevationScroll = ({ children }) => {
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
   return cloneElement(children, { elevation: trigger ? 4 : 0 });
 };
 
-// Reusable component for menu links
-const NavLinkWithIcon = ({ to, label, badgeContent, IconComponent }) => (
-  <NavLink to={to} className="nav-link" style={{ color: "black" }}>
-    {label}
-    {IconComponent && (
-      <IconButton aria-label={label} title={label}>
-        <Badge badgeContent={badgeContent} color="primary">
-          <IconComponent style={{ color: "black" }} />
-        </Badge>
-      </IconButton>
-    )}
-  </NavLink>
-);
-
-// Reusable component for mobile menu items
-const MobileMenuItem = ({
-  to,
-  label,
-  onClose,
-  badgeContent,
-  IconComponent,
-}) => (
-  <MenuItem onClick={onClose}>
-    <NavLinkWithIcon
-      to={to}
-      label={label}
-      badgeContent={badgeContent}
-      IconComponent={IconComponent}
-    />
-  </MenuItem>
-);
-
+// Styled tooltip component
 const HtmlTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
+  [`& .MuiTooltip-tooltip`]: {
     backgroundColor: "#f5f5f9",
     color: "rgba(0, 0, 0, 0.87)",
     maxWidth: 360,
@@ -69,12 +42,66 @@ const HtmlTooltip = styled(({ className, ...props }) => (
   },
 }));
 
+// Tooltip content generator
+const FavoritesTooltipContent = ({ favorites }) => (
+  <>
+    {favorites.map((item) => (
+      <Link to={`/qualification/${item.id}`} key={item.id} className="link">
+        <Typography>{item.name}</Typography>
+      </Link>
+    ))}
+  </>
+);
+
+// Reusable navigation link with optional icon
+const NavLinkWithIcon = forwardRef(
+  ({ to, label, badgeContent, IconComponent, ...props }, ref) => (
+    <NavLink
+      to={to}
+      ref={ref}
+      {...props}
+      className="nav-link"
+      style={{ color: "black" }}
+    >
+      {label}
+      {IconComponent && (
+        <IconButton aria-label={label} title={label}>
+          <Badge badgeContent={badgeContent} color="primary">
+            <IconComponent style={{ color: "black" }} />
+          </Badge>
+        </IconButton>
+      )}
+    </NavLink>
+  )
+);
+
 const Navbar = () => {
   const { favorites } = useSelector((state) => state.clipboard);
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
   const handleCloseNavMenu = () => setAnchorElNav(null);
+
+  const desktopLinks = [
+    { to: "/about", label: phrases.about.title },
+    {
+      to: "/favorites",
+      label: phrases.common.storage,
+      IconComponent: FavoriteIcon,
+      tooltip: <FavoritesTooltipContent favorites={favorites} />,
+      badgeContent: favorites.length,
+    },
+  ];
+
+  const mobileLinks = [
+    { to: "/about", label: phrases.about.title },
+    {
+      to: "/favorites",
+      label: phrases.common.storage,
+      IconComponent: FavoriteIcon,
+      badgeContent: favorites.length,
+    },
+  ];
 
   return (
     <Wrapper>
@@ -92,7 +119,7 @@ const Navbar = () => {
                     className="text logo"
                     sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
                   >
-                    Kompas szkolnictwa branżowego
+                    {phrases.common.application_name}
                   </Typography>
                 </NavLink>
               </Box>
@@ -106,33 +133,26 @@ const Navbar = () => {
                   pl: 10,
                 }}
               >
-                <NavLinkWithIcon to="/about" label="O aplikacji" />
-
-                <HtmlTooltip
-                  title={
-                    <React.Fragment>
-                      {favorites &&
-                        favorites.map((el) => (
-                          <Link to={`/qualification/${el.id}`}  key={el.id} className="link">
-                            <Typography>{el.name}</Typography>
-                          </Link>
-                        ))}
-                    </React.Fragment>
-                  }
-                >
-                  <NavLink
-                    to="/favorites"
-                    className="nav-link"
-                    style={{ color: "black" }}
-                  >
-                    Schowek
-                    <IconButton aria-label="Schowek" title="Schowek">
-                      <Badge badgeContent={favorites.length} color="primary">
-                        <FavoriteBorderRoundedIcon style={{ color: "black" }} />
-                      </Badge>
-                    </IconButton>
-                  </NavLink>
-                </HtmlTooltip>
+                {desktopLinks.map(
+                  ({ to, label, IconComponent, tooltip, badgeContent }) =>
+                    favorites.length>0 ? (
+                      <HtmlTooltip key={to} title={tooltip}>
+                        <NavLinkWithIcon
+                          to={to}
+                          label={label}
+                          badgeContent={badgeContent}
+                          IconComponent={IconComponent}
+                        />
+                      </HtmlTooltip>
+                    ) : (
+                      <NavLinkWithIcon
+                        key={to}
+                        to={to}
+                        label={label}
+                        IconComponent={IconComponent}
+                      />
+                    )
+                )}
               </Box>
 
               {/* Mobile Menu */}
@@ -142,7 +162,7 @@ const Navbar = () => {
                   onClick={handleOpenNavMenu}
                   color="inherit"
                 >
-                  <MenuRoundedIcon />
+                  <MenuIcon />
                 </IconButton>
                 <Menu
                   id="menu-appbar"
@@ -152,18 +172,18 @@ const Navbar = () => {
                   onClose={handleCloseNavMenu}
                   sx={{ display: { xs: "block", md: "none" } }}
                 >
-                  <MobileMenuItem
-                    to="/about"
-                    label="Powiązane narzędzia"
-                    onClose={handleCloseNavMenu}
-                  />
-                  <MobileMenuItem
-                    to="/favorites"
-                    label="Schowek"
-                    badgeContent={favorites.length}
-                    onClose={handleCloseNavMenu}
-                    IconComponent={FavoriteBorderRoundedIcon}
-                  />
+                  {mobileLinks.map(
+                    ({ to, label, IconComponent, badgeContent }) => (
+                      <MenuItem key={to} onClick={handleCloseNavMenu}>
+                        <NavLinkWithIcon
+                          to={to}
+                          label={label}
+                          badgeContent={badgeContent}
+                          IconComponent={IconComponent}
+                        />
+                      </MenuItem>
+                    )
+                  )}
                 </Menu>
               </Box>
             </Toolbar>

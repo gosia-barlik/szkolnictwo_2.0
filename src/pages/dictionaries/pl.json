@@ -85,7 +85,8 @@
     "application_name": "Kompas szkolnictwa branżowego",
     "selected_voivodeship": "Wybrane województwo: ",
     "clear_filters": "Wyczyść fitry",
-    "go_back": "Wróć"
+    "go_back": "Wróć",
+    "storage": "Schowek"
   },
   "about": {
     "title": "O aplikacji",
