@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   }
   .home-header .main.autocomplete {
     margin-top: 24px;
-    width:80%
+    width: 100%;
   }
 
   .column-left a.button {
@@ -14,10 +14,11 @@ const Wrapper = styled.div`
     border-radius: 50px;
     padding: 12px 16px;
     font-weight: 700;
-    margin-top: 34px;
+    margin-top: 14px;
     margin-left: 12px;
     background-color: #ffc107;
-    height: 42px
+    height: 42px;
+    max-width: 120px;
   }
 
   .qualifications-by-region,
@@ -35,7 +36,7 @@ const Wrapper = styled.div`
 
   .qualifications-by-region .qualification-card a h5,
   .qualifications-by-salary .qualification-card a h5,
-  .qualifications-list .qualification-card a h5  {
+  .qualifications-list .qualification-card a h5 {
     font-family: "Quicksand";
     font-size: 16px;
     font-weight: 600;
@@ -73,7 +74,7 @@ const Wrapper = styled.div`
 
   .qualifications-by-region .icons-container,
   .qualifications-by-salary .icons-container,
-  .qualifications-list .icons-container{
+  .qualifications-list .icons-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -83,14 +84,13 @@ const Wrapper = styled.div`
 
   .qualifications-by-region .details-container,
   .qualifications-by-salary .details-container,
-  .qualifications-list .details-container{
+  .qualifications-list .details-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     margin-right: 18px;
   }
 
- 
   .MuiPagination-ul {
     justify-content: center;
   }
@@ -98,6 +98,12 @@ const Wrapper = styled.div`
   @media (min-width: 768px) {
     .qualifications-by-region {
       margin-top: 240px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .column-left a.button {
+      margin-top: 28px;
     }
   }
 `;

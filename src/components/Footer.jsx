@@ -56,10 +56,10 @@ const Footer = () => {
         }}
       >
         <Stack
-          direction="row"
+          direction={{ xs: "column", sm: "row" }}
           justifyContent="center"
-          spacing={8}
-          sx={{ height: 140, marginTop: 4 }}
+          spacing={{ xs: 2, md: 8 }}
+          sx={{ height: { xs: 380, sm: 180, md: 140 }, marginTop: 4 }}
         >
           {/* Logo Section */}
           <Box style={{ display: "flex", flexDirection: "row" }}>
@@ -121,10 +121,10 @@ const Footer = () => {
 
         {/* Logos Section */}
         <Stack
-          direction="row"
+          direction={{ xs: "column", sm: "row" }}
           alignItems="center"
           justifyContent="center"
-          spacing={5}
+          spacing={{ xs: 1, md: 5 }}
           divider={<Divider orientation="vertical" flexItem />}
           sx={{ marginTop: 4 }}
         >
@@ -137,7 +137,6 @@ const Footer = () => {
             />
           ))}
         </Stack>
-
       </Box>
     </Wrapper>
   );

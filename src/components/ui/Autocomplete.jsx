@@ -35,7 +35,13 @@ const InputAutocomplete = (props) => {
 
   return (
     props.results && (
-      <Box style={{ display: "flex", flexDirection: "row" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: "center",
+        }}
+      >
         <Autocomplete
           value={filters_phrase}
           freeSolo
@@ -50,7 +56,11 @@ const InputAutocomplete = (props) => {
             <TextField fullWidth {...params} label={props.label} />
           )}
         />
-        <NavLink className="button" to="/search_results" style={{color:"black"}}>
+        <NavLink
+          className="button"
+          to="/search_results"
+          style={{ color: "black"}}
+        >
           Zatwierdź
         </NavLink>
       </Box>

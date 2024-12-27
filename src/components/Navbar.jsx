@@ -117,7 +117,7 @@ const Navbar = () => {
                   <Typography
                     color="black"
                     className="text logo"
-                    sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                    sx={{ display: { xs: "none", sm: "flex" }, mr: 1 }}
                   >
                     {phrases.common.application_name}
                   </Typography>
@@ -129,7 +129,7 @@ const Navbar = () => {
                 className="links-container"
                 sx={{
                   flexGrow: 1,
-                  display: { xs: "none", md: "flex" },
+                  display: { xs: "none", sm: "flex" },
                   pl: 10,
                 }}
               >
@@ -156,7 +156,7 @@ const Navbar = () => {
               </Box>
 
               {/* Mobile Menu */}
-              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", sm: "none" } }}>
                 <IconButton
                   size="large"
                   onClick={handleOpenNavMenu}
@@ -170,7 +170,7 @@ const Navbar = () => {
                   keepMounted
                   open={Boolean(anchorElNav)}
                   onClose={handleCloseNavMenu}
-                  sx={{ display: { xs: "block", md: "none" } }}
+                  sx={{ display: { xs: "block", sm: "none" } }}
                 >
                   {mobileLinks.map(
                     ({ to, label, IconComponent, badgeContent }) => (

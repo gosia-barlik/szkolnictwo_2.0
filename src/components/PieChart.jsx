@@ -19,7 +19,24 @@ import {
 const PieChart = (props) => {
   const { filters_industry, filters_area, graph_items, selected_item } =
     useSelector((state) => state.searchResults);
+  const [isLargeScreen, setIsLargeScreen] = React.useState(
+    window.innerWidth > 450
+  );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(isLargeScreen);
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth > 450);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup listener on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleSearchResults = (newValue) => {
     dispatch(changeResults(newValue));
@@ -37,11 +54,18 @@ const PieChart = (props) => {
     dispatch(setSelectedItem(newValue));
   };
 
-  const graphOptions = {
-    width: 440,
-    height: 440,
-    radius: Math.min(440, 440) / 2,
-  };
+  const graphOptions =
+    window.innerWidth > 450
+      ? {
+          width: 440, // Large screens
+          height: 440,
+          radius: Math.min(440, 440) / 2,
+        }
+      : {
+          width: 340, // Small screens
+          height: 340,
+          radius: Math.min(340, 340) / 2,
+        };
 
   useEffect(() => {
     drawGraph(graph_items);
@@ -242,7 +266,7 @@ const PieChart = (props) => {
         `translate(${graphOptions.width / 2}, ${graphOptions.height / 2})`
       );
 
-    const arc = d3.arc().innerRadius(114).outerRadius(graphOptions.radius);
+    const arc = d3.arc().innerRadius(94).outerRadius(graphOptions.radius);
 
     const pie = d3.pie().value(() => 1);
     const dataReady = pie(Object.entries(items));
@@ -305,10 +329,13 @@ const PieChart = (props) => {
         <div className="home-compass">
           {filters_area.length <= 0 && filters_industry.length <= 0 && (
             <div className="flex-center">
-              <Typography variant="body2">wybierz obszar</Typography>
+              <Typography variant="body2" align="center">
+                wybierz obszar
+              </Typography>
             </div>
           )}
-          {filters_area.length > 0 &&
+          {isLargeScreen &&
+            filters_area.length > 0 &&
             filters_industry.length <= 0 &&
             selected_item.length > 0 && (
               <div className="flex-center">
@@ -323,7 +350,8 @@ const PieChart = (props) => {
                 <Typography variant="body2">wybierz branżę lub</Typography>
               </div>
             )}
-          {filters_area.length > 0 &&
+          {isLargeScreen &&
+            filters_area.length > 0 &&
             filters_industry.length > 0 &&
             selected_item.length > 0 && (
               <div className="flex-center">
@@ -335,11 +363,22 @@ const PieChart = (props) => {
                 >
                   <strong>{filters_industry}</strong>
                 </Typography>
-                <NavLink className="button" to="/search_results" style={{color:"black"}}>
+              </div>
+            )}
+          {filters_area.length > 0 &&
+            filters_industry.length > 0 &&
+            selected_item.length > 0 && (
+              <div className="flex-center">
+                <NavLink
+                  className="button-main"
+                  to="/search_results"
+                  style={{ color: "black" }}
+                >
                   Zatwierdź
                 </NavLink>
               </div>
             )}
+
           {filters_area.length > 0 && selected_item.length > 0 && (
             <Button
               onClick={() => {
@@ -349,9 +388,10 @@ const PieChart = (props) => {
                 dispatch(setFiltersArea([]));
                 dispatch(changeResults([]));
               }}
-              variant="outlined" 
+              variant="text"
               color="gray"
-              style={{ marginTop: "12px", textTransform: "none", borderRadius: "50px", border:"1px solid silver" }}
+              className="button-secondary"
+           
             >
               Wyczyść wynik
             </Button>
