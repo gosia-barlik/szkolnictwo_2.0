@@ -32,7 +32,7 @@ const HighestSalaryQualifications = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid size={{ xs: 12, md: 6 }}>
+      <Grid size={{ xs: 12, lg: 6 }}>
         <Typography variant="h6" component="h2" color={theme.text.primary.main}>
           Zobacz zawody z najwyższymi zarobkami
         </Typography>
@@ -77,12 +77,12 @@ const HighestSalaryQualifications = () => {
         </div>
       </Grid>
       <Grid
-        size={{ xs: 12, md: 6 }}
+        size={{ xs: 12, lg: 6 }}
         style={{ display: "flex", justifyContent: "center" }}
       >
         <Box
           component="img"
-          sx={{ display: { xs: "none", md: "flex" } }}
+          sx={{ display: { xs: "none", lg: "flex" } }}
           style={{
             height: 488,
             width: 488,

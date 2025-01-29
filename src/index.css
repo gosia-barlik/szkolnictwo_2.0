@@ -88,6 +88,7 @@ body,
   justify-content: center;
   align-items: center;
 }
+
 .MuiTypography-root,
 .MuiButtonBase-root.MuiButton-root,
 div.MuiTypography-body1,
@@ -197,4 +198,11 @@ PROJECT CSS
   text-shadow: -12px 12px 9.8px rgba(178, 235, 242, 0.7),
     21px -18.1px 7.3px rgba(255, 255, 255, 1),
     -18.1px -27.3px 30px rgba(255, 255, 255, 1);
+}
+
+@media (max-width: 450px) {
+  .page {
+    margin: 0 4px;
+    padding: 3rem 1rem;
+  }
 }

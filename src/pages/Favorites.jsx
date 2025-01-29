@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import KeyboardDoubleArrowLeftRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftRounded";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Wrapper from "../assets/wrappers/LandingPage";
 import { useDispatch, useSelector } from "react-redux";
 import QualificationListItem from "../components/ui/QualificationListItem";

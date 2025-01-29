@@ -45,6 +45,11 @@ const Wrapper = styled.div`
     z-index: 1;
     padding: 12px;
   }
+  @media (max-width: 600px) {
+    .dictionary-fab {
+      right: -80px;
+    }
+  }
 `;
 
 export default Wrapper;

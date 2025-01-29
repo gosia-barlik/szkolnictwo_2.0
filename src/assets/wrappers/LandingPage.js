@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   .home-header h1.MuiTypography-h5 {
-    margin-top: 64px;
+    margin-top: 14px;
   }
   .home-header .main.autocomplete {
     margin-top: 24px;
@@ -30,7 +30,9 @@ const Wrapper = styled.div`
   .qualifications-by-region .qualification-card,
   .qualifications-by-salary .qualification-card,
   .qualifications-list .qualification-card {
+    height: 76px;
     display: flex;
+    justify-content: space-between;
     margin-top: 12px;
   }
 
@@ -58,7 +60,7 @@ const Wrapper = styled.div`
     background-repeat: no-repeat;
     border-radius: 8px;
     padding: 4px;
-    width: 151px;
+    width: 80px;
   }
 
   .qualifications-by-region a.link,
@@ -75,7 +77,6 @@ const Wrapper = styled.div`
   .qualifications-by-region .icons-container,
   .qualifications-by-salary .icons-container,
   .qualifications-list .icons-container {
-    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -102,6 +103,10 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 600px) {
+    .home-header h1.MuiTypography-h5 {
+      margin-top: 64px;
+    }
+
     .column-left a.button {
       margin-top: 28px;
     }

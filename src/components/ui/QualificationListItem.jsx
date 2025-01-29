@@ -51,8 +51,18 @@ const QualificationListItem = (props) => {
           <CardContent
             sx={{ flex: "1 0 auto", display: "flex", width: "100%" }}
           >
-            <div style={{ width: "100%" }}>
-              <Typography variant="h5">{props.name}</Typography>
+            <Box sx={{ width: {xs:"95%", sm:"100%"} }}>
+              <Typography
+                variant="h5"
+                sx={{
+                  whiteSpace: "nowrap", 
+                  overflow: "hidden", 
+                  textOverflow: "ellipsis", 
+                  display: "block", 
+                }}
+              >
+                {props.name}
+              </Typography>
               <div className="details-container">
                 {props.field && (
                   <Typography variant="subtitle1">
@@ -71,11 +81,11 @@ const QualificationListItem = (props) => {
                   </Typography>
                 )} */}
               </div>
-            </div>
+            </Box>
           </CardContent>
         </Box>
       </Link>
-      <div className="icons-container">
+      <Box sx={{ display: { xs: "none", md: "flex" } }}>
         <IconButton
           aria-label="favorite"
           title="dodaj do schowka"
@@ -87,7 +97,7 @@ const QualificationListItem = (props) => {
         <IconButton aria-label="print" title="drukuj">
           <PrintOutlinedIcon color="action" />
         </IconButton>
-      </div>
+      </Box>
     </Card>
   );
 };
