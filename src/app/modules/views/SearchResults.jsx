@@ -122,17 +122,13 @@ const SearchResults = () => {
       } else {
         console.error("No data received from API");
       }
-    } catch (error) {
+    } catch (error) {// TODO:: przeniesc obsluge bledow do warstwy API - handleApiResponse w axiosUtils
       console.error("Error fetching search results:", error.message);
     }
   };
 
   const updateIndustries = () => {
-    if (
-      filters_area.length > 0 &&
-      filtersOptions.areas &&
-      Array.isArray(filtersOptions.areas)
-    ) {
+    if ( filters_area.length > 0 && filtersOptions.areas && Array.isArray(filtersOptions.areas) ) {
       const foundArea = filtersOptions.areas.find(
         (area) => area.name === filters_area[0]
       );
@@ -144,9 +140,7 @@ const SearchResults = () => {
 
   const updateFields = () => {
     if (filters_industry.length > 0) {
-      const foundIndustry = filtersIndustries.find(
-        (industry) => industry.name === filters_industry[0]
-      );
+      const foundIndustry = filtersIndustries.find((industry) => industry.name === filters_industry[0]);
       setFiltersFields(foundIndustry ? foundIndustry.fields : []);
     } else {
       setFiltersFields([]);

@@ -15,7 +15,7 @@ import {
 import certificate from "../../../../assets/img/certificate.svg";
 
 const QualificationSimilar = (props) => {
-
+//TODO:: czy stringi z jsx nie powinny byc przeneisione do slownika?
   return (
     <Wrapper>
       <Stack
@@ -24,8 +24,8 @@ const QualificationSimilar = (props) => {
         spacing={2}
       >
         <Box sx={{ width: { xs: "100%", md: "65%" } }}>
-          <Typography variant="h6">
-            Zobacz jakie jeszcze certyfikaty potwierdzające umiejętności możesz
+          <Typography variant="h6"> 
+            Zobacz jakie jeszcze certyfikaty potwierdzające umiejętności możesz 
             zdobyć
           </Typography>
           <Typography>

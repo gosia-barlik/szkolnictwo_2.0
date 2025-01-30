@@ -21,3 +21,21 @@ export function defineCancelApiObject(apiObject) {
   
     return cancelApiObject
   }
+
+// Wrapper function to handle API errors & empty responses
+export async function handleApiResponse(apiCall, fallbackValue = null) {
+    try {
+      const response = await apiCall();
+  
+      if (!response || (Array.isArray(response) && response.length === 0)) {
+        console.warn("API returned an empty response.");
+        return fallbackValue;
+      }
+  
+      return response.data ?? response.data;
+
+    } catch (error) {
+      console.error("API request failed:", error);
+      return fallbackValue;
+    }
+}
