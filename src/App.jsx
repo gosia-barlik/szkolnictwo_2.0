@@ -9,11 +9,11 @@ import {
   SinglePageError,
   Qualification,
   Favorites,
-  Dictionary
-} from './pages';
-import SearchResults from './pages/SearchResults';
+  Dictionary,
+  SearchResults
+} from './app/modules/views';
 
-import {loader as singleQualificationLoader} from './pages/Qualification'
+import {loader as singleQualificationLoader} from './app/modules/views/Qualification'
 
 const queryClient = new QueryClient({
   defaultOptions: {
