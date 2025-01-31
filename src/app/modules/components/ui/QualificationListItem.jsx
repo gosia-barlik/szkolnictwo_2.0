@@ -12,7 +12,7 @@ import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import IconButton from "@mui/material/IconButton";
 import VerifiedRoundedIcon from "@mui/icons-material/VerifiedRounded";
 import { useDispatch, useSelector } from "react-redux";
-import { addToClipboard, removeFromClipboard } from "../../../redux/clipboard";
+import { addToClipboard, removeFromClipboard } from "../../../redux/clipboardStore";
 
 const QualificationListItem = (props) => {
   const [isInClipboard, setIsInClipboard] = useState(false);

@@ -10,7 +10,7 @@ import * as phrases from "../../shared/dictionaries/pl.json";
 import Wrapper from "../../../assets/wrappers/LandingPage";
 import { MainInfoAPI } from "../../api/qualifications/mainInfoApi";
 import { DictionaryAPI } from "../../api/dictionaries/dictionaryApi";
-import { setGraphItems, setSelectedItem } from "../../redux/searchResults";
+import { setGraphItems, setSelectedItem } from "../../redux/searchResultsStore";
 
 const Landing = () => {
   const [autocompleteOptions, setAutocompleteOptions] = useState([]);
@@ -42,7 +42,7 @@ const Landing = () => {
   useEffect(() => {
     // get data to draw graph if there isnt any
     if (graph_items.length <= 0) {
-      getGraphItemsFixture();
+      getGraphItems();
     }
   }, [graph_items]);
 
@@ -52,9 +52,9 @@ const Landing = () => {
     listRef.current?.scrollIntoView({ behavior: "smooth" }, [qualifications]);
   });
 
-  const getGraphItemsFixture = async () => {
+  const getGraphItems = async () => {
     handleSelectItem([]);
-    const response = await MainInfoAPI.getGraphItemsFixture()
+    const response = await MainInfoAPI.getGraphItems()
       .catch((error) => console.log([error.message]))
       .finally(() => {});
     handleGraphItems(response.results);
@@ -91,7 +91,7 @@ const Landing = () => {
               />
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
-              <PieChart getGraphItemsFixture={getGraphItemsFixture} />
+              <PieChart getGraphItems={getGraphItems} />
             </Grid>
           </Grid>
         </Box>

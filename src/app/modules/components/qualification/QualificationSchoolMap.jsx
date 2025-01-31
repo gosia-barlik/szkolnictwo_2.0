@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../../../../assets/wrappers/PolandMap";
 import { MainInfoAPI } from "../../../api/qualifications/mainInfoApi";
-import { changeResults, setVoivodeship } from "../../../redux/mostWanted";
+import { changeResults, setVoivodeship } from "../../../redux/mostWantedStore";
 
 const QualificationSchoolMap = (props) => {
   return (

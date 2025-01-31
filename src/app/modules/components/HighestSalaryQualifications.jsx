@@ -14,12 +14,12 @@ const HighestSalaryQualifications = () => {
   const theme = useTheme();
 
   useEffect(() => {
-    getSearchResultsFixture();
+    getSearchResults();
   }, []);
 
-  const getSearchResultsFixture = async () => {
+  const getSearchResults = async () => {
     try {
-      const response = await MainInfoAPI.getSearchResultsFixture();
+      const response = await MainInfoAPI.getSearchResults();
       if (response && response.results) {
         setQualifications(response.results);
       } else {

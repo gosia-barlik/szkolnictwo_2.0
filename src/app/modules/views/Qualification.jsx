@@ -10,7 +10,7 @@ import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 import TabsPill from "../components/ui/Tabs";
 import img from "../../../assets/img/zsk-logo.svg";
-import { addToClipboard, removeFromClipboard } from "../../redux/clipboard";
+import { addToClipboard, removeFromClipboard } from "../../redux/clipboardStore";
 import { qualificationFixture } from "../../../fixtures/qualificationFixture";
 import * as phrases from "../../shared/dictionaries/pl.json";
 import Wrapper from "../../../assets/wrappers/QualificationPage";

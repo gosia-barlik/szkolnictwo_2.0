@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Button, Box, Autocomplete, TextField } from "@mui/material";
 import { MainInfoAPI } from "../../../api/qualifications/mainInfoApi";
 import { useDispatch, useSelector } from "react-redux";
-import { changeResults, setFiltersPhrase } from "../../../redux/searchResults";
+import { changeResults, setFiltersPhrase } from "../../../redux/searchResultsStore";
 
 const InputAutocomplete = (props) => {
   const { filters_phrase } = useSelector((state) => state.searchResults);
@@ -12,13 +12,13 @@ const InputAutocomplete = (props) => {
   const handleChange = (newValue) => {
     if (newValue) {
       dispatch(setFiltersPhrase(newValue));
-      getSearchResultsFixture();
+      getSearchResults();
     }
   };
 
-  const getSearchResultsFixture = async () => {
+  const getSearchResults = async () => {
     try {
-      const response = await MainInfoAPI.getSearchResultsFixture();
+      const response = await MainInfoAPI.getSearchResults();
       if (response && response.results) {
         handleSearchResults([...response.results]);
       } else {

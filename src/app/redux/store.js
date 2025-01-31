@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tabsReducer from "./tabs";
-import searchResultsReducer from "./searchResults";
-import mostWantedReducer from "./mostWanted";
-import clipboardReducer from "./clipboard";
+import tabsReducer from "./tabsStore";
+import searchResultsReducer from "./searchResultsStore";
+import mostWantedReducer from "./mostWantedStore";
+import clipboardReducer from "./clipboardStore";
 
 export default configureStore({
   reducer: {

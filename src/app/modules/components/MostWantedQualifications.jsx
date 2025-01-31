@@ -12,7 +12,7 @@ import Select from "@mui/material/Select";
 import QualificationListItem from "./ui/QualificationListItem";
 import PolandMap from "./ui/Polandmap";
 import { useDispatch, useSelector } from "react-redux";
-import { changeResults, setVoivodeship } from "../../redux/mostWanted";
+import { changeResults, setVoivodeship } from "../../redux/mostWantedStore";
 
 const MostWantedQualifications = () => {
   const [voivodeships, setVoivodeships] = useState([]);
@@ -34,13 +34,13 @@ const MostWantedQualifications = () => {
     const selectedVoivodeship = event.target.value;
     dispatch(setVoivodeship(selectedVoivodeship));
     if (selectedVoivodeship) {
-      getSearchResultsFixture(selectedVoivodeship);
+      getSearchResults(selectedVoivodeship);
     }
   };
 
   const getSelectOptions = async () => {
     try {
-      const response = await DictionaryAPI.voivodeships();
+      const response = await DictionaryAPI.getVoivodeships();
       if (response && response.results) {
         setVoivodeships(response.results);
       } else {
@@ -51,9 +51,9 @@ const MostWantedQualifications = () => {
     }
   };
 
-  const getSearchResultsFixture = async (voivodeship) => {
+  const getSearchResults = async (voivodeship) => {
     try {
-      const response = await MainInfoAPI.getSearchResultsFixture();
+      const response = await MainInfoAPI.getSearchResults();
       if (response && response.results) {
         dispatch(changeResults(response.results));
       } else {

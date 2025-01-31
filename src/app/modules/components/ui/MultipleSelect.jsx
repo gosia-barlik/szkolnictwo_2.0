@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import {Box, OutlinedInput, InputLabel, MenuItem, FormControl, Select, Chip} from "@mui/material";
-import { setFiltersArea, setFiltersIndustry } from "../../../redux/searchResults";
+import { setFiltersArea, setFiltersIndustry } from "../../../redux/searchResultsStore";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

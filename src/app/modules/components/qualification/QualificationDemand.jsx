@@ -19,7 +19,7 @@ const QualificationDemand = (props) => {
 
   const getDemandDataFixture = async () => {
     try {
-      const response = await MainInfoAPI.getQualificationDemandMapFixture();
+      const response = await MainInfoAPI.getQualificationDemandMap();
       if (response && response.results) {
         setDemandData(response.results.voivodeship_demands);
       } else {

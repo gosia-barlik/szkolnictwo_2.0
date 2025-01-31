@@ -60,7 +60,7 @@ const QualificationSchool = () => {
   const [selectedCity, setSelectedCity] = useState(null);
   const [page, setPage] = useState(1);
 
-  const { data: voivodeshipOptions } = useFetchData(DictionaryAPI.voivodeships);
+  const { data: voivodeshipOptions } = useFetchData(DictionaryAPI.getVoivodeships);
 
   // Ustawienie domyślnego województwa
   useEffect(() => {
@@ -75,11 +75,11 @@ const QualificationSchool = () => {
   }, [voivodeshipOptions, selectedVoivodeship]);
 
   const { data: cityOptions } = useFetchData(
-    () => DictionaryAPI.cities(selectedVoivodeship?.name),
+    () => DictionaryAPI.getCities(selectedVoivodeship?.name),
     [selectedVoivodeship]
   );
 
-  const { data: schoolData } = useFetchData(MainInfoAPI.getSchoolDataFixture, [
+  const { data: schoolData } = useFetchData(MainInfoAPI.getSchoolData, [
     selectedVoivodeship,
     selectedCity,
   ]);

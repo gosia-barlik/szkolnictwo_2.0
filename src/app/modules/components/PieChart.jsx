@@ -14,7 +14,7 @@ import {
   setFiltersPhrase,
   setGraphItems,
   setSelectedItem,
-} from "../../redux/searchResults";
+} from "../../redux/searchResultsStore";
 
 const PieChart = (props) => {
   const { filters_industry, filters_area, graph_items, selected_item } =
@@ -76,8 +76,8 @@ const PieChart = (props) => {
     };
   }, [graph_items]);
 
-  const getGraphItemsChildrenFixture = async () => {
-    const response = await MainInfoAPI.getGraphItemsChildrenFixture()
+  const getGraphItemsChildren = async () => {
+    const response = await MainInfoAPI.getGraphItemsChildren()
       .catch((error) => console.log([error.message]))
       .finally(() => {
         console.log("");
@@ -89,8 +89,8 @@ const PieChart = (props) => {
     }
   };
 
-  const getSearchResultsFixture = async () => {
-    const response = await MainInfoAPI.getSearchResultsFixture()
+  const getSearchResults = async () => {
+    const response = await MainInfoAPI.getSearchResults()
       .catch((error) => console.log([error.message]))
       .finally(() => {
         console.log("");
@@ -187,10 +187,10 @@ const PieChart = (props) => {
       // Check level of current data - if top, get data to redraw graph
       if (d.data[1].parent_id == "0") {
         setTimeout(() => {
-          getGraphItemsChildrenFixture();
+          getGraphItemsChildren();
         }, 1000);
       } else {
-        getSearchResultsFixture();
+        getSearchResults();
       }
     }
 
@@ -382,7 +382,7 @@ const PieChart = (props) => {
           {filters_area.length > 0 && selected_item.length > 0 && (
             <Button
               onClick={() => {
-                props.getGraphItemsFixture();
+                props.getGraphItems();
                 dispatch(setFiltersPhrase(""));
                 dispatch(setFiltersIndustry([]));
                 dispatch(setFiltersArea([]));

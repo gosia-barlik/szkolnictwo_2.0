@@ -41,7 +41,7 @@ import {
   setDisplayAsList,
   setPage,
   setGraphItems,
-} from "../../redux/searchResults";
+} from "../../redux/searchResultsStore";
 
 const SearchResults = () => {
   const dispatch = useDispatch();
@@ -95,7 +95,7 @@ const SearchResults = () => {
 
   const fetchFiltersOptions = async () => {
     try {
-      const response = await DictionaryAPI.getFiltersOptionsFixture();
+      const response = await DictionaryAPI.getFiltersOptions();
       setFiltersOptions(response.results);
       setFiltersAreas(
         response.results.areas.map(({ id, name }) => ({ id, name }))
@@ -116,7 +116,7 @@ const SearchResults = () => {
 
   const fetchSearchResults = async () => {
     try {
-      const response = await MainInfoAPI.getSearchResultsFixture();
+      const response = await MainInfoAPI.getSearchResults();
       if (response && response.results) {
         dispatch(changeResults(response.results));
       } else {

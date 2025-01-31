@@ -13,9 +13,9 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import certificate from "../../../../assets/img/certificate.svg";
+import * as phrases from "../../../shared/dictionaries/pl.json"
 
 const QualificationSimilar = (props) => {
-//TODO:: czy stringi z jsx nie powinny byc przeneisione do slownika?
   return (
     <Wrapper>
       <Stack
@@ -25,12 +25,10 @@ const QualificationSimilar = (props) => {
       >
         <Box sx={{ width: { xs: "100%", md: "65%" } }}>
           <Typography variant="h6"> 
-            Zobacz jakie jeszcze certyfikaty potwierdzające umiejętności możesz 
-            zdobyć
+          {phrases.qualification.similar_tab.title}
           </Typography>
           <Typography>
-            Skorzystaj z listy wybranych kwalifikacji ujętych w Zintegrowanym
-            Rejestrze Kwalifikacji
+          {phrases.qualification.similar_tab.description}
           </Typography>
           <FormControlLabel
             style={{ width: "100%" }}
@@ -41,7 +39,7 @@ const QualificationSimilar = (props) => {
             variant="body2"
             style={{ marginTop: "24px", fontWeight: 700 }}
           >
-            Nazwa kwalifikacji
+            {phrases.qualification.similar_tab.qualification_name}
           </Typography>
           <Box sx={{ width: "100%" }}>
             <List>

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-//TODO::zmienic nawet pliku na clipboardStore - analoginczna konwencja dla pozostalych store
+
 export const clipboardSlice = createSlice({
   name: "clipboard",
   initialState: {

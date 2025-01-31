@@ -8,7 +8,7 @@ import {
   setFiltersDemand,
   setFiltersSalary,
   setFiltersVoivodeship,
-} from "../../../redux/searchResults";
+} from "../../../redux/searchResultsStore";
 
 const filterActions = {
   Obszar: setFiltersArea,

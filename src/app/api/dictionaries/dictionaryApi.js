@@ -8,13 +8,14 @@ export const DictionaryAPI = {
   getAutocompleteOptions: async function (array, cancel = false) {
     return autocompleteOptionsFixture;
   },
-  getFiltersOptionsFixture: async function (array, cancel = false) { //TODO:: konwencja nazewnictwa - zmiana z Fixture, nazwa metody http w nazwie funkcji
+  getFiltersOptions: async function (array, cancel = false) {
     return filtersOptionsFixture;
   },
-  voivodeships: async function (array, cancel = false) {
+  getVoivodeships: async function (array, cancel = false) {
     return voivodeships;
   },
-  cities: async function (voivodeship, cancel = false) {
+
+  getCities: async function (voivodeship, cancel = false) {
     return handleApiResponse( async ()=> api.request({
       url: `/cities/?voivodeship=${voivodeship}`,
       method: "GET",
@@ -23,6 +24,7 @@ export const DictionaryAPI = {
         : undefined,
     })
   )},
+
 };
 
 

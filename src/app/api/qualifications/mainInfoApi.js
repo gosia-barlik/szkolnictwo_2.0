@@ -10,22 +10,22 @@ import { demandMapFixture } from "../../../fixtures/qualificationDemandMapFixtur
 import { schoolDataFixture } from "../../../fixtures/schoolDataFixture";
 
 export const MainInfoAPI = {
-  getGraphItemsFixture: async function (array, cancel = false) {  //TODO:: konwencja nazewnictwa - dlaczego wszedzie jest w nazwie Fixtures + dodac obsluge bledow
+  getGraphItems: async function (array, cancel = false) {  //TODO:: dodac obsluge bledow
     return graphItemsFixture;
   },
-  getGraphItemsChildrenFixture: async function (array, cancel = false) {
+  getGraphItemsChildren: async function (array, cancel = false) {
     return graphItemsChildrenFixture;
   },
-  getSearchResultsFixture: async function (array, cancel = false) {
+  getSearchResults: async function (array, cancel = false) {
     return searchResultsFixture;
   },
-  getQualificationFixture: async function (array, cancel = false) {
+  getQualification: async function (array, cancel = false) {
     return qualificationFixture;
   },
-  getQualificationDemandMapFixture: async function (array, cancel = false) {
+  getQualificationDemandMap: async function (array, cancel = false) {
     return demandMapFixture;
   },
-  getSchoolDataFixture: async function (array, cancel = false) {
+  getSchoolData: async function (array, cancel = false) {
     return schoolDataFixture;
   }
 };
