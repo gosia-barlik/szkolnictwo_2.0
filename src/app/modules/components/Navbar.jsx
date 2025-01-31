@@ -85,8 +85,8 @@ const Navbar = () => {
   const desktopLinks = [
     { to: "/about", label: phrases.about.title },
     {
-      to: "/favorites",
-      label: phrases.common.storage,
+      to: "/clipboard",
+      label: phrases.common.clipboard,
       IconComponent: FavoriteIcon,
       tooltip: <FavoritesTooltipContent favorites={favorites} />,
       badgeContent: favorites.length,
@@ -96,8 +96,8 @@ const Navbar = () => {
   const mobileLinks = [
     { to: "/about", label: phrases.about.title },
     {
-      to: "/favorites",
-      label: phrases.common.storage,
+      to: "/clipboard",
+      label: phrases.common.clipboard,
       IconComponent: FavoriteIcon,
       badgeContent: favorites.length,
     },

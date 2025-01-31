@@ -18,8 +18,8 @@
     "privacy_policy": "Polityka prywatności",
     "accessibility_declaration": "Deklaracja dostępności",
     "contact": "Kontakt",
-    "institution_name": "Instytut Badań Edukacyjnych",
-    "email": "rejestr@ibe.edu.pl",
+    "institution_name": "Instytut Badań Edukacyjnych - Państwowy Instytut Badawczy",
+    "email": "kompas@ibe.edu.pl",
     "address": "ul.Górczewska 8, 01-180 Warszawa"
   },
   "qualification": {
@@ -86,7 +86,7 @@
     "selected_voivodeship": "Wybrane województwo: ",
     "clear_filters": "Wyczyść fitry",
     "go_back": "Wróć",
-    "storage": "Schowek"
+    "clipboard": "Schowek"
   },
   "about": {
     "title": "O aplikacji",

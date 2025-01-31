@@ -6,7 +6,7 @@ import Wrapper from "../../../assets/wrappers/LandingPage";
 import { useDispatch, useSelector } from "react-redux";
 import QualificationListItem from "../components/ui/QualificationListItem";
 
-const Favorites = () => {
+const Clipboard = () => {
   const { favorites } = useSelector((state) => state.clipboard);
   const navigate = useNavigate();
   return (
@@ -40,4 +40,4 @@ const Favorites = () => {
     </Wrapper>
   );
 };
-export default Favorites;
+export default Clipboard;

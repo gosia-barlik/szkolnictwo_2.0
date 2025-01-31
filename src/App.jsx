@@ -8,7 +8,7 @@ import {
   Error,
   SinglePageError,
   Qualification,
-  Favorites,
+  Clipboard,
   Dictionary,
   SearchResults
 } from './app/modules/views';
@@ -47,8 +47,8 @@ const router = createBrowserRouter([
         errorElement: <SinglePageError />,
       },
       {
-        path: 'favorites',
-        element: <Favorites />,
+        path: 'clipboard',
+        element: <Clipboard />,
         errorElement: <SinglePageError />,
       },
       {

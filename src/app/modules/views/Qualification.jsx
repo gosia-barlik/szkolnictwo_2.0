@@ -71,7 +71,7 @@ const Qualification = () => {
     similar_qualifications,
   } = qualification;
 
-  const addToFav = () => {
+  const handleClipboard = () => {
     if (!favorites.some((favorite) => favorite.id == id)) {
       dispatch(addToClipboard({ id: id, name: name }));
     }
@@ -97,7 +97,7 @@ const Qualification = () => {
           <IconButton
             aria-label="dodaj do schowka"
             title="dodaj do schowka"
-            onClick={() => addToFav()}
+            onClick={() => handleClipboard()}
           >
             {!isInClipboard && <FavoriteBorderRoundedIcon color="action" />}
             {isInClipboard && <FavoriteRoundedIcon color="action" />}

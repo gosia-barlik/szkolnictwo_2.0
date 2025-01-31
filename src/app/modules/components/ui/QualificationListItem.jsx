@@ -26,10 +26,9 @@ const QualificationListItem = (props) => {
     }
   }, []);
 
-  const addToFav = () => {
+  const handleClipboard = () => {
     if (!favorites.some((favorite) => favorite.id === props.id)) {
       dispatch(addToClipboard({ id: props.id, name: props.name }));
-      console.log(favorites);
     }
     setIsInClipboard(!isInClipboard);
     if (isInClipboard === true) {
@@ -85,11 +84,11 @@ const QualificationListItem = (props) => {
           </CardContent>
         </Box>
       </Link>
-      <Box sx={{ display: { xs: "none", md: "flex" } }}>
+      <Box sx={{ display: { xs: "none", md: "flex" },height:40, margin:"auto" }}>
         <IconButton
-          aria-label="favorite"
+          aria-label="dodaj do schowka"
           title="dodaj do schowka"
-          onClick={() => addToFav()}
+          onClick={() => handleClipboard()}
         >
           {!isInClipboard && <FavoriteBorderRoundedIcon color="action" />}
           {isInClipboard && <FavoriteRoundedIcon color="action" />}

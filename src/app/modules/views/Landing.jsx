@@ -97,15 +97,7 @@ const Landing = () => {
         </Box>
       </header>
       <main>
-        {/* {qualifications.length > 0 && (
-          <section className="qualifications-list" ref={listRef}>
-            <QualificationsList
-            />
-          </section>
-        )} */}
-        {/* <section className="qualifications-by-region">
-          <MostWantedQualifications />
-        </section> */}
+
         <section className="qualifications-by-salary">
         <HighestSalaryQualifications/>
         </section>
