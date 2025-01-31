@@ -10,7 +10,7 @@ import { demandMapFixture } from "../../../fixtures/qualificationDemandMapFixtur
 import { schoolDataFixture } from "../../../fixtures/schoolDataFixture";
 
 export const MainInfoAPI = {
-  getGraphItemsFixture: async function (array, cancel = false) {
+  getGraphItemsFixture: async function (array, cancel = false) {  //TODO:: konwencja nazewnictwa - dlaczego wszedzie jest w nazwie Fixtures + dodac obsluge bledow
     return graphItemsFixture;
   },
   getGraphItemsChildrenFixture: async function (array, cancel = false) {
