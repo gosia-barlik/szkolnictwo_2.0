@@ -18,7 +18,7 @@ const QualificationDemand = (props) => {
   }, []);
 
   const getDemandDataFixture = async () => {
-    try {
+    try {//TODO:: oblsuga bledow w warstwie API
       const response = await MainInfoAPI.getQualificationDemandMap();
       if (response && response.results) {
         setDemandData(response.results.voivodeship_demands);

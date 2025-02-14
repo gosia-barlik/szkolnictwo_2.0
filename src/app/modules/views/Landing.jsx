@@ -55,8 +55,8 @@ const Landing = () => {
   const getGraphItems = async () => {
     handleSelectItem([]);
     const response = await MainInfoAPI.getGraphItems()
-      .catch((error) => console.log([error.message]))
-      .finally(() => {});
+      .catch((error) => console.log([error.message]))//TODO:: po co to?
+      .finally(() => {});//TODO:: po co to? czy  handleGraphItems nie powinno byc w finally?
     handleGraphItems(response.results);
   };
 
