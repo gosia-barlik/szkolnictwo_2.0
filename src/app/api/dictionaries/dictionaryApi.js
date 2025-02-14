@@ -16,14 +16,15 @@ export const DictionaryAPI = {
   },
 
   getCities: async function (voivodeship, cancel = false) {
-    return handleApiResponse( async ()=> api.request({
+    const response = await api.request({
       url: `/cities/?voivodeship=${voivodeship}`,
       method: "GET",
       signal: cancel
         ? cancelApiObject[this.search.name].handleRequestCancellation().signal
         : undefined,
-    })
-  )},
+    });
+    return response.data;
+  }
 
 };
 
