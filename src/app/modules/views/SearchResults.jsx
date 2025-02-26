@@ -117,12 +117,12 @@ const SearchResults = () => {
   const fetchSearchResults = async () => {
     try {
       const response = await MainInfoAPI.getSearchResults();
-      if (response && response.results) {
+      if (response && response.results) {// TODO:: przeniesc obsluge bledow do warstwy API - handleApiResponse w axiosUtils
         dispatch(changeResults(response.results));
       } else {
         console.error("No data received from API");
       }
-    } catch (error) {// TODO:: przeniesc obsluge bledow do warstwy API - handleApiResponse w axiosUtils
+    } catch (error) {
       console.error("Error fetching search results:", error.message);
     }
   };

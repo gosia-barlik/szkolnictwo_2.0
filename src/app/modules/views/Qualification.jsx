@@ -20,17 +20,14 @@ const singleQualificationQuery = async (id) => {
 };
 
 export const loader =
-  (queryClient) =>
-  async ({ params }) => {
-    const { id } = params;
-
+  (queryClient) => async ({ params }) => {const { id } = params;
     await queryClient.ensureQueryData({
       queryKey: ["qualification", id],
       queryFn: () => singleQualificationQuery(id),
     });
 
     return { id };
-  };
+  };//TODO :: czy to nie powinien byc loader dla calej aplikacji?
 
 const Qualification = () => {
   const { id } = useLoaderData();
@@ -50,7 +47,7 @@ const Qualification = () => {
     queryFn: () => singleQualificationQuery(id),
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>; //TODO :: czy nie lepiej zastosowac tu globalny mechanizm obslugi bledow?
   if (error || !data || !data.results || data.results.length === 0) {
     console.error("No valid data received");
     return <Navigate to="/" />;

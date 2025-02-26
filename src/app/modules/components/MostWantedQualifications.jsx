@@ -52,8 +52,8 @@ const MostWantedQualifications = () => {
   };
 
   const getSearchResults = async (voivodeship) => {
-    try {
-      const response = await MainInfoAPI.getSearchResults();
+    try {// TODO :: obsluga bledow w warstwie API
+      const response = await MainInfoAPI.getSearchResults(); 
       if (response && response.results) {
         dispatch(changeResults(response.results));
       } else {

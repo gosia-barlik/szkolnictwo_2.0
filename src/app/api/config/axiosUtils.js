@@ -22,7 +22,7 @@ export function defineCancelApiObject(apiObject) {
     return cancelApiObject
   }
 
-// Wrapper function to handle API errors & empty responses
+// TODO :: uspojnic z error handlerem w axiosConfig
 export async function handleApiResponse(apiCall, fallbackValue = null) {
     try {
       const response = await apiCall();
